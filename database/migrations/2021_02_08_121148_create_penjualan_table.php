@@ -24,6 +24,7 @@ class CreatePenjualanTable extends Migration
             $table->foreignId('vendor_id');
             $table->foreignId('barang_id');
             $table->foreignId('metodePembayaran_id');
+            $table->foreignId('destination_id');
             $table->foreignId('statusPengiriman_id');
             $table->foreignId('customer_id');
             $table->timestamps();
@@ -31,6 +32,7 @@ class CreatePenjualanTable extends Migration
             $table->foreign('vendor_id')->references('id')->on('vendor')->onDelete('cascade');
             $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');
             $table->foreign('metodePembayaran_id')->references('id')->on('metode_pembayaran')->onDelete('cascade');
+            $table->foreign('destination_id')->references('id')->on('destination')->onDelete('cascade');
             $table->foreign('statusPengiriman_id')->references('id')->on('status_pengiriman')->onDelete('cascade');
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('cascade');
         });
