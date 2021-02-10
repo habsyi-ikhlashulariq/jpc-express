@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\VendorController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\StatusPengirimanController;
@@ -57,3 +58,12 @@ Route::post('/status_pengiriman/store', [StatusPengirimanController::class, 'sto
 Route::get('status_pengiriman/edit/{id}', [StatusPengirimanController::class, 'edit']);
 Route::put('/status_pengiriman/update/{id}', [StatusPengirimanController::class, 'update']);
 Route::get('/status_pengiriman/destroy/{id}', [StatusPengirimanController::class, 'destroy']);
+
+//Data Status Pengiriman
+Route::get('/vendor', [VendorController::class, 'index']);
+Route::get('/vendor/dt', [VendorController::class, 'dt']);
+Route::get('/vendor/create', [VendorController::class, 'create']);
+Route::post('/vendor/store', [VendorController::class, 'store']);
+Route::get('vendor/edit/{id}', [VendorController::class, 'edit']);
+Route::put('/vendor/update/{id}', [VendorController::class, 'update']);
+Route::get('/vendor/destroy/{id}', [VendorController::class, 'destroy']);
