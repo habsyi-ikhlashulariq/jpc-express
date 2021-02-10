@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MetodePembayaranController;
+use App\Http\Controllers\StatusPengirimanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,12 @@ Route::post('/metode_pembayaran/store', [MetodePembayaranController::class, 'sto
 Route::get('metode_pembayaran/edit/{id}', [MetodePembayaranController::class, 'edit']);
 Route::put('/metode_pembayaran/update/{id}', [MetodePembayaranController::class, 'update']);
 Route::get('/metode_pembayaran/destroy/{id}', [MetodePembayaranController::class, 'destroy']);
+
+//Data Status Pengiriman
+Route::get('/status_pengiriman', [StatusPengirimanController::class, 'index']);
+Route::get('/status_pengiriman/dt', [StatusPengirimanController::class, 'dt']);
+Route::get('/status_pengiriman/create', [StatusPengirimanController::class, 'create']);
+Route::post('/status_pengiriman/store', [StatusPengirimanController::class, 'store']);
+Route::get('status_pengiriman/edit/{id}', [StatusPengirimanController::class, 'edit']);
+Route::put('/status_pengiriman/update/{id}', [StatusPengirimanController::class, 'update']);
+Route::get('/status_pengiriman/destroy/{id}', [StatusPengirimanController::class, 'destroy']);
