@@ -2,7 +2,7 @@
 
 @section('content')   
         <div class="panel-body">
-                <h3>Form Tambah Pelanggan</h3>
+                <h3>Form Update Pelanggan</h3>
                 <hr>
             <form action="{{ url('/customer/update/'.$customer->id) }}" method="POST" >
             {{ csrf_field() }}

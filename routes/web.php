@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\MetodePembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,12 @@ Route::post('/barang/store', [BarangController::class, 'store']);
 Route::get('barang/edit/{id}', [BarangController::class, 'edit']);
 Route::put('/barang/update/{id}', [BarangController::class, 'update']);
 Route::get('/barang/destroy/{id}', [BarangController::class, 'destroy']);
+
+//Data Metode Pembayaran
+Route::get('/metode_pembayaran', [MetodePembayaranController::class, 'index']);
+Route::get('/metode_pembayaran/dt', [MetodePembayaranController::class, 'dt']);
+Route::get('/metode_pembayaran/create', [MetodePembayaranController::class, 'create']);
+Route::post('/metode_pembayaran/store', [MetodePembayaranController::class, 'store']);
+Route::get('metode_pembayaran/edit/{id}', [MetodePembayaranController::class, 'edit']);
+Route::put('/metode_pembayaran/update/{id}', [MetodePembayaranController::class, 'update']);
+Route::get('/metode_pembayaran/destroy/{id}', [MetodePembayaranController::class, 'destroy']);
