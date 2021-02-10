@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CustomerController;
 
 /*
@@ -18,6 +19,7 @@ Route::get('/', function () {
     return view('master.dashboard');
 });
 
+//Data Pelanggan
 Route::get('/customer', [CustomerController::class, 'index']);
 Route::get('/customer/dt', [CustomerController::class, 'dt']);
 Route::get('/customer/create', [CustomerController::class, 'create']);
@@ -26,3 +28,12 @@ Route::get('customer/edit/{id}', [CustomerController::class, 'edit']);
 Route::put('/customer/update/{id}', [CustomerController::class, 'update']);
 Route::get('/customer/destroy/{id}', [CustomerController::class, 'destroy']);
 
+
+//Data Pelanggan
+Route::get('/barang', [BarangController::class, 'index']);
+Route::get('/barang/dt', [BarangController::class, 'dt']);
+Route::get('/barang/create', [BarangController::class, 'create']);
+Route::post('/barang/store', [BarangController::class, 'store']);
+Route::get('barang/edit/{id}', [BarangController::class, 'edit']);
+Route::put('/barang/update/{id}', [BarangController::class, 'update']);
+Route::get('/barang/destroy/{id}', [BarangController::class, 'destroy']);
