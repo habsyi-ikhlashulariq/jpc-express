@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\StatusPengirimanController;
 
@@ -59,7 +60,7 @@ Route::get('status_pengiriman/edit/{id}', [StatusPengirimanController::class, 'e
 Route::put('/status_pengiriman/update/{id}', [StatusPengirimanController::class, 'update']);
 Route::get('/status_pengiriman/destroy/{id}', [StatusPengirimanController::class, 'destroy']);
 
-//Data Status Pengiriman
+//Data Vendor
 Route::get('/vendor', [VendorController::class, 'index']);
 Route::get('/vendor/dt', [VendorController::class, 'dt']);
 Route::get('/vendor/create', [VendorController::class, 'create']);
@@ -67,3 +68,12 @@ Route::post('/vendor/store', [VendorController::class, 'store']);
 Route::get('vendor/edit/{id}', [VendorController::class, 'edit']);
 Route::put('/vendor/update/{id}', [VendorController::class, 'update']);
 Route::get('/vendor/destroy/{id}', [VendorController::class, 'destroy']);
+
+//Data Order
+Route::get('/order', [PenjualanController::class, 'index']);
+Route::get('/order/dt', [PenjualanController::class, 'dt']);
+Route::get('/order/create', [PenjualanController::class, 'create']);
+Route::post('/order/store', [PenjualanController::class, 'store']);
+Route::get('order/edit/{id}', [PenjualanController::class, 'edit']);
+Route::put('/order/update/{id}', [PenjualanController::class, 'update']);
+Route::get('/order/destroy/{id}', [PenjualanController::class, 'destroy']);

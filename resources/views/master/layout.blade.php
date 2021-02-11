@@ -89,7 +89,6 @@
 									<li><a href="{{ url('/metode_pembayaran')}}" class="">Metode Pembayaran</a></li>
 									<li><a href="{{ url('/status_pengiriman')}}" class="">Status Pengiriman</a></li>
 									<li><a href="{{ url('/vendor')}}" class="">Vendor</a></li>
-									<li><a href="{{ url('/kas')}}" class="">Kas</a></li>
 								</ul>
 							</div>
 						</li>

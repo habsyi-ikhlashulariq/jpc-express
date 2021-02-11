@@ -17,7 +17,7 @@
                             </div>
                            @enderror
 
-                        <label for="">Plat Nomor</label>
+                        <label for="">Keterangan</label>
                         <input class="form-control" placeholder="Keterangan" type="text" name="keterangan"><br>
 
                             @error('keterangan')
