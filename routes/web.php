@@ -5,6 +5,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\StatusPengirimanController;
 
@@ -77,3 +78,12 @@ Route::post('/order/store', [PenjualanController::class, 'store']);
 Route::get('order/edit/{id}', [PenjualanController::class, 'edit']);
 Route::put('/order/update/{id}', [PenjualanController::class, 'update']);
 Route::get('/order/destroy/{id}', [PenjualanController::class, 'destroy']);
+
+//Data Order
+Route::get('/destinasi', [DestinationController::class, 'index']);
+Route::get('/destinasi/dt', [DestinationController::class, 'dt']);
+Route::get('/destinasi/create', [DestinationController::class, 'create']);
+Route::post('/destinasi/store', [DestinationController::class, 'store']);
+Route::get('destinasi/edit/{id}', [DestinationController::class, 'edit']);
+Route::put('/destinasi/update/{id}', [DestinationController::class, 'update']);
+Route::get('/destinasi/destroy/{id}', [DestinationController::class, 'destroy']);
