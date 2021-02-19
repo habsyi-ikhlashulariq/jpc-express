@@ -44,32 +44,22 @@
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-								<i class="lnr lnr-alarm"></i>
-								<span class="badge bg-danger">5</span>
-							</a>
-							<ul class="dropdown-menu notifications">
-								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
-								<li><a href="#" class="more">See all notifications</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="{{ asset('/user_profile/'.Auth::user()->avatar) }}" class="img-circle" alt="Avatar"> <span>{{Auth::user()->name}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+								<li><a href="{{ url('/profile')}}"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="{{ route('logout') }}" onclick="
+                event.preventDefault();
+                document.getElementById('formLogout').submit();
+            "><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
+            
+    <form id="formLogout" action="{{ route('logout') }}" method="POST">
+    @csrf</form>
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar">
@@ -78,7 +68,7 @@
 					<ul class="nav">
                        
 
-						<li><a href="index.html" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+						<li><a href="{{ url('/dashboard') }}" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
 
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Data Master</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -96,6 +86,7 @@
 						<li><a href="{{ url('/order')}}" class=""><i class="fa fa-shopping-bag"></i> <span>Data Order</span></a></li>
 
 						<li><a href="{{ url('/destinasi')}}" class=""><i class="fa fa-map"></i> <span>Data Destination</span></a></li>
+						<li><a href="{{ url('/cek')}}" class=""><i class="fa fa-map"></i> <span>Cek Pengiriman</span></a></li>
 
 					</ul>
 				</nav>
@@ -110,8 +101,13 @@
 					<!-- OVERVIEW -->
 					<div class="panel panel-headline">
 						<div class="panel-heading">
-							<h3 class="panel-title">Weekly Overview</h3>
-							<p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
+							<h3 class="panel-title">JPC EXPRESS</h3>
+							<p>
+								<?php
+									$date = new DateTime('2017-01-20 22:07:15');
+									echo $date->format('l, d F Y H:i:s'); 
+								?>
+							</p>
 						</div>
 
                         @yield('content')

@@ -3,11 +3,11 @@
 <div class="panel-body">
     <a href="{{ url('order/create') }}" class="btn btn-primary">Tambah Order</a><br><br>
 
-        <div class="alert alert-success" role="alert">
             @if (session('message'))
+            <div class="alert alert-success" role="alert">
                 {{ session('message') }}                        
+            </div>
             @endif
-        </div>
         
     <table class="table table-bordered table-hover table-striped" id="order-table">
         <thead>

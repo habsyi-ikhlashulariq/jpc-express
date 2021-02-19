@@ -1,10 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\CekResiController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\StatusPengirimanController;
@@ -20,9 +24,21 @@ use App\Http\Controllers\StatusPengirimanController;
 |
 */
 
-Route::get('/', function () {
-    return view('master.dashboard');
-});
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/', [LoginController::class, 'login'])->name('login');
+
+Route::group(['middleware' => 'auth'], function(){
+    
+Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// User
+Route::get('/profile', [UserController::class, 'profile']);
+Route::get('/profile/ubah', [UserController::class, 'ubah_profile']);
+Route::put('/profile/update', [UserController::class, 'update_profile']);
+Route::get('/profile/ubah/password', [UserController::class, 'ubah_password']);
+Route::put('/profile/update/password', [UserController::class, 'update_password']);
+
 
 //Data Pelanggan
 Route::get('/customer', [CustomerController::class, 'index']);
@@ -78,8 +94,9 @@ Route::post('/order/store', [PenjualanController::class, 'store']);
 Route::get('order/edit/{id}', [PenjualanController::class, 'edit']);
 Route::put('/order/update/{id}', [PenjualanController::class, 'update']);
 Route::get('/order/destroy/{id}', [PenjualanController::class, 'destroy']);
+Route::get('/order/notif/{id}', [PenjualanController::class, 'notif']);
 
-//Data Order
+//Data Destinasi
 Route::get('/destinasi', [DestinationController::class, 'index']);
 Route::get('/destinasi/dt', [DestinationController::class, 'dt']);
 Route::get('/destinasi/create', [DestinationController::class, 'create']);
@@ -87,3 +104,16 @@ Route::post('/destinasi/store', [DestinationController::class, 'store']);
 Route::get('destinasi/edit/{id}', [DestinationController::class, 'edit']);
 Route::put('/destinasi/update/{id}', [DestinationController::class, 'update']);
 Route::get('/destinasi/destroy/{id}', [DestinationController::class, 'destroy']);
+
+//Cek Resi
+Route::get('/cek', [CekResiController::class, 'cek']);
+
+
+});
+
+//Login
+// Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

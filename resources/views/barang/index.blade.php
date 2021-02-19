@@ -2,11 +2,11 @@
 @section('content')
 <div class="panel-body">
     <a href="{{ url('barang/create') }}" class="btn btn-primary">Tambah Barang</a><br><br>
-    <div class="alert alert-success" role="alert">
         @if (session('message'))
-            {{ session('message') }}                        
+            <div class="alert alert-success" role="alert">
+                {{ session('message') }}                        
+            </div>
         @endif
-    </div>
     <table class="table table-bordered table-hover table-striped" id="customer-table">
         <thead>
             <tr>

@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col-md-3">
             <div class="metric">
-                <span class="icon"><i class="fa fa-download"></i></span>
+                <span class="icon"><i class="fa fa-user"></i></span>
                 <p>
-                    <span class="number">1,252</span>
-                    <span class="title">Downloads</span>
+                    <span class="number">{{$customer}}</span>
+                    <span class="title">Jumlah Customer</span>
                 </p>
             </div>
         </div>
@@ -15,29 +15,12 @@
             <div class="metric">
                 <span class="icon"><i class="fa fa-shopping-bag"></i></span>
                 <p>
-                    <span class="number">203</span>
-                    <span class="title">Sales</span>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="metric">
-                <span class="icon"><i class="fa fa-eye"></i></span>
-                <p>
-                    <span class="number">274,678</span>
-                    <span class="title">Visits</span>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="metric">
-                <span class="icon"><i class="fa fa-bar-chart"></i></span>
-                <p>
-                    <span class="number">35%</span>
-                    <span class="title">Conversions</span>
+                    <span class="number">{{ $order }}</span>
+                    <span class="title">Jumlah Orderan</span>
                 </p>
             </div>
         </div>
     </div>
 </div>
+
 @endsection

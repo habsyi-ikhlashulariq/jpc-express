@@ -19,7 +19,7 @@ class CreateCustomerTable extends Migration
             $table->string('emailCustomer', 45);
             $table->string('noTelpCustomer', 45);
             $table->string('genderCustomer', 45);
-            $table->string('alamatCustomer', 45);
+            $table->string('alamatCustomer');
             $table->timestamps();
         });
     }

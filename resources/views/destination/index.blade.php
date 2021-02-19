@@ -3,11 +3,11 @@
 <div class="panel-body">
     <a href="{{ url('destination/create') }}" class="btn btn-primary">Tambah Destinasi</a><br><br>
 
-        <div class="alert alert-success" role="alert">
             @if (session('message'))
-                {{ session('message') }}                        
+                <div class="alert alert-success" role="alert">
+                    {{ session('message') }}                        
+                </div>
             @endif
-        </div>
         
     <table class="table table-bordered table-hover table-striped" id="destination-table">
         <thead>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMail;
 use App\Models\Barang;
 use App\Models\Vendor;
 use App\Models\Customer;
@@ -11,6 +12,7 @@ use App\Models\MetodePembayaran;
 use App\Models\StatusPengiriman;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class PenjualanController extends Controller
 {
@@ -44,6 +46,7 @@ class PenjualanController extends Controller
         ->addColumn('aksi', function($s){
             return '<a href="order/edit/'.$s->id.'" class="btn btn-warning">Edit</a>
             <a href="order/destroy/'.$s->id.'" class="btn btn-danger">Hapus</a>
+            <a href="order/notif/'.$s->id.'" class="btn btn-success">Kirim Notif</a>
             ';
         })
         ->rawColumns(['aksi'])
@@ -203,5 +206,23 @@ class PenjualanController extends Controller
 
         $order->delete();
         return redirect('/order')->with('message', 'Data Berhasil DiHapus');
+    }
+    public function notif($id)
+    {
+        $user = DB::table('penjualan')
+        ->join('customer', 'penjualan.customer_id', '=', 'customer.id')
+        ->join('status_pengiriman', 'status_pengiriman.id', '=', 'penjualan.statusPengiriman_id')
+        ->join('metode_pembayaran', 'metode_pembayaran.id', '=', 'penjualan.metodePembayaran_id')
+        ->select('penjualan.id','penjualan.tanggal', 'penjualan.penerima', 'penjualan.alamatPenerima', 'customer.namaCustomer', 'customer.emailCustomer', 'customer.noTelpCustomer', 'metode_pembayaran.jenisPembayaran')
+        ->where('penjualan.id', $id)
+        ->first();
+
+
+        \Mail::raw('Halo '.$user->namaCustomer.' terima kasih telah memepercayakan kami sebagai pengiriman paket anda, paket anda akan diterima oleh '.$user->penerima.', di'.$user->alamatPenerima.'silahkan bisa cek lokasi paket barang anda dengan memasukan nomor pengiriman '. $id, function($message) use($user){
+            $message->to($user->emailCustomer, $user->namaCustomer);
+            $message->subject('Pengiriman diproses');
+            $message->setBody('<h1> Terima kasih,', 'text/html');
+        });
+        return redirect('/order')->with('message', 'Berhasil Kirim Notifikasi');
     }
 }
