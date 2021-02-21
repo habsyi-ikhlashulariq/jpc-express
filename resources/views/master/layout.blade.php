@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Dashboard | Klorofil - Free Bootstrap Dashboard Template</title>
+	<title>JPC EXPRESS</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -79,13 +79,13 @@
 									<li><a href="{{ url('/metode_pembayaran')}}" class="">Metode Pembayaran</a></li>
 									<li><a href="{{ url('/status_pengiriman')}}" class="">Status Pengiriman</a></li>
 									<li><a href="{{ url('/vendor')}}" class="">Vendor</a></li>
+									<li><a href="{{ url('/destinasi')}}" class="">Destinasi</a></li>
 								</ul>
 							</div>
 						</li>
 
 						<li><a href="{{ url('/order')}}" class=""><i class="fa fa-shopping-bag"></i> <span>Data Order</span></a></li>
 
-						<li><a href="{{ url('/destinasi')}}" class=""><i class="fa fa-map"></i> <span>Data Destination</span></a></li>
 						<li><a href="{{ url('/cek')}}" class=""><i class="fa fa-map"></i> <span>Cek Pengiriman</span></a></li>
 
 					</ul>
@@ -104,8 +104,21 @@
 							<h3 class="panel-title">JPC EXPRESS</h3>
 							<p>
 								<?php
-									$date = new DateTime('2017-01-20 22:07:15');
-									echo $date->format('l, d F Y H:i:s'); 
+									 $tanggal= mktime(date("m"),date("d"),date("Y"));
+									 echo "Tanggal : <b>".date("d-M-Y", $tanggal)."</b> ";
+									 date_default_timezone_set('Asia/Jakarta');
+									 $jam=date("H:i:s");
+									 echo "| Pukul : <b>". $jam." "."</b>";
+									 $a = date ("H");
+									 if (($a>=6) && ($a<=11)){
+									 echo "<b>, Selamat Pagi !!</b>";
+									 }
+									 else if(($a>11) && ($a<=15))
+									 {
+									 echo ", Selamat Pagi !!";}
+									 else if (($a>15) && ($a<=18)){
+									 echo ", Selamat Siang !!";}
+									 else { echo ", <b> Selamat Malam </b>";}
 								?>
 							</p>
 						</div>

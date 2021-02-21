@@ -106,9 +106,9 @@ Route::put('/destinasi/update/{id}', [DestinationController::class, 'update']);
 Route::get('/destinasi/destroy/{id}', [DestinationController::class, 'destroy']);
 
 //Cek Resi
+
+
 Route::get('/cek', [CekResiController::class, 'cek']);
-
-
 });
 
 //Login

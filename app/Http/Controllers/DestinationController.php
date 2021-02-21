@@ -66,7 +66,7 @@ class DestinationController extends Controller
             'tarif' => $request->tarif,
             'waktu' => $request->waktu,
         ]);
-        return redirect('destination')->with('message','Data Berhasil Disimpan');
+        return redirect('destinasi')->with('message','Data Berhasil Disimpan');
     }
 
     /**
@@ -90,7 +90,7 @@ class DestinationController extends Controller
     {
         //
         $destinasi = Destination::find($id);
-        return view('destination.edit', ['destinasi'=> $destinasi]);
+        return view('destinasi.edit', ['destinasi'=> $destinasi]);
     }
 
     /**

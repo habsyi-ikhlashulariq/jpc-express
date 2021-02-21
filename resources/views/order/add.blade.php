@@ -133,6 +133,20 @@
                                 </div>
                            @enderror
 
+                           <label for="">Destinasi</label>
+                            <select name="destinasi_id" id="destinasi_id" class="form-control">
+                                <option value="">Pilih Destinasi</option>
+                                @foreach($destinasi as $data)
+                                <option value="{{ $data->id }}">{{$data->kotaAsal }}|| {{$data->kotaTujuan }}</option>
+                                @endforeach
+                            </select><br>
+
+                            @error('destinasi_id')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                           @enderror
+
                     </div>
                 </div>
                 <div class="row">

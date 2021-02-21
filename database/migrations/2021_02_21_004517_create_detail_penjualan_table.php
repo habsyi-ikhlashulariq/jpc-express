@@ -33,3 +33,4 @@ class CreateDetailPenjualanTable extends Migration
         Schema::dropIfExists('detail_penjualan');
     }
 }
+

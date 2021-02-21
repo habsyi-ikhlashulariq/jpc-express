@@ -12,7 +12,11 @@
                                     <li>Password Lama : <br>
                                         <input class="form-control" type="text" name="cari">
                                     </li>
-
+                                    @if($data == "")
+                                    {{ $data }}
+                                        @else
+                                    {{ @$data->tanggal}}
+                                    @endif
                                 <input class="btn btn-primary" type="submit" name="simpan" value="Simpan">
                             </form>
                     </ul>

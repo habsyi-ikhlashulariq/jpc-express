@@ -7,6 +7,7 @@ use App\Models\Barang;
 use App\Models\Vendor;
 use App\Models\Customer;
 use App\Models\Penjualan;
+use App\Models\Destination;
 use Illuminate\Http\Request;
 use App\Models\MetodePembayaran;
 use App\Models\StatusPengiriman;
@@ -66,13 +67,15 @@ class PenjualanController extends Controller
         $statusPengiriman = StatusPengiriman::all();
         $metodePembayaran = MetodePembayaran::all();
         $barang = Barang::all();
+        $destinasi = Destination::all();
         
         return view('order.add', [
             'vendor' => $vendor,
             'customer' => $customer,
             'statusPengiriman' => $statusPengiriman,
             'metodePembayaran' => $metodePembayaran,
-            'barang' => $barang
+            'barang' => $barang,
+            'destinasi' => $destinasi
         ]);
     }
 
@@ -97,9 +100,10 @@ class PenjualanController extends Controller
             'metodePembayaran_id' => 'required',
             'statusPengiriman_id' => 'required',
             'customer_id' => 'required',
+            'destinasi_id' => 'required',
         ]);
 
-        Penjualan::create([
+        $penjualan = Penjualan::create([
             'tanggal' => $request->tanggal,
             'hargaKg' => $request->hargaKg,
             'kuli' => $request->kuli,
@@ -111,6 +115,7 @@ class PenjualanController extends Controller
             'metodePembayaran_id' => $request->metodePembayaran_id,
             'statusPengiriman_id' => $request->statusPengiriman_id,
             'customer_id' => $request->customer_id,
+            'destinasi_id' => $request->destinasi_id,
         ]);
         return redirect('order')->with('message','Data Berhasil Disimpan');
     }
@@ -140,6 +145,8 @@ class PenjualanController extends Controller
         $statusPengiriman = StatusPengiriman::get();
         $metodePembayaran = MetodePembayaran::get();
         $barang = Barang::get();
+        $destinasi = Destination::get();
+        
         
         return view('order.edit', [
             'order' => $order,
@@ -147,7 +154,8 @@ class PenjualanController extends Controller
             'customer' => $customer,
             'statusPengiriman' => $statusPengiriman,
             'metodePembayaran' => $metodePembayaran,
-            'barang' => $barang
+            'barang' => $barang,
+            'destinasi' => $destinasi
         ]);
     }
 
@@ -173,6 +181,7 @@ class PenjualanController extends Controller
             'metodePembayaran_id' => 'required',
             'statusPengiriman_id' => 'required',
             'customer_id' => 'required',
+            'destinasi_id' => 'required',
         ]);
 
         $penjualan = Penjualan::find($id);
@@ -187,6 +196,7 @@ class PenjualanController extends Controller
         $penjualan->metodePembayaran_id = $request->metodePembayaran_id;
         $penjualan->statusPengiriman_id = $request->statusPengiriman_id;
         $penjualan->customer_id = $request->customer_id;
+        $penjualan->destinasi_id = $request->destinasi_id;
 
         $penjualan->save();
 

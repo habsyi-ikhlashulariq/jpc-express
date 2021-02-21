@@ -66,8 +66,8 @@
                     <div class="col-md-6">
                         <label for="">Vendor</label>
                         <select name="vendor_id" id="vendor_id" class="form-control">
+                            <option value="">Pilih Vendor</option>
                              @foreach($vendor as $data)
-                             <option value="">Pilih Vendor</option>
                             @if($data->id == $order->vendor_id)
                                 <option value="{{ $data->id }}" selected>{{$data->vendor }}</option>
                             @else
@@ -102,9 +102,9 @@
 
                            <label for="">Metode Pembayaran</label>
                             <select name="metodePembayaran_id" id="metodePembayaran_id" class="form-control">
+                                <option value="">Pilih Metode Pembayaran</option>
                                 @foreach($metodePembayaran as $data)
                                 @if($data->id == $order->metodePembayaran_id)
-                                     <option value="">Pilih Metode Pembayaran</option>
                                     <option value="{{ $data->id }}" selected>{{$data->jenisPembayaran }}</option>
                                 @else
                                     <option value="{{ $data->id }}">{{$data->jenisPembayaran }}</option>
@@ -119,9 +119,9 @@
                            @enderror
                            <label for="">Status Pengiriman</label>
                             <select name="statusPengiriman_id" id="statusPengiriman_id" class="form-control">
+                            <option value="">Pilih Status Pengiriman</option>
                                 @foreach($statusPengiriman as $data)
                                 @if($data->id == $order->statusPengiriman_id)
-                                <option value="">Pilih Status Pengiriman</option>
                                     <option value="{{ $data->id }}" selected>{{$data->platNomor }}</option>
                                 @else
                                     <option value="{{ $data->id }}">{{$data->platNomor }}</option>
@@ -137,9 +137,9 @@
 
                            <label for="">Customer</label>
                             <select name="customer_id" id="customer_id" class="form-control">
+                                <option value="">Pilih Customer</option>
                                 @foreach($customer as $data)
                                     @if($data->id == $order->customer_id)
-                                    <option value="">Pilih Customer</option>
                                     <option value="{{ $data->id }}" selected>{{$data->namaCustomer }}</option>
                                     @else
                                     <option value="{{ $data->id }}">{{$data->namaCustomer }}</option>
@@ -148,6 +148,24 @@
                             </select><br>
 
                             @error('customer_id')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                           @enderror
+
+                           <label for="">Destinasi</label>
+                            <select name="destinasi_id" id="destinasi_id" class="form-control">
+                                <option value="">Pilih Destinasi</option>
+                                @foreach($destinasi as $data)
+                                    @if($data->id == $order->destinasi_id)
+                                    <option value="{{ $data->id }}" selected>{{$data->kotaAsal }}|| {{$data->kotaTujuan }}</option>
+                                    @else
+                                    <option value="{{ $data->id }}">{{$data->kotaAsal }}|| {{$data->kotaTujuan }}</option>
+                                    @endif
+                                @endforeach
+                            </select><br>
+
+                            @error('destinasi_id')
                                 <div class="text-danger">
                                     {{ $message }}
                                 </div>

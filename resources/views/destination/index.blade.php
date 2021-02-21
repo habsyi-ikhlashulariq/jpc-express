@@ -1,7 +1,7 @@
 @extends('master.layout')
 @section('content')
 <div class="panel-body">
-    <a href="{{ url('destination/create') }}" class="btn btn-primary">Tambah Destinasi</a><br><br>
+    <a href="{{ url('destinasi/create') }}" class="btn btn-primary">Tambah Destinasi</a><br><br>
 
             @if (session('message'))
                 <div class="alert alert-success" role="alert">
