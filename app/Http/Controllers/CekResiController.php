@@ -11,14 +11,8 @@ class CekResiController extends Controller
     //
     public function cek(Request $request)
     {
-        $cari = $request->cari;
-        
-        if ($cari) {
-            $data = DB::table('penjualan')
-            ->where('id','like',"%".$cari."%")->first();
-        }else {
-            $data = "Masukan Nomor Resi Dengan Benar";
-        }
+        $data = DB::table('penjualan')
+        ->where('noResi',$request->cari)->get();
         return view('cekresi.index', compact('data'));
     }
 }
