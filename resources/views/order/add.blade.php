@@ -52,15 +52,6 @@
                                     {{ $message }}
                                 </div>
                            @enderror
-
-                        <label for="">Nomor Telp Penerima</label>
-                        <input class="form-control" placeholder="No Telp Penerima" type="text" name="noTelpPenerima" >
-                        <br>
-                             @error('noTelpPenerima')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                           @enderror
                     </div>
                     <div class="col-md-6">
                         <label for="">Vendor</label>
@@ -77,20 +68,6 @@
                                 </div>
                            @enderror
 
-                           <label for="">Barang</label>
-                            <select name="barang_id" id="barang_id" class="form-control">
-                                <option value="">Pilih barang</option>
-                                @foreach($barang as $data)
-                                <option value="{{ $data->id }}">{{$data->berat }}</option>
-                                @endforeach
-                            </select><br>
-
-                            @error('barang_id')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                           @enderror
-
                            <label for="">Metode Pembayaran</label>
                             <select name="metodePembayaran_id" id="metodePembayaran_id" class="form-control">
                                 <option value="">Pilih Metode Pembayaran</option>
@@ -100,20 +77,6 @@
                             </select><br>
 
                             @error('metodePembayaran_id')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                           @enderror
-
-                           <label for="">Status Pengiriman</label>
-                            <select name="statusPengiriman_id" id="statusPengiriman_id" class="form-control">
-                                <option value="">Pilih Status Pengiriman</option>
-                                @foreach($statusPengiriman as $data)
-                                <option value="{{ $data->id }}">{{$data->platNomor }}</option>
-                                @endforeach
-                            </select><br>
-
-                            @error('statusPengiriman_id')
                                 <div class="text-danger">
                                     {{ $message }}
                                 </div>
@@ -147,6 +110,71 @@
                                 </div>
                            @enderror
 
+                           <label for="">Nomor Telp Penerima</label>
+                            <input class="form-control" placeholder="No Telp Penerima" type="text" name="noTelpPenerima" >
+                            <br>
+                             @error('noTelpPenerima')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                           @enderror
+
+                    </div>
+                </div>
+                <h3>Data Barang</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="">Berat Barang</label>
+                        <input class="form-control" placeholder="Berat Barang" type="text" name="berat"><br>
+
+                            @error('berat')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                           @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Tinggi Barang</label>
+                        <input class="form-control" placeholder="Tinggi Barang" type="text" name="tinggi"><br>
+
+                            @error('tinggi')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                           @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="">Panjang Barang</label>
+                        <input class="form-control" placeholder="Panjang Barang" type="text" name="panjang"><br>
+
+                            @error('panjang')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                           @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="">Lebar Barang</label>
+                        <input class="form-control" placeholder="Lebar Barang" type="text" name="lebar"><br>
+
+                            @error('lebar')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                           @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="">Berat Volume Barang</label>
+                        <input class="form-control" placeholder="Berat Volume Barang" type="text" name="beratVol"><br>
+
+                            @error('beratVol')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                           @enderror
                     </div>
                 </div>
                 <div class="row">

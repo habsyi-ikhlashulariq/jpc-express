@@ -19,9 +19,7 @@
                 <th>Alamat Penerima</th>
                 <th>No Telp Penerima</th>
                 <th>Vendor</th>
-                <th>Barang</th>
                 <th>Metode Pembayaran</th>
-                <th>Status Pengiriman</th>
                 <th>Customer</th>
                 <th>OPSI</th>
             </tr>
@@ -44,9 +42,7 @@
                     { data: 'alamatPenerima', name: 'alamatPenerima'},
                     { data: 'noTelpPenerima', name: 'noTelpPenerima'},
                     { data: 'vendor', name: 'vendor'},
-                    { data: 'berat', name: 'berat'},
                     { data: 'jenisPembayaran', name: 'jenisPembayaran'},
-                    { data: 'platNomor', name: 'platNomor'},
                     { data: 'namaCustomer', name: 'namaCustomer'},
                     { data: 'aksi', name: 'aksi'},
                 ]

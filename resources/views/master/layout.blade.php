@@ -75,7 +75,6 @@
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
 									<li><a href="{{ url('/customer')}}" class="">Data Pelanggan</a></li>
-									<li><a href="{{ url('/barang')}}" class="">Data Barang</a></li>
 									<li><a href="{{ url('/metode_pembayaran')}}" class="">Metode Pembayaran</a></li>
 									<li><a href="{{ url('/status_pengiriman')}}" class="">Status Pengiriman</a></li>
 									<li><a href="{{ url('/vendor')}}" class="">Vendor</a></li>
