@@ -15,11 +15,11 @@ class CreateDetailPenjualanTable extends Migration
     {
         Schema::create('detail_penjualan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('penjualan_id');
+            $table->string('penjualan_id',255);
             $table->string('totalBiaya', 45);
             $table->timestamps();
 
-            $table->foreign('penjualan_id')->references('id')->on('penjualan')->onDelete('cascade');
+            $table->foreign('penjualan_id')->references('noResi')->on('penjualan')->onDelete('cascade');
         });
     }
 

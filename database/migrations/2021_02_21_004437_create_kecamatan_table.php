@@ -17,11 +17,11 @@ class CreateKecamatanTable extends Migration
             $table->id();
             $table->foreignId('kota_id');
             $table->string('kecamatan', 45);
-            $table->foreignId('penjualan_id');
+            $table->string('penjualan_id',255);
             $table->timestamps();
 
             $table->foreign('kota_id')->references('id')->on('kota')->onDelete('cascade');
-            $table->foreign('penjualan_id')->references('id')->on('penjualan')->onDelete('cascade');
+            $table->foreign('penjualan_id')->references('noResi')->on('penjualan')->onDelete('cascade');
         });
     }
 

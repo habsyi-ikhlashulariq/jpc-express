@@ -14,7 +14,7 @@ class CreatePenjualanTable extends Migration
     public function up()
     {
         Schema::create('penjualan', function (Blueprint $table) {
-            $table->id();
+            $table->string('noResi',255)->primary();
             $table->string('tanggal', 45);
             $table->string('hargaKg', 45);
             $table->string('kuli', 45);
@@ -34,7 +34,7 @@ class CreatePenjualanTable extends Migration
             $table->foreign('metodePembayaran_id')->references('id')->on('metode_pembayaran')->onDelete('cascade');
             $table->foreign('statusPengiriman_id')->references('id')->on('status_pengiriman')->onDelete('cascade');
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('cascade');
-            $table->foreign('destinasi_id')->references('id')->on('destination')->onDelete('cascade');
+            $table->foreign('destinasi_id')->references('id')->on('destinations')->onDelete('cascade');
         });
     }
 

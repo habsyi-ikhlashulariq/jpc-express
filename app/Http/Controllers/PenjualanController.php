@@ -103,7 +103,22 @@ class PenjualanController extends Controller
             'destinasi_id' => 'required',
         ]);
 
+        $dataID = \DB::table('penjualan')
+        ->select(\DB::raw('max(RIGHT(noResi, 6)) as lastID'))
+        ->get();
+        $yearDigit1 = str_replace('-', '', $request->tanggal[2]);
+        $yearDigit2 = str_replace('-', '', $request->tanggal[3]);
+        $dateDigit1 = str_replace('-', '', $request->tanggal[8]);
+        $dateDigit2 = str_replace('-', '', $request->tanggal[9]);
+        $telpDigit = strlen($request->noTelpPenerima) == 12 ? substr($request->noTelpPenerima, 8, 4) : substr($request->noTelpPenerima, 9, 4);
+        $dataDate = $dateDigit1.''.$dateDigit2;
+        $datayear = $yearDigit1.''.$yearDigit2;
+        $kode = $dataID[0]->lastID + 1;
+        $newID = $dataDate.''.$datayear.''.$telpDigit.'JPC'.str_pad($kode, 6, 0,STR_PAD_LEFT);
+
+
         $penjualan = Penjualan::create([
+            'noResi' => $newID,
             'tanggal' => $request->tanggal,
             'hargaKg' => $request->hargaKg,
             'kuli' => $request->kuli,

@@ -19,10 +19,10 @@ class CreateKasTable extends Migration
             $table->string('keterangan', 45);
             $table->string('debit', 45);
             $table->string('kredit', 45);
-            $table->foreignId('penjualan_id');
+            $table->string('penjualan_id',255);
             $table->timestamps();
 
-            $table->foreign('penjualan_id')->references('id')->on('penjualan')->onDelete('cascade');
+            $table->foreign('penjualan_id')->references('noResi')->on('penjualan')->onDelete('cascade');
         });
     }
 
