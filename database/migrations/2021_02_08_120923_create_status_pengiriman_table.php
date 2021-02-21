@@ -15,11 +15,15 @@ class CreateStatusPengirimanTable extends Migration
     {
         Schema::create('status_pengiriman', function (Blueprint $table) {
             $table->id();
+            $table->string('penjualan_id',255);
             $table->string('platNomor', 45);
             $table->string('namaSupir', 45);
             $table->string('keterangan', 45);
             $table->string('tanggal', 45);
+            $table->boolean('status');
             $table->timestamps();
+
+            $table->foreign('penjualan_id')->references('noResi')->on('penjualan')->onDelete('cascade');
         });
     }
 
