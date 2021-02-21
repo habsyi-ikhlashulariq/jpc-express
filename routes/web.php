@@ -73,6 +73,7 @@ Route::get('/status_pengiriman', [StatusPengirimanController::class, 'index']);
 Route::get('/status_pengiriman/dt', [StatusPengirimanController::class, 'dt']);
 Route::get('/status_pengiriman/create', [StatusPengirimanController::class, 'create']);
 Route::post('/status_pengiriman/store', [StatusPengirimanController::class, 'store']);
+Route::get('status_pengiriman/detail/{penjualan_id}', [StatusPengirimanController::class, 'detail']);
 Route::get('status_pengiriman/edit/{id}', [StatusPengirimanController::class, 'edit']);
 Route::put('/status_pengiriman/update/{id}', [StatusPengirimanController::class, 'update']);
 Route::get('/status_pengiriman/destroy/{id}', [StatusPengirimanController::class, 'destroy']);
