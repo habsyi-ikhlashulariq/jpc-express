@@ -2,11 +2,20 @@
 
 @section('content')   
         <div class="panel-body">
-                <h3>Form Tambah Pelanggan</h3>
+                <h3>Form Tambah Order</h3>
                 <hr>
             <form action="{{ url('/order/store') }}" method="POST" >
             {{ csrf_field() }}
                 <div class="row">
+                    <div class="col-md-6">
+                        <label for="">Nomor Resi</label>
+                        <input class="form-control" placeholder="Nomor Resi" type="text" name="id" value="{{$id}}"><br>
+
+                            @error('id')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                           @enderror
                     <div class="col-md-6">
                         <label for="">Tanggal Order</label>
                         <input class="form-control" placeholder="Tanggal Order" type="date" name="tanggal"><br>

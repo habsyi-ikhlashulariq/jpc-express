@@ -14,6 +14,7 @@ use App\Models\StatusPengiriman;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class PenjualanController extends Controller
 {
@@ -68,8 +69,10 @@ class PenjualanController extends Controller
         $metodePembayaran = MetodePembayaran::all();
         $barang = Barang::all();
         $destinasi = Destination::all();
-        
+
+       
         return view('order.add', [
+            'id' => $id,
             'vendor' => $vendor,
             'customer' => $customer,
             'statusPengiriman' => $statusPengiriman,
@@ -89,6 +92,7 @@ class PenjualanController extends Controller
     {
         //
         $this->validate($request, [
+            'id' => 'required',
             'tanggal' => 'required',
             'hargaKg' => 'required',
             'kuli' => 'required',
@@ -103,7 +107,9 @@ class PenjualanController extends Controller
             'destinasi_id' => 'required',
         ]);
 
+
         $penjualan = Penjualan::create([
+            'id' => $request->id,
             'tanggal' => $request->tanggal,
             'hargaKg' => $request->hargaKg,
             'kuli' => $request->kuli,

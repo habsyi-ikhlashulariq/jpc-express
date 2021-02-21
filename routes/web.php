@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\StatusPengirimanController;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,3 +118,13 @@ Route::get('/cek', [CekResiController::class, 'cek']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/id', function(){
+
+    $prefix = date('dmy'); 
+    $id = IdGenerator::generate(['table' => 'penjualan', 'length' => 10, 
+    'prefix' =>''.$prefix
+    ]);
+
+    return $id;
+    
+});
