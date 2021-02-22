@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('telp');
             $table->string('avatar');
+            $table->string('platNomor')->nullable();
+            $table->integer('jabatan');
             $table->rememberToken();
             $table->timestamps();
         });
