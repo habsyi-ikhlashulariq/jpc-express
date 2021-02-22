@@ -59,7 +59,7 @@ class MetodePembayaranController extends Controller
         MetodePembayaran::create([
             'jenisPembayaran' => $request->jenisPembayaran,
         ]);
-        return redirect('metode_pembayaran')->with('message','Data Berhasil Disimpan');
+        return redirect('admin/metode_pembayaran')->with('message','Data Berhasil Disimpan');
     }
 
     /**
@@ -103,7 +103,7 @@ class MetodePembayaranController extends Controller
         $metode_pembayaran->jenisPembayaran = $request->jenisPembayaran;
 
         $metode_pembayaran->save();
-        return redirect('/metode_pembayaran')->with('message', 'Data Berhasil Diupdate');
+        return redirect('admin/metode_pembayaran')->with('message', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -118,6 +118,6 @@ class MetodePembayaranController extends Controller
         $metode_pembayaran = MetodePembayaran::find($id);
 
         $metode_pembayaran->delete();
-        return redirect('/metode_pembayaran')->with('message', 'Data Berhasil DiHapus');
+        return redirect('admin/metode_pembayaran')->with('message', 'Data Berhasil DiHapus');
     }
 }

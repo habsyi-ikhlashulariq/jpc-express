@@ -4,7 +4,7 @@
         <div class="panel-body">
                 <h3>Form Tambah Pelanggan</h3>
                 <hr>
-            <form action="{{ url('admin//customer/store') }}" method="POST" >
+            <form action="{{ url('admin/customer/store') }}" method="POST" >
             {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-6">

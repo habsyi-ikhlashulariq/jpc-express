@@ -67,7 +67,7 @@ class CustomerController extends Controller
             'genderCustomer' => $request->genderCustomer,
             'alamatCustomer' => $request->alamatCustomer,
         ]);
-        return redirect('customer')->with('message','Data Berhasil Disimpan');
+        return redirect('admin/customer')->with('message','Data Berhasil Disimpan');
     }
 
     /**
@@ -119,7 +119,7 @@ class CustomerController extends Controller
         $customer->alamatCustomer = $request->alamatCustomer;
 
         $customer->save();
-        return redirect('/customer')->with('message', 'Data Berhasil Diupdate');
+        return redirect('admin/customer')->with('message', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -134,6 +134,6 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
 
         $customer->delete();
-        return redirect('/customer')->with('message', 'Data Berhasil DiHapus');
+        return redirect('admin/customer')->with('message', 'Data Berhasil DiHapus');
     }
 }

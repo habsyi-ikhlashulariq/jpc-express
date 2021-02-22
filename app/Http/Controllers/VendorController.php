@@ -60,7 +60,7 @@ class VendorController extends Controller
         Vendor::create([
             'vendor' => $request->vendor,
         ]);
-        return redirect('vendor')->with('message','Data Berhasil Disimpan');
+        return redirect('admin/vendor')->with('message','Data Berhasil Disimpan');
     }
 
     /**
@@ -104,7 +104,7 @@ class VendorController extends Controller
         $vendor->vendor = $request->vendor;
 
         $vendor->save();
-        return redirect('/vendor')->with('message', 'Data Berhasil Diupdate');
+        return redirect('admin/vendor')->with('message', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -119,6 +119,6 @@ class VendorController extends Controller
         $vendor = Vendor::find($id);
 
         $vendor->delete();
-        return redirect('/vendor')->with('message', 'Data Berhasil DiHapus');
+        return redirect('admin/vendor')->with('message', 'Data Berhasil DiHapus');
     }
 }

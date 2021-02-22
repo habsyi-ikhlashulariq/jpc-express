@@ -67,7 +67,7 @@ class BarangController extends Controller
             'tinggi' => $request->tinggi,
             'beratVol' => $request->beratVol,
         ]);
-        return redirect('barang')->with('message','Data Berhasil Disimpan');
+        return redirect('admin/barang')->with('message','Data Berhasil Disimpan');
     }
 
     /**
@@ -120,7 +120,7 @@ class BarangController extends Controller
         $barang->beratVol = $request->beratVol;
 
         $barang->save();
-        return redirect('/barang')->with('message', 'Data Berhasil Diupdate');
+        return redirect('admin/barang')->with('message', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -135,6 +135,6 @@ class BarangController extends Controller
         $barang = Barang::find($id);
 
         $barang->delete();
-        return redirect('/barang')->with('message', 'Data Berhasil DiHapus');
+        return redirect('admin/barang')->with('message', 'Data Berhasil DiHapus');
     }
 }

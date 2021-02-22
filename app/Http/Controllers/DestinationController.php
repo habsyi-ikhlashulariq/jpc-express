@@ -66,7 +66,7 @@ class DestinationController extends Controller
             'tarif' => $request->tarif,
             'waktu' => $request->waktu,
         ]);
-        return redirect('destinasi')->with('message','Data Berhasil Disimpan');
+        return redirect('admin/destinasi')->with('message','Data Berhasil Disimpan');
     }
 
     /**
@@ -90,7 +90,7 @@ class DestinationController extends Controller
     {
         //
         $destinasi = Destination::find($id);
-        return view('destinasi.edit', ['destinasi'=> $destinasi]);
+        return view('destination.edit', ['destinasi'=> $destinasi]);
     }
 
     /**
@@ -117,7 +117,7 @@ class DestinationController extends Controller
         $destinasi->waktu = $request->waktu;
 
         $destinasi->save();
-        return redirect('/destinasi')->with('message', 'Data Berhasil Diupdate');
+        return redirect('admin/destinasi')->with('message', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -132,6 +132,6 @@ class DestinationController extends Controller
         $destinasi = Destination::find($id);
 
         $destinasi->delete();
-        return redirect('/destinasi')->with('message', 'Data Berhasil DiHapus');
+        return redirect('admin/destinasi')->with('message', 'Data Berhasil DiHapus');
     }
 }
