@@ -19,10 +19,6 @@
                 <th>Alamat Penerima</th>
                 <th>No Telp Penerima</th>
                 <th>Vendor</th>
-<<<<<<< HEAD
-                <!-- <th>Barang</th> -->
-=======
->>>>>>> cd90d0f612efd105660711ebe79ef74cb4ff1673
                 <th>Metode Pembayaran</th>
                 <th>Customer</th>
                 <th>OPSI</th>
@@ -45,15 +41,10 @@
                     { data: 'penerima', name: 'penerima'},
                     { data: 'alamatPenerima', name: 'alamatPenerima'},
                     { data: 'noTelpPenerima', name: 'noTelpPenerima'},
-                    { data: 'namaCustomer', name: 'namaCustomer'},
                     // { data: 'berat', name: 'berat'},
                     { data: 'vendor', name: 'vendor'},
                     { data: 'jenisPembayaran', name: 'jenisPembayaran'},
-<<<<<<< HEAD
-                    { data: 'platNomor', name: 'platNomor'},
-=======
                     { data: 'namaCustomer', name: 'namaCustomer'},
->>>>>>> cd90d0f612efd105660711ebe79ef74cb4ff1673
                     { data: 'aksi', name: 'aksi'},
                 ]
             });

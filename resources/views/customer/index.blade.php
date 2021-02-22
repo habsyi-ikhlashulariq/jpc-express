@@ -29,7 +29,7 @@
             $('#customer-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! url("admin//customer/dt") !!}',
+                ajax: '{!! url("admin/customer/dt") !!}',
                 columns: [
                     { data: 'namaCustomer', name: 'namaCutomer' },
                     { data: 'emailCustomer', name: 'emailCustomer' },

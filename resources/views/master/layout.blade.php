@@ -74,20 +74,12 @@
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Data Master</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
-<<<<<<< HEAD
 									<li><a href="{{ url('admin/customer')}}" class="">Data Pelanggan</a></li>
 									<li><a href="{{ url('admin/barang')}}" class="">Data Barang</a></li>
 									<li><a href="{{ url('admin/metode_pembayaran')}}" class="">Metode Pembayaran</a></li>
 									<li><a href="{{ url('admin/status_pengiriman')}}" class="">Status Pengiriman</a></li>
 									<li><a href="{{ url('admin/vendor')}}" class="">Vendor</a></li>
 									<li><a href="{{ url('admin/destinasi')}}" class="">Destinasi</a></li>
-=======
-									<li><a href="{{ url('/customer')}}" class="">Data Pelanggan</a></li>
-									<li><a href="{{ url('/metode_pembayaran')}}" class="">Metode Pembayaran</a></li>
-									<li><a href="{{ url('/status_pengiriman')}}" class="">Status Pengiriman</a></li>
-									<li><a href="{{ url('/vendor')}}" class="">Vendor</a></li>
-									<li><a href="{{ url('/destinasi')}}" class="">Destinasi</a></li>
->>>>>>> cd90d0f612efd105660711ebe79ef74cb4ff1673
 								</ul>
 							</div>
 						</li>
