@@ -41,9 +41,9 @@ class PenjualanController extends Controller
         return DataTables::of($data)
         //button aksi
         ->addColumn('aksi', function($s){
-            return '<a href="order/edit/'.$s->id.'" class="btn btn-warning">Edit</a>
-            <a href="order/destroy/'.$s->id.'" class="btn btn-danger">Hapus</a>
-            <a href="order/notif/'.$s->id.'" class="btn btn-success">Kirim Notif</a>
+            return '<a href="order/edit/'.$s->noResi.'" class="btn btn-warning">Edit</a>
+            <a href="order/destroy/'.$s->noResi.'" class="btn btn-danger">Hapus</a>
+            <a href="order/notif/'.$s->noResi.'" class="btn btn-success">Kirim Notif</a>
             ';
         })
         ->rawColumns(['aksi'])
@@ -62,16 +62,13 @@ class PenjualanController extends Controller
         $customer = Customer::all();
         $statusPengiriman = StatusPengiriman::all();
         $metodePembayaran = MetodePembayaran::all();
-        $barang = Barang::all();
         $destinasi = Destination::all();
 
        
         return view('order.add', [
             'vendor' => $vendor,
             'customer' => $customer,
-            'statusPengiriman' => $statusPengiriman,
             'metodePembayaran' => $metodePembayaran,
-            'barang' => $barang,
             'destinasi' => $destinasi
         ]);
     }
@@ -93,16 +90,33 @@ class PenjualanController extends Controller
             'alamatPenerima' => 'required',
             'noTelpPenerima' => 'required',
             'vendor_id' => 'required',
-            'barang_id' => 'required',
             'metodePembayaran_id' => 'required',
-            'statusPengiriman_id' => 'required',
             'customer_id' => 'required',
             'destinasi_id' => 'required',
+            'berat' => 'required',
+            'panjang' => 'required',
+            'lebar' => 'required',
+            'tinggi' => 'required',
+            'beratVol' => 'required'
         ]);
+
+        $dataBarang = Barang::create([
+            'berat' => $request->berat,
+            'panjang' => $request->panjang,
+            'lebar' => $request->lebar,
+            'tinggi' => $request->tinggi,
+            'beratVol' => $request->beratVol,
+        ]);
+
 
         $dataID = \DB::table('penjualan')
         ->select(\DB::raw('max(RIGHT(noResi, 6)) as lastID'))
         ->get();
+        if($dataID == null){
+            $kode = 1;
+        }else{
+            $kode = $dataID[0]->lastID + 1;
+        }
         $yearDigit1 = str_replace('-', '', $request->tanggal[2]);
         $yearDigit2 = str_replace('-', '', $request->tanggal[3]);
         $dateDigit1 = str_replace('-', '', $request->tanggal[8]);
@@ -110,7 +124,6 @@ class PenjualanController extends Controller
         $telpDigit = strlen($request->noTelpPenerima) == 12 ? substr($request->noTelpPenerima, 8, 4) : substr($request->noTelpPenerima, 9, 4);
         $dataDate = $dateDigit1.''.$dateDigit2;
         $datayear = $yearDigit1.''.$yearDigit2;
-        $kode = $dataID[0]->lastID + 1;
         $newID = $dataDate.''.$datayear.''.$telpDigit.'JPC'.str_pad($kode, 6, 0,STR_PAD_LEFT);
 
 
@@ -123,9 +136,8 @@ class PenjualanController extends Controller
             'alamatPenerima' => $request->alamatPenerima,
             'noTelpPenerima' => $request->noTelpPenerima,
             'vendor_id' => $request->vendor_id,
-            'barang_id' => $request->barang_id,
+            'barang_id' => $dataBarang->id,
             'metodePembayaran_id' => $request->metodePembayaran_id,
-            'statusPengiriman_id' => $request->statusPengiriman_id,
             'customer_id' => $request->customer_id,
             'destinasi_id' => $request->destinasi_id,
         ]);

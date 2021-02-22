@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\StatusPengiriman;
+use App\Models\Penjualan;
+use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
 class StatusPengirimanController extends Controller
@@ -21,16 +23,20 @@ class StatusPengirimanController extends Controller
 
     public function dt()
     {
-        $data =  StatusPengiriman::all();
+        $data =  StatusPengiriman::all()->unique('penjualan_id');
         return DataTables::of($data)
         //button aksi
         ->addColumn('aksi', function($s){
-            return '<a href="status_pengiriman/edit/'.$s->id.'" class="btn btn-warning">Edit</a>
-            <a href="status_pengiriman/destroy/'.$s->id.'" class="btn btn-danger">Hapus</a>
+            return '<a href="status_pengiriman/detail/'.$s->penjualan_id.'" class="btn btn-success">Detail</a>
             ';
         })
         ->rawColumns(['aksi'])
         ->toJSon();
+    }
+
+    public function detail($penjualan_id){
+        $status_pengiriman = DB::table('status_pengiriman')->where('penjualan_id', $penjualan_id)->get();
+        return view('status_pengiriman.detail', ['status_pengiriman'=> $status_pengiriman,'penjualan_id' => $penjualan_id]);
     }
 
     /**
@@ -41,7 +47,13 @@ class StatusPengirimanController extends Controller
     public function create()
     {
         //
-        return view('status_pengiriman.add');
+        $penjualan = DB::table('penjualan')
+            ->join('customer', 'customer.id', '=', 'penjualan.customer_id')
+            ->select('penjualan.*', 'customer.namaCustomer')
+            ->get();
+        return view('status_pengiriman.add', [
+            'penjualan' => $penjualan,
+        ]);
     }
 
     /**
@@ -58,13 +70,16 @@ class StatusPengirimanController extends Controller
             'namaSupir' => 'required',
             'keterangan' => 'required',
             'tanggal' => 'required',
+            'noResi' => 'required',
         ]);
 
         StatusPengiriman::create([
+            'penjualan_id' => $request->noResi,
             'platNomor' => $request->platNomor,
             'namaSupir' => $request->namaSupir,
             'keterangan' => $request->keterangan,
             'tanggal' => $request->tanggal,
+            'status' => false
         ]);
         return redirect('status_pengiriman')->with('message','Data Berhasil Disimpan');
     }

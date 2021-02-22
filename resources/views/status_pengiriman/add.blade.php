@@ -7,6 +7,21 @@
             <form action="{{ url('admin/status_pengiriman/store') }}" method="POST" >
             {{ csrf_field() }}
                 <div class="row">
+                    <div class="col-md-12">
+                        <label for="">No Resi</label>
+                        <select name="noResi" id="noResi" class="form-control">
+                            <option value="">No resi</option>
+                            @foreach($penjualan as $data)
+                            <option value="{{ $data->noResi }}">{{$data->noResi }} || {{$data->namaCustomer }}</option>
+                            @endforeach
+                        </select><br>
+
+                        @error('noResi')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                     <div class="col-md-6">
                         <label for="">Plat Nomor</label>
                         <input class="form-control" placeholder="Plat Nomor" type="text" name="platNomor"><br>
