@@ -68,7 +68,7 @@
 					<ul class="nav">
                        
 
-						<li><a href="{{ url('/dashboard') }}" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+						<li><a href="{{ url('admin/dashboard') }}" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
 
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Data Master</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -77,7 +77,6 @@
 									<li><a href="{{ url('admin/customer')}}" class="">Data Pelanggan</a></li>
 									<li><a href="{{ url('admin/barang')}}" class="">Data Barang</a></li>
 									<li><a href="{{ url('admin/metode_pembayaran')}}" class="">Metode Pembayaran</a></li>
-									<li><a href="{{ url('admin/status_pengiriman')}}" class="">Status Pengiriman</a></li>
 									<li><a href="{{ url('admin/vendor')}}" class="">Vendor</a></li>
 									<li><a href="{{ url('admin/destinasi')}}" class="">Destinasi</a></li>
 								</ul>
@@ -86,7 +85,10 @@
 
 						<li><a href="{{ url('admin/order')}}" class=""><i class="fa fa-shopping-bag"></i> <span>Data Order</span></a></li>
 
+						<li><a href="{{ url('admin/status_pengiriman')}}" class=""><i class="fa fa-map"></i> <span>Status Pengiriman</span></a></li>
+						
 						<li><a href="{{ url('admin/order/cetak_laporan')}}" class=""><i class="fa fa-calendar"></i> <span>Cetak Laporan</span></a></li>
+
 
 					</ul>
 				</nav>

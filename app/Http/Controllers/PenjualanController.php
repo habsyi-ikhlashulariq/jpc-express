@@ -36,7 +36,7 @@ class PenjualanController extends Controller
         ->join('barang', 'barang.id', 'penjualan.barang_id')
         ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
         ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
-        ->join('status_pengiriman', 'status_pengiriman.id', 'penjualan.statusPengiriman_id')
+        ->join('status_pengiriman', 'status_pengiriman.penjualan_id', 'penjualan.noResi')
         ->get();
         return DataTables::of($data)
         //button aksi
@@ -253,7 +253,7 @@ class PenjualanController extends Controller
     ->join('barang', 'barang.id', 'penjualan.barang_id')
     ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
     ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
-    ->join('status_pengiriman', 'status_pengiriman.id', 'penjualan.statusPengiriman_id')
+    ->join('status_pengiriman', 'status_pengiriman.penjualan_id', 'penjualan.noResi')
     ->whereBetween('penjualan.tanggal', [$tglAwal, $tglAkhir])
     ->get();
 
