@@ -4,7 +4,7 @@
         <div class="panel-body">
                 <h3>Form Tambah Metode Pembayaran</h3>
                 <hr>
-            <form action="{{ url('/status_pengiriman/update/'.$status_pengiriman->id) }}" method="POST" >
+            <form action="{{ url('admin/status_pengiriman/update/'.$status_pengiriman->id) }}" method="POST" >
             {{ csrf_field() }}
             {{ method_field('PUT') }}
                 <div class="row">
@@ -51,7 +51,7 @@
                 <div class="row">
                     <div class="col-md-6">
                     <input type="submit" name="submit" value="Simpan" class="btn btn-primary">
-                    <a href="{{ url('status_pengiriman') }}" class="btn btn-danger">Kembali</a>
+                    <a href="{{ url('admin/status_pengiriman') }}" class="btn btn-danger">Kembali</a>
                     </div>
                 </div>
             </form>

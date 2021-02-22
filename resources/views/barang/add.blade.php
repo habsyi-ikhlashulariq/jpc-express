@@ -4,7 +4,7 @@
         <div class="panel-body">
                 <h3>Form Tambah Barang</h3>
                 <hr>
-            <form action="{{ url('/barang/store') }}" method="POST" >
+            <form action="{{ url('/admin/barang/store') }}" method="POST" >
             {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-6">
@@ -58,7 +58,7 @@
                 <div class="row">
                     <div class="col-md-6">
                     <input type="submit" name="submit" value="Simpan" class="btn btn-primary">
-                    <a href="{{ url('barang') }}" class="btn btn-danger">Kembali</a>
+                    <a href="{{ url('admin/barang') }}" class="btn btn-danger">Kembali</a>
                     </div>
                 </div>
             </form>

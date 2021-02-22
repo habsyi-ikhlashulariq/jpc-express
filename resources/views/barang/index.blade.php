@@ -1,7 +1,7 @@
 @extends('master.layout')
 @section('content')
 <div class="panel-body">
-    <a href="{{ url('barang/create') }}" class="btn btn-primary">Tambah Barang</a><br><br>
+    <a href="{{ url('admin/barang/create') }}" class="btn btn-primary">Tambah Barang</a><br><br>
         @if (session('message'))
             <div class="alert alert-success" role="alert">
                 {{ session('message') }}                        
@@ -27,7 +27,7 @@
             $('#customer-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! url("/barang/dt") !!}',
+                ajax: '{!! url("admin/barang/dt") !!}',
                 columns: [
                     { data: 'berat', name: 'berat' },
                     { data: 'panjang', name: 'panjang' },

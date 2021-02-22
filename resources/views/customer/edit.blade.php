@@ -4,7 +4,7 @@
         <div class="panel-body">
                 <h3>Form Update Pelanggan</h3>
                 <hr>
-            <form action="{{ url('/customer/update/'.$customer->id) }}" method="POST" >
+            <form action="{{ url('/admin/customer/update/'.$customer->id) }}" method="POST" >
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             <input class="form-control" placeholder="Nama Customer" type="hidden" name="id" value="{{ $customer->id }}"><br>
@@ -65,7 +65,7 @@
                 <div class="row">
                     <div class="col-md-6">
                     <input type="submit" name="submit" value="Simpan" class="btn btn-primary">
-                    <a href="{{ url('customer') }}" class="btn btn-danger">Kembali</a>
+                    <a href="{{ url('admin/customer') }}" class="btn btn-danger">Kembali</a>
                     </div>
                 </div>
             </form>

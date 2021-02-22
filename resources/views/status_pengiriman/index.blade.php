@@ -1,7 +1,7 @@
 @extends('master.layout')
 @section('content')
 <div class="panel-body">
-    <a href="{{ url('status_pengiriman/create') }}" class="btn btn-primary">Tambah Status Pengiriman</a><br><br>
+    <a href="{{ url('admin/status_pengiriman/create') }}" class="btn btn-primary">Tambah Status Pengiriman</a><br><br>
         @if (session('message'))
             <div class="alert alert-success" role="alert">
                 {{ session('message') }}                        
@@ -26,7 +26,7 @@
             $('#metode_pembayaran-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! url("/status_pengiriman/dt") !!}',
+                ajax: '{!! url("admin/status_pengiriman/dt") !!}',
                 columns: [
                     { data: 'platNomor', name: 'platNomor' },
                     { data: 'namaSupir', name: 'namaSupir' },

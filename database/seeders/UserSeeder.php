@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
                     'remember_token' => Str::random(12),
                     'address' => $faker->address(),
                     'telp' => $faker->unique()->phoneNumber,
-                    'avatar' => $faker->imageUrl(640, 480),
+                    'avatar' => "default.png",
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ]

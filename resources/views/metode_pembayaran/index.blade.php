@@ -1,7 +1,7 @@
 @extends('master.layout')
 @section('content')
 <div class="panel-body">
-    <a href="{{ url('metode_pembayaran/create') }}" class="btn btn-primary">Tambah Metode Pembayaran</a><br><br>
+    <a href="{{ url('/admin/metode_pembayaran/create') }}" class="btn btn-primary">Tambah Metode Pembayaran</a><br><br>
         @if (session('message'))
             <div class="alert alert-success" role="alert">
                 {{ session('message') }}                        
@@ -23,7 +23,7 @@
             $('#metode_pembayaran-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! url("/metode_pembayaran/dt") !!}',
+                ajax: '{!! url("admin/metode_pembayaran/dt") !!}',
                 columns: [
                     { data: 'jenisPembayaran', name: 'jenisPembayaran' },
                     { data: 'aksi', name: 'aksi'},

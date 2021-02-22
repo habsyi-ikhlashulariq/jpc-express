@@ -4,18 +4,9 @@
         <div class="panel-body">
                 <h3>Form Tambah Order</h3>
                 <hr>
-            <form action="{{ url('/order/store') }}" method="POST" >
+            <form action="{{ url('admin/order/store') }}" method="POST" >
             {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-md-6">
-                        <label for="">Nomor Resi</label>
-                        <input class="form-control" placeholder="Nomor Resi" type="text" name="id" value="{{$id}}"><br>
-
-                            @error('id')
-                            <div class="text-danger">
-                                {{ $message }}
-                            </div>
-                           @enderror
                     <div class="col-md-6">
                         <label for="">Tanggal Order</label>
                         <input class="form-control" placeholder="Tanggal Order" type="date" name="tanggal"><br>
@@ -161,7 +152,7 @@
                 <div class="row">
                     <div class="col-md-6">
                     <input type="submit" name="submit" value="Simpan" class="btn btn-primary">
-                    <a href="{{ url('customer') }}" class="btn btn-danger">Kembali</a>
+                    <a href="{{ url('admin/order') }}" class="btn btn-danger">Kembali</a>
                     </div>
                 </div>
             </form>

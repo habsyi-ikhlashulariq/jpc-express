@@ -31,18 +31,13 @@ class PenjualanController extends Controller
 
     public function dt()
     {
-        $data = DB::select( DB::raw("
-
-        select a.id, a.tanggal, a.hargaKg, a.kuli, a.penerima, a.alamatPenerima, a.noTelpPenerima,
-        b.namaCustomer , c.berat, d.vendor, e.jenisPembayaran, f.platNomor 
-        from penjualan a
-        inner join customer b on a.customer_id = b.id
-        inner join barang c on a.barang_id = c.id
-        inner join vendor d on a.vendor_id = d.id
-        inner join metode_pembayaran e on a.metodePembayaran_id = e.id
-        inner join status_pengiriman f on a.statusPengiriman_id = f.id
-
-        "));
+        $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer', 'barang.berat','vendor.vendor', 'metode_pembayaran.jenisPembayaran', 'status_pengiriman.platNomor')
+        ->join('customer', 'customer.id', 'penjualan.customer_id')
+        ->join('barang', 'barang.id', 'penjualan.barang_id')
+        ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
+        ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
+        ->join('status_pengiriman', 'status_pengiriman.id', 'penjualan.statusPengiriman_id')
+        ->get();
         return DataTables::of($data)
         //button aksi
         ->addColumn('aksi', function($s){
@@ -72,7 +67,6 @@ class PenjualanController extends Controller
 
        
         return view('order.add', [
-            'id' => $id,
             'vendor' => $vendor,
             'customer' => $customer,
             'statusPengiriman' => $statusPengiriman,
@@ -92,7 +86,6 @@ class PenjualanController extends Controller
     {
         //
         $this->validate($request, [
-            'id' => 'required',
             'tanggal' => 'required',
             'hargaKg' => 'required',
             'kuli' => 'required',
@@ -235,6 +228,24 @@ class PenjualanController extends Controller
 
         $order->delete();
         return redirect('/order')->with('message', 'Data Berhasil DiHapus');
+    }
+    public function form_cetak_laporan()
+    {
+        return view('order.cetak_laporan');
+    }
+    public function cetak_laporan($tglAwal, $tglAkhir)
+    {
+    //    dd(['tanggal awal'. $tglAwal. 'tanggal AKhir'. $tglAkhir]);
+    $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer', 'barang.berat','vendor.vendor', 'metode_pembayaran.jenisPembayaran', 'status_pengiriman.platNomor')
+    ->join('customer', 'customer.id', 'penjualan.customer_id')
+    ->join('barang', 'barang.id', 'penjualan.barang_id')
+    ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
+    ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
+    ->join('status_pengiriman', 'status_pengiriman.id', 'penjualan.statusPengiriman_id')
+    ->whereBetween('penjualan.tanggal', [$tglAwal, $tglAkhir])
+    ->get();
+
+    return view('order.data_laporan', compact('data'));        
     }
     public function notif($id)
     {

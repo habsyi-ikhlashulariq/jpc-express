@@ -13,7 +13,7 @@
                                         <input class="form-control" type="text" name="cari">
                                     </li>
                                     @if($data == "")
-                                    {{ $data }}
+                                    {{ $data = "Masukan Nomor dengan Benar" }}
                                         @else
                                     {{ @$data->tanggal}}
                                     @endif

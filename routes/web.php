@@ -6,13 +6,14 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\CekResiController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\FrontEndController;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\StatusPengirimanController;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +25,14 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [FrontEndController::class, 'index']);
+Route::get('/jpc-express/cekresi', [FrontEndController::class, 'cekresi']);
+Route::get('/jpc-express/cekestimasi', [FrontEndController::class, 'cekestimasi']);
 
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/', [LoginController::class, 'login'])->name('login');
+Route::get('/admin', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/admin', [LoginController::class, 'login'])->name('login');
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function(){
     
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -106,10 +110,11 @@ Route::get('destinasi/edit/{id}', [DestinationController::class, 'edit']);
 Route::put('/destinasi/update/{id}', [DestinationController::class, 'update']);
 Route::get('/destinasi/destroy/{id}', [DestinationController::class, 'destroy']);
 
-//Cek Resi
+//Cetak Laporan
+Route::get('/order/cetak_laporan', [PenjualanController::class, 'form_cetak_laporan']);
+Route::get('/order/cetak_laporan/{tglAwal}/{tglAkhir}', [PenjualanController::class, 'cetak_laporan']);
 
 
-Route::get('/cek', [CekResiController::class, 'cek']);
 });
 
 //Login
@@ -117,14 +122,3 @@ Route::get('/cek', [CekResiController::class, 'cek']);
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/id', function(){
-
-    $prefix = date('dmy'); 
-    $id = IdGenerator::generate(['table' => 'penjualan', 'length' => 10, 
-    'prefix' =>''.$prefix
-    ]);
-
-    return $id;
-    
-});

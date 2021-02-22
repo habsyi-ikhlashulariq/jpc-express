@@ -1,7 +1,7 @@
 @extends('master.layout')
 @section('content')
 <div class="panel-body">
-    <a href="{{ url('destinasi/create') }}" class="btn btn-primary">Tambah Destinasi</a><br><br>
+    <a href="{{ url('/admin/destinasi/create') }}" class="btn btn-primary">Tambah Destinasi</a><br><br>
 
             @if (session('message'))
                 <div class="alert alert-success" role="alert">
@@ -28,7 +28,7 @@
             $('#destination-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! url("/destinasi/dt") !!}',
+                ajax: '{!! url("/admin/destinasi/dt") !!}',
                 columns: [
                     { data: 'kotaAsal', name: 'kotaAsal' },
                     { data: 'kotaTujuan', name: 'kotaTujuan' },
