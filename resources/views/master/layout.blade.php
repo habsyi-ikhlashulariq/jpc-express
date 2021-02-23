@@ -69,13 +69,13 @@
                        
 
 						<li><a href="{{ url('admin/dashboard') }}" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-
+						@if(Auth::user()->jabatan == 1)
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Data Master</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
 									<li><a href="{{ url('admin/customer')}}" class="">Data Pelanggan</a></li>
-									<li><a href="{{ url('admin/barang')}}" class="">Data Barang</a></li>
+									<!-- <li><a href="{{ url('admin/barang')}}" class="">Data Barang</a></li> -->
 									<li><a href="{{ url('admin/metode_pembayaran')}}" class="">Metode Pembayaran</a></li>
 									<li><a href="{{ url('admin/vendor')}}" class="">Vendor</a></li>
 									<li><a href="{{ url('admin/destinasi')}}" class="">Destinasi</a></li>
@@ -89,6 +89,11 @@
 						
 						<li><a href="{{ url('admin/order/cetak_laporan')}}" class=""><i class="fa fa-calendar"></i> <span>Cetak Laporan</span></a></li>
 
+						@else
+
+						<li><a href="{{ url('admin/status_pengiriman')}}" class=""><i class="fa fa-map"></i> <span>Status Pengiriman</span></a></li>
+
+						@endif
 
 					</ul>
 				</nav>

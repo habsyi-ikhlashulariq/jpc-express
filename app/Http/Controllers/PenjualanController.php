@@ -31,12 +31,11 @@ class PenjualanController extends Controller
 
     public function dt()
     {
-        $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer', 'barang.berat','vendor.vendor', 'metode_pembayaran.jenisPembayaran', 'status_pengiriman.platNomor')
+        $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer', 'barang.berat','vendor.vendor', 'metode_pembayaran.jenisPembayaran')
         ->join('customer', 'customer.id', 'penjualan.customer_id')
         ->join('barang', 'barang.id', 'penjualan.barang_id')
         ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
         ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
-        ->join('status_pengiriman', 'status_pengiriman.penjualan_id', 'penjualan.noResi')
         ->get();
         return DataTables::of($data)
         //button aksi
@@ -141,7 +140,7 @@ class PenjualanController extends Controller
             'customer_id' => $request->customer_id,
             'destinasi_id' => $request->destinasi_id,
         ]);
-        return redirect('order')->with('message','Data Berhasil Disimpan');
+        return redirect('admin/order')->with('message','Data Berhasil Disimpan');
     }
 
     /**
@@ -224,7 +223,7 @@ class PenjualanController extends Controller
 
         $penjualan->save();
 
-        return redirect('/order')->with('message', 'Data Berhasil Diupdate');
+        return redirect('admin/order')->with('message', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -239,7 +238,7 @@ class PenjualanController extends Controller
         $order = Penjualan::find($id);
 
         $order->delete();
-        return redirect('/order')->with('message', 'Data Berhasil DiHapus');
+        return redirect('admin/order')->with('message', 'Data Berhasil DiHapus');
     }
     public function form_cetak_laporan()
     {
@@ -275,6 +274,6 @@ class PenjualanController extends Controller
             $message->subject('Pengiriman diproses');
             $message->setBody('<h1> Terima kasih,', 'text/html');
         });
-        return redirect('/order')->with('message', 'Berhasil Kirim Notifikasi');
+        return redirect('admin/order')->with('message', 'Berhasil Kirim Notifikasi');
     }
 }

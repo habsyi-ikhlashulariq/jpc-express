@@ -31,6 +31,8 @@ class UserSeeder extends Seeder
                     'address' => $faker->address(),
                     'telp' => $faker->unique()->phoneNumber,
                     'avatar' => "default.png",
+                    'platNomor' => $faker->randomElement(['A 9090 PX', 'B 9091 PO', 'C 9090 TX']),
+                    'jabatan' => $faker->randomElement([0, 1]),
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ]

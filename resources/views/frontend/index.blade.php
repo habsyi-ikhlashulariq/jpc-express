@@ -178,11 +178,24 @@
                             </h2>
                             <form action="{{ url('/jpc-express/cekresi') }}" class="subsriber-form">
                                 <label for="subscriber-mail"><i class="fa fa-envelope"></i></label>
-                                <input type="text" name="cari" placeholder="Masukan no Resi anda disini">
-                                <button type="submit">
+                                <input type="text" name="cari" id="cari" placeholder="Masukan no Resi anda disini">
+                                <button type="button" data-toggle="modal" data-target="#exampleModal" id="tampilCari">
                                     Cek Sekarang
                                 </button>
                             </form>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                             <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <img src="assets/comming.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -405,7 +418,22 @@
                     allowClear: Boolean($(this).data('allow-clear')),
                 });
             });
+
+            $('#tampilCari').on('click', function(){
+                var nilai = $('#cari').val();
+
+                $.ajax({
+                    url: 'jpc-express/cekresi',
+                    data:{cari: cari},
+                    method:'GET',
+                    success : function(data){
+                        console.log(data);
+                    }
+                });
+            });
         });
+
+
     </script>
 </body>
 

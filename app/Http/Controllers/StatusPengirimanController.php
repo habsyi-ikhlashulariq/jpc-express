@@ -81,7 +81,7 @@ class StatusPengirimanController extends Controller
             'tanggal' => $request->tanggal,
             'status' => false
         ]);
-        return redirect('status_pengiriman')->with('message','Data Berhasil Disimpan');
+        return redirect('admin/status_pengiriman')->with('message','Data Berhasil Disimpan');
     }
 
     /**
@@ -134,7 +134,7 @@ class StatusPengirimanController extends Controller
 
         $status_pengiriman->save();
 
-        return redirect('/status_pengiriman')->with('message', 'Data Berhasil Diupdate');
+        return redirect('admin/status_pengiriman')->with('message', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -149,6 +149,6 @@ class StatusPengirimanController extends Controller
         $status_pengiriman = StatusPengiriman::find($id);
 
         $status_pengiriman->delete();
-        return redirect('/status_pengiriman')->with('message', 'Data Berhasil DiHapus');
+        return redirect('admin/status_pengiriman')->with('message', 'Data Berhasil DiHapus');
     }
 }
