@@ -2,7 +2,7 @@
 
 @section('content')   
         <div class="panel-body">
-                <h3>Form Tambah Metode Pembayaran</h3>
+                <h3>Form Tambah Status Pengiriman</h3>
                 <hr>
             <form action="{{ url('admin/status_pengiriman/store') }}" method="POST" >
             {{ csrf_field() }}
