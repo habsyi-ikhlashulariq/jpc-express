@@ -17,6 +17,8 @@ class CreateDetailPenjualanTable extends Migration
             $table->id();
             $table->string('penjualan_id',255);
             $table->string('totalBiaya', 45);
+            $table->integer('komisi');
+            $table->boolean('statusFinish');
             $table->timestamps();
 
             $table->foreign('penjualan_id')->references('noResi')->on('penjualan')->onDelete('cascade');

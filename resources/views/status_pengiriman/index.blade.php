@@ -11,8 +11,6 @@
         <thead>
             <tr>
                 <th>No. Resi</th>
-                <th>Kurir</th>
-                <th>Tanggal</th>
                 <th>OPSI</th>
             </tr>
         </thead>
@@ -28,8 +26,6 @@
                 ajax: '{!! url("admin/status_pengiriman/dt") !!}',
                 columns: [
                     { data: 'penjualan_id', name: 'penjualan_id' },
-                    { data: 'name', name: 'name' },
-                    { data: 'tanggal', name: 'tanggal' },
                     { data: 'aksi', name: 'aksi'},
                 ]
             });

@@ -35,7 +35,7 @@
                 serverSide: true,
                 ajax: '{!! url("admin/order/dt") !!}',
                 columns: [
-                    { data: 'noResi', name: 'noResi' },
+                    { data: 'penjualan_id', name: 'penjualan_id' },
                     { data: 'tanggal', name: 'tanggal' },
                     { data: 'hargaKg', name: 'hargaKg' },
                     { data: 'penerima', name: 'penerima'},

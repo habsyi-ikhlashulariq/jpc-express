@@ -47,6 +47,16 @@
                         </div>
                         @enderror
                     </div>
+                    <div class="col-md-12">
+                    <label for="">Keterangan</label>
+                    <input class="form-control" placeholder="Keterangan" type="text" name="keterangan"><br>
+
+                        @error('keterangan')
+                        <div class="text-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
