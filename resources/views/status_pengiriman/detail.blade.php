@@ -28,8 +28,8 @@
                     @endif
                 </td>
                 <td>
-                    <a href="{{url('status_pengiriman/edit/'.$data->id)}}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i>Edit</a>
-                    <a href="{{url('status_pengiriman/destroy/'.$data->id)}}" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-close"></i>Delete</a>
+                    <a href="{{url('admin/status_pengiriman/edit/'.$data->id)}}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i>Edit</a>
+                    <a href="{{url('admin/status_pengiriman/destroy/'.$data->id)}}" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-close"></i>Delete</a>
                 </td>
             </tr>
             @endforeach

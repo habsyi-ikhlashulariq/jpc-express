@@ -18,7 +18,7 @@
                             </div>
                            @enderror
 
-                        <label for="">Plat Nomor</label>
+                        <label for="">Keterangan</label>
                         <input class="form-control" placeholder="Keterangan" type="text" name="keterangan" value="{{ $status_pengiriman->keterangan }}"><br>
 
                             @error('keterangan')
@@ -30,9 +30,9 @@
                     </div>
                     <div class="col-md-6">
                         <label for="">Nama Supir</label>
-                        <input class="form-control" placeholder="Nama Supir" type="text" name="namaSupir" value="{{ $status_pengiriman->namaSupir }}"><br>
+                        <input class="form-control" placeholder="Nama Supir" type="text" name="name" value="{{ $status_pengiriman->name }}"><br>
 
-                            @error('namaSupir')
+                            @error('name')
                             <div class="text-danger">
                                 {{ $message }}
                             </div>

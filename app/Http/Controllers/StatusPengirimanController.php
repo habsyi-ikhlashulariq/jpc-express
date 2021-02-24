@@ -113,7 +113,11 @@ class StatusPengirimanController extends Controller
     public function edit($id)
     {
         //
-        $status_pengiriman = StatusPengiriman::find($id);
+        $status_pengiriman =  DB::table('status_pengiriman')
+        ->join('users', 'users.id', '=', 'status_pengiriman.kurir_id')
+        ->select('status_pengiriman.*', 'users.name','users.platNomor')
+        ->where('status_pengiriman.id', $id)
+        ->first();
         return view('status_pengiriman.edit', ['status_pengiriman'=> $status_pengiriman]);
     }
 
@@ -130,18 +134,21 @@ class StatusPengirimanController extends Controller
         
         $this->validate($request, [
             'platNomor' => 'required',
-            'namaSupir' => 'required',
+            'name' => 'required',
             'keterangan' => 'required',
             'tanggal' => 'required',
         ]);
 
-        $status_pengiriman = StatusPengiriman::find($id);
-        $status_pengiriman->platNomor = $request->platNomor;
-        $status_pengiriman->namaSupir = $request->namaSupir;
+        $status_pengiriman = StatusPengiriman::where('id', $id)->first();
         $status_pengiriman->keterangan = $request->keterangan;
         $status_pengiriman->tanggal = $request->tanggal;
-
+        
         $status_pengiriman->save();
+        
+        $user = User::where('id', $status_pengiriman->kurir_id)->first();
+        $user->platNomor = $request->platNomor;
+        $user->name = $request->name;
+        $user->save();
 
         return redirect('admin/status_pengiriman')->with('message', 'Data Berhasil Diupdate');
     }
@@ -175,11 +182,42 @@ class StatusPengirimanController extends Controller
         ->get();
         return DataTables::of($data)
         //button aksi
+        ->editColumn('status', function ($db) {
+            if($db->status == 1){
+                $c = 'Sudah Sampai';
+            } else{
+                $c = 'Masih Di Jalan';
+            }
+            return $c;
+        })
         ->addColumn('aksi', function($s){
-            return '<a href="status_pengiriman/edit/'.$s->penjualan_id.'" class="btn btn-success">Detail</a>
+            return '<a href="status_pengiriman/edit/'.$s->id.'" class="btn btn-success">Edit</a>
             ';
         })
-        ->rawColumns(['aksi'])
+        ->rawColumns(['status','aksi'])
         ->toJSon();
+    }
+    public function edit_kurir($id)
+    {
+        $status_pengiriman = StatusPengiriman::find($id);
+        return view('status_pengiriman.edit_kurir', ['status_pengiriman' => $status_pengiriman]);
+    }
+    public function update_kurir(Request $request, $id)
+    {
+        //
+        
+        $this->validate($request, [
+            'keterangan' => 'required',
+            'status' => 'required',
+        ]);
+
+        $status_pengiriman = StatusPengiriman::where('id', $id)->first();
+        $status_pengiriman->keterangan = $request->keterangan;
+        $status_pengiriman->status = $request->status;
+        
+        $status_pengiriman->save();
+        
+
+        return redirect('kurir/status_pengiriman')->with('message', 'Data Berhasil Diupdate');
     }
 }
