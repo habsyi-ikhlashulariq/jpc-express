@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
                 [
                     'name' => $faker->name(),
                     'email' => $faker->email(),
-                    'gender' => $faker->randomElement(['Laki-Laki', 'Perempuan']),
+                    'gender' => $faker->randomElement([1, 0]),
                     'password' => bcrypt('123456789'),
                     'remember_token' => Str::random(12),
                     'address' => $faker->address(),

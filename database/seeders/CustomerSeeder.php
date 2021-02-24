@@ -25,7 +25,7 @@ class CustomerSeeder extends Seeder
                     'namaCustomer' => $faker->name(),
                     'emailCustomer' => $faker->email(),
                     'noTelpCustomer' => $faker->phoneNumber(),
-                    'genderCustomer' => $faker->randomElement(['male', 'female']),
+                    'genderCustomer' => $faker->randomElement([1,0]),
                     'alamatCustomer' => $faker->address(),
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()

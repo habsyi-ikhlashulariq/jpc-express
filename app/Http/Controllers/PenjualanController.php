@@ -165,9 +165,9 @@ class PenjualanController extends Controller
         $order = Penjualan::find($id);
         $vendor = Vendor::get();
         $customer = Customer::get();
-        $statusPengiriman = StatusPengiriman::get();
         $metodePembayaran = MetodePembayaran::get();
-        $barang = Barang::get();
+        // $barang = Barang::where('id', $order->barang_id)->get();
+        $barang = DB::table('barang')->where('id', $order->barang_id)->first();
         $destinasi = Destination::get();
         
         
@@ -175,10 +175,9 @@ class PenjualanController extends Controller
             'order' => $order,
             'vendor' => $vendor,
             'customer' => $customer,
-            'statusPengiriman' => $statusPengiriman,
             'metodePembayaran' => $metodePembayaran,
-            'barang' => $barang,
-            'destinasi' => $destinasi
+            'destinasi' => $destinasi,
+            'barang' => $barang
         ]);
     }
 
@@ -192,21 +191,20 @@ class PenjualanController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request, [
-            'tanggal' => 'required',
-            'hargaKg' => 'required',
-            'kuli' => 'required',
-            'penerima' => 'required',
-            'alamatPenerima' => 'required',
-            'noTelpPenerima' => 'required',
-            'vendor_id' => 'required',
-            'barang_id' => 'required',
-            'metodePembayaran_id' => 'required',
-            'statusPengiriman_id' => 'required',
-            'customer_id' => 'required',
-            'destinasi_id' => 'required',
-        ]);
+        // $this->validate($request, [
+        //     'tanggal' => 'required',
+        //     'hargaKg' => 'required',
+        //     'kuli' => 'required',
+        //     'penerima' => 'required',
+        //     'alamatPenerima' => 'required',
+        //     'noTelpPenerima' => 'required',
+        //     'vendor_id' => 'required',
+        //     'metodePembayaran_id' => 'required',
+        //     'customer_id' => 'required',
+        //     'destinasi_id' => 'required',
+        // ]);
 
+        // dd($request->all());
         $penjualan = Penjualan::find($id);
         $penjualan->tanggal = $request->tanggal;
         $penjualan->hargaKg = $request->hargaKg;
@@ -215,13 +213,19 @@ class PenjualanController extends Controller
         $penjualan->alamatPenerima = $request->alamatPenerima;
         $penjualan->noTelpPenerima = $request->noTelpPenerima;
         $penjualan->vendor_id = $request->vendor_id;
-        $penjualan->barang_id = $request->barang_id;
         $penjualan->metodePembayaran_id = $request->metodePembayaran_id;
-        $penjualan->statusPengiriman_id = $request->statusPengiriman_id;
         $penjualan->customer_id = $request->customer_id;
         $penjualan->destinasi_id = $request->destinasi_id;
 
+        $barang = DB::table('barang')->where('id', $request->barang_id)->first();
+        $barang->berat = $request->berat;
+        $barang->panjang = $request->panjang;
+        $barang->lebar = $request->lebar;
+        $barang->tinggi = $request->tinggi;
+        $barang->beartVol = $request->beartVol;
+
         $penjualan->save();
+        $barang->save();
 
         return redirect('admin/order')->with('message', 'Data Berhasil Diupdate');
     }

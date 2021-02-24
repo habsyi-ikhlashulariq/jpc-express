@@ -23,12 +23,21 @@ class CustomerController extends Controller
         $data =  Customer::all();
         return DataTables::of($data)
         //button aksi
+        ->editColumn('genderCustomer', function ($db) {
+            if($db->genderCustomer == 1){
+                $c = 'Laki-Laki';
+            } else{
+                $c = 'Perempuan';
+            }
+            return $c;
+        })
+        
         ->addColumn('aksi', function($s){
             return '<a href="customer/edit/'.$s->id.'" class="btn btn-warning">Edit</a>
             <a href="customer/destroy/'.$s->id.'" class="btn btn-danger">Hapus</a>
             ';
         })
-        ->rawColumns(['aksi'])
+        ->rawColumns(['genderCustomer','aksi'])
         ->toJSon();
     }
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KurirController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\CekResiController;
@@ -110,6 +111,16 @@ Route::post('/destinasi/store', [DestinationController::class, 'store']);
 Route::get('destinasi/edit/{id}', [DestinationController::class, 'edit']);
 Route::put('/destinasi/update/{id}', [DestinationController::class, 'update']);
 Route::get('/destinasi/destroy/{id}', [DestinationController::class, 'destroy']);
+
+//Data Kurir
+Route::get('/kurir', [KurirController::class, 'index']);
+Route::get('/kurir/dt', [KurirController::class, 'dt']);
+Route::get('/kurir/create', [KurirController::class, 'create']);
+Route::post('/kurir/store', [KurirController::class, 'store']);
+Route::get('kurir/edit/{id}', [KurirController::class, 'edit']);
+Route::put('/kurir/update/{id}', [KurirController::class, 'update']);
+Route::get('/kurir/destroy/{id}', [KurirController::class, 'destroy']);
+
 
 //Cetak Laporan
 Route::get('/order/cetak_laporan', [PenjualanController::class, 'form_cetak_laporan']);
