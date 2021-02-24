@@ -23,43 +23,29 @@
                         @enderror
                     </div>
                     <div class="col-md-6">
-                        <label for="">Plat Nomor</label>
-                        <input class="form-control" placeholder="Plat Nomor" type="text" name="platNomor"><br>
+                        <label for="">Kurir</label>
+                        <select name="kurir_id" id="kurir_id" class="form-control">
+                            <option value="">Kurir</option>
+                            @foreach($kurir as $data)
+                            <option value="{{ $data->id }}">{{$data->platNomor }} || {{$data->name }}</option>
+                            @endforeach
+                        </select><br>
 
-                            @error('platNomor')
+                        @error('kurir_id')
                             <div class="text-danger">
                                 {{ $message }}
                             </div>
-                           @enderror
-
-                        <label for="">Keterangan</label>
-                        <input class="form-control" placeholder="Keterangan" type="text" name="keterangan"><br>
-
-                            @error('keterangan')
-                            <div class="text-danger">
-                                {{ $message }}
-                            </div>
-                           @enderror
-
+                        @enderror
                     </div>
                     <div class="col-md-6">
-                        <label for="">Nama Supir</label>
-                        <input class="form-control" placeholder="Nama Supir" type="text" name="namaSupir"><br>
+                    <label for="">Tanggal</label>
+                    <input class="form-control" placeholder="Tanggal" type="date" name="tanggal"><br>
 
-                            @error('namaSupir')
-                            <div class="text-danger">
-                                {{ $message }}
-                            </div>
-                           @enderror
-
-                        <label for="">Tanggal</label>
-                        <input class="form-control" placeholder="Tanggal" type="date" name="tanggal"><br>
-
-                            @error('tanggal')
-                            <div class="text-danger">
-                                {{ $message }}
-                            </div>
-                           @enderror
+                        @error('tanggal')
+                        <div class="text-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">

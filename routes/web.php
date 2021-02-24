@@ -129,6 +129,19 @@ Route::get('/order/cetak_laporan/{tglAwal}/{tglAkhir}', [PenjualanController::cl
 
 });
 
+Route::group(['middleware' => 'auth', 'prefix' => 'kurir'], function(){
+    Route::get('/status_pengiriman', [StatusPengirimanController::class, 'index_kurir']);
+    Route::get('/status_pengiriman/dt', [StatusPengirimanController::class, 'dt_kurir']);
+    Route::get('/status_pengiriman/create', [StatusPengirimanController::class, 'create_kurir']);
+    Route::post('/status_pengiriman/store', [StatusPengirimanController::class, 'store_kurir']);
+    Route::get('status_pengiriman/detail/{penjualan_id}', [StatusPengirimanController::class, 'detail']);
+    Route::get('status_pengiriman/edit/{id}', [StatusPengirimanController::class, 'edit']);
+    Route::put('/status_pengiriman/update/{id}', [StatusPengirimanController::class, 'update_kurir']);
+    Route::get('/status_pengiriman/destroy/{id}', [StatusPengirimanController::class, 'destroy_kurir']);
+
+
+});
+
 //Login
 // Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 // Auth::routes();

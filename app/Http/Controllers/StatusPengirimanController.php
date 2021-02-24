@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penjualan;
 use Illuminate\Http\Request;
 use App\Models\StatusPengiriman;
-use App\Models\Penjualan;
-use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class StatusPengirimanController extends Controller
 {
@@ -23,7 +24,11 @@ class StatusPengirimanController extends Controller
 
     public function dt()
     {
-        $data =  StatusPengiriman::all()->unique('penjualan_id');
+        $data =  DB::table('status_pengiriman')
+        ->join('users', 'users.id', '=', 'status_pengiriman.kurir_id')
+        ->select('status_pengiriman.id', 'status_pengiriman.tanggal','status_pengiriman.penjualan_id', 'users.id as kurir_id', 'users.name')
+        ->groupBy('status_pengiriman.penjualan_id')
+        ->get();
         return DataTables::of($data)
         //button aksi
         ->addColumn('aksi', function($s){
@@ -51,8 +56,10 @@ class StatusPengirimanController extends Controller
             ->join('customer', 'customer.id', '=', 'penjualan.customer_id')
             ->select('penjualan.*', 'customer.namaCustomer')
             ->get();
+        $kurir = DB::table('users')->where('jabatan', 0)->get();
         return view('status_pengiriman.add', [
             'penjualan' => $penjualan,
+            'kurir' => $kurir
         ]);
     }
 
@@ -66,18 +73,14 @@ class StatusPengirimanController extends Controller
     {
         //
         $this->validate($request, [
-            'platNomor' => 'required',
-            'namaSupir' => 'required',
-            'keterangan' => 'required',
+            'kurir_id' => 'required',
             'tanggal' => 'required',
             'noResi' => 'required',
         ]);
 
         StatusPengiriman::create([
             'penjualan_id' => $request->noResi,
-            'platNomor' => $request->platNomor,
-            'namaSupir' => $request->namaSupir,
-            'keterangan' => $request->keterangan,
+            'kurir_id' => $request->kurir_id,
             'tanggal' => $request->tanggal,
             'status' => false
         ]);
@@ -150,5 +153,27 @@ class StatusPengirimanController extends Controller
 
         $status_pengiriman->delete();
         return redirect('admin/status_pengiriman')->with('message', 'Data Berhasil DiHapus');
+    }
+
+    public function index_kurir()
+    {
+        return view('status_pengiriman.index_kurir');
+    }
+
+    public function dt_kurir()
+    {
+        $data =  DB::table('status_pengiriman')
+        ->join('users', 'users.id', '=', 'status_pengiriman.kurir_id')
+        ->select('status_pengiriman.id', 'status_pengiriman.tanggal','status_pengiriman.penjualan_id', 'users.id as kurir_id', 'users.name', 'status_pengiriman.status', 'status_pengiriman.keterangan')
+        ->where('status_pengiriman.kurir_id', Auth::user()->id)
+        ->get();
+        return DataTables::of($data)
+        //button aksi
+        ->addColumn('aksi', function($s){
+            return '<a href="status_pengiriman/edit/'.$s->penjualan_id.'" class="btn btn-success">Detail</a>
+            ';
+        })
+        ->rawColumns(['aksi'])
+        ->toJSon();
     }
 }

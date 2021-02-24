@@ -1,18 +1,18 @@
 @extends('master.layout')
 @section('content')
 <div class="panel-body">
-    <a href="{{ url('admin/status_pengiriman/create') }}" class="btn btn-primary">Tambah Status Pengiriman</a><br><br>
+    <a href="{{ url('kurir/status_pengiriman/create') }}" class="btn btn-primary">Tambah Status Pengiriman</a><br><br>
         @if (session('message'))
             <div class="alert alert-success" role="alert">
                 {{ session('message') }}                        
             </div>
         @endif
-    <table class="table table-bordered table-hover table-striped" id="metode_pembayaran-table">
+    <table class="table table-bordered table-hover table-striped" id="status_pembayaran-table">
         <thead>
             <tr>
                 <th>No. Resi</th>
-                <th>Kurir</th>
-                <th>Tanggal</th>
+                <th>Keterangan</th>
+                <th>Status</th>
                 <th>OPSI</th>
             </tr>
         </thead>
@@ -22,14 +22,14 @@
 
 <script>
         $(function() {
-            $('#metode_pembayaran-table').DataTable({
+            $('#status_pembayaran-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! url("admin/status_pengiriman/dt") !!}',
+                ajax: '{!! url("kurir/status_pengiriman/dt") !!}',
                 columns: [
                     { data: 'penjualan_id', name: 'penjualan_id' },
-                    { data: 'name', name: 'name' },
-                    { data: 'tanggal', name: 'tanggal' },
+                    { data: 'keterangan', name: 'keterangan' },
+                    { data: 'status', name: 'status' },
                     { data: 'aksi', name: 'aksi'},
                 ]
             });

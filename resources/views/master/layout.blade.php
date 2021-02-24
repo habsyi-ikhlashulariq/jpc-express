@@ -92,7 +92,7 @@
 
 						@else
 
-						<li><a href="{{ url('admin/status_pengiriman')}}" class=""><i class="fa fa-map"></i> <span>Status Pengiriman</span></a></li>
+						<li><a href="{{ url('kurir/status_pengiriman')}}" class=""><i class="fa fa-map"></i> <span>Status Pengiriman</span></a></li>
 
 						@endif
 
