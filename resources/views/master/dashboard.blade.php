@@ -29,7 +29,7 @@
         <div class="metric">
             <span class="icon"><i class="fa fa-map"></i></span>
             <p>
-                <span class="number">10</span>
+                <span class="number">{{$kurir}}</span>
                 <span class="title">Status Pengiriman</span>
             </p>
         </div>

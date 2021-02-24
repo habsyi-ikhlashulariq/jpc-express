@@ -169,11 +169,45 @@ class StatusPengirimanController extends Controller
         ->get();
         return DataTables::of($data)
         //button aksi
+        ->editColumn('status', function ($db) {
+            if($db->status == 1){
+                $c = 'Sudah Sampai';
+            } else{
+                $c = 'Masih Di Jalan';
+            }
+            return $c;
+        })
+
         ->addColumn('aksi', function($s){
-            return '<a href="status_pengiriman/edit/'.$s->penjualan_id.'" class="btn btn-success">Detail</a>
+            return '<a href="status_pengiriman/edit/'.$s->id.'" class="btn btn-success">Edit</a>
             ';
         })
-        ->rawColumns(['aksi'])
+        ->rawColumns(['status','aksi'])
         ->toJSon();
+    }
+    public function edit_kurir($id)
+    {
+        //
+        $status_pengiriman = StatusPengiriman::find($id);
+        return view('status_pengiriman.edit_kurir', ['status_pengiriman'=> $status_pengiriman]);
+    }
+    public function update_kurir(Request $request, $id)
+    {
+        //
+        
+        $this->validate($request, [
+            'penjualan_id' => 'required',
+            'keterangan' => 'required',
+            'status' => 'required',
+        ]);
+
+        $status_pengiriman = StatusPengiriman::find($id);
+        $status_pengiriman->penjualan_id = $request->penjualan_id;
+        $status_pengiriman->keterangan = $request->keterangan;
+        $status_pengiriman->status = $request->status;
+
+        $status_pengiriman->save();
+
+        return redirect('kurir/status_pengiriman')->with('message', 'Data Berhasil Diupdate');
     }
 }
