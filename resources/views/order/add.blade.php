@@ -52,6 +52,27 @@
                                     {{ $message }}
                                 </div>
                            @enderror
+
+                        <label for="">Total Biaya Vendor</label>
+                        <input class="form-control" placeholder="Total Biaya Vendor" type="text" name="totalBiayaVendor" >
+                        <br>
+                            @error('totalBiayaVendor')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+                        <label for="">Pilihan</label>
+                        <select name="pilihan" class="form-control">
+                            <option value="0">Barang Di Jemput</option>
+                            <option value="1">Barang Di Antar</option>
+                        </select>
+
+                            @error('vendor_id')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                           @enderror
                     </div>
                     <div class="col-md-6">
                         <label for="">Vendor</label>
@@ -119,6 +140,28 @@
                                 </div>
                            @enderror
 
+                           <label for="">Total Biaya</label>
+                            <input class="form-control" placeholder="Total Biaya" type="text" name="totalBiaya" >
+                            <br>
+                             @error('totalBiaya')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                           @enderror
+
+                           <label for="">Pilih Kurir</label>
+                            <select name="kurir_id" class="form-control">
+                            <option value="">Pilih Kurir</option>
+                                @foreach($user as $data)
+                                <option value="{{ $data->id }}">{{$data->name }}|| {{$data->platNomor }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('kurir_id')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                           @enderror
                     </div>
                 </div>
                 <h3>Data Barang</h3>

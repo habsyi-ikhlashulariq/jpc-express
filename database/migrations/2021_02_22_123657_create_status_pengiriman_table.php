@@ -16,9 +16,9 @@ class CreateStatusPengirimanTable extends Migration
         Schema::create('status_pengiriman', function (Blueprint $table) {
             $table->id();
             $table->string('penjualan_id',255);
-            $table->foreignId('kurir_id');
-            $table->string('keterangan', 45);
-            $table->string('tanggal', 45);
+            $table->foreignId('kurir_id')->nullable();
+            $table->string('keterangan', 45)->nullable();
+            $table->string('tanggal', 45)->nullable();
             $table->boolean('status');
             $table->timestamps();
 

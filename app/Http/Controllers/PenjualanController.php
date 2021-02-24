@@ -11,6 +11,9 @@ use App\Models\Destination;
 use Illuminate\Http\Request;
 use App\Models\MetodePembayaran;
 use App\Models\StatusPengiriman;
+use App\Models\DetailPenjualan;
+use App\Models\DetailVendor;
+use App\Models\User;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -31,18 +34,19 @@ class PenjualanController extends Controller
 
     public function dt()
     {
-        $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer', 'barang.berat','vendor.vendor', 'metode_pembayaran.jenisPembayaran')
+        $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer', 'barang.berat','vendor.vendor', 'metode_pembayaran.jenisPembayaran','status_pengiriman.penjualan_id')
         ->join('customer', 'customer.id', 'penjualan.customer_id')
         ->join('barang', 'barang.id', 'penjualan.barang_id')
         ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
         ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
+        ->join('status_pengiriman','status_pengiriman.penjualan_id','penjualan.noResi')
         ->get();
         return DataTables::of($data)
         //button aksi
         ->addColumn('aksi', function($s){
-            return '<a href="order/edit/'.$s->noResi.'" class="btn btn-warning">Edit</a>
-            <a href="order/destroy/'.$s->noResi.'" class="btn btn-danger">Hapus</a>
-            <a href="order/notif/'.$s->noResi.'" class="btn btn-success">Kirim Notif</a>
+            return '<a href="order/edit/'.$s->penjualan_id.'" class="btn btn-warning">Edit</a>
+            <a href="order/destroy/'.$s->penjualan_id.'" class="btn btn-danger">Hapus</a>
+            <a href="order/notif/'.$s->penjualan_id.'" class="btn btn-success">Kirim Notif</a>
             ';
         })
         ->rawColumns(['aksi'])
@@ -59,16 +63,16 @@ class PenjualanController extends Controller
         //
         $vendor = Vendor::all();
         $customer = Customer::all();
-        $statusPengiriman = StatusPengiriman::all();
         $metodePembayaran = MetodePembayaran::all();
         $destinasi = Destination::all();
-
+        $user = User::where('jabatan',0)->get();
        
         return view('order.add', [
             'vendor' => $vendor,
             'customer' => $customer,
             'metodePembayaran' => $metodePembayaran,
-            'destinasi' => $destinasi
+            'destinasi' => $destinasi,
+            'user' => $user,
         ]);
     }
 
@@ -96,7 +100,11 @@ class PenjualanController extends Controller
             'panjang' => 'required',
             'lebar' => 'required',
             'tinggi' => 'required',
-            'beratVol' => 'required'
+            'beratVol' => 'required',
+            'pilihan' => 'required',
+            'totalBiaya' => 'required',
+            'totalBiayaVendor' => 'required',
+            'kurir_id' => 'required'
         ]);
 
         $dataBarang = Barang::create([
@@ -125,7 +133,6 @@ class PenjualanController extends Controller
         $datayear = $yearDigit1.''.$yearDigit2;
         $newID = $dataDate.''.$datayear.''.$telpDigit.'JPC'.str_pad($kode, 6, 0,STR_PAD_LEFT);
 
-
         $penjualan = Penjualan::create([
             'noResi' => $newID,
             'tanggal' => $request->tanggal,
@@ -139,6 +146,37 @@ class PenjualanController extends Controller
             'metodePembayaran_id' => $request->metodePembayaran_id,
             'customer_id' => $request->customer_id,
             'destinasi_id' => $request->destinasi_id,
+        ]);
+
+        if($request->pilihan == 0){
+            StatusPengiriman::create([
+                'penjualan_id' => $newID,
+                'kurir_id' => $request->kurir_id,
+                'keterangan' => "Barang Sedang Dijemput",
+                'tanggal' => date('Y-m-d'),
+                'status' => 0
+            ]);
+        }else if($request->pilihan == 1){
+            StatusPengiriman::create([
+                'penjualan_id' => $newID,
+                'kurir_id' => $request->kurir_id,
+                'keterangan' => "Sedang Menunggu Barang Di Antar",
+                'tanggal' => date('Y-m-d'),
+                'status' => 0
+            ]);
+        }
+
+        DetailPenjualan::create([
+            'penjualan_id' => $newID,
+            'totalBiaya' => $request->totalBiaya - 3000,
+            'komisi' => 3000,
+            'statusFinish' => 0
+        ]);
+
+        DetailVendor::Create([
+            'vendor_id' => $request->vendor_id,
+            'penjualan_id' => $newID,
+            'totalBiaya' => $request->totalBiayaVendor,
         ]);
         return redirect('admin/order')->with('message','Data Berhasil Disimpan');
     }

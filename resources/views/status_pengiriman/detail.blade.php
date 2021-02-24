@@ -16,15 +16,15 @@
         <tbody>
             @foreach($status_pengiriman as $data)
             <tr>
-                <td>{{$data->platNomor}}</td>
-                <td>{{$data->namaSupir}}</td>
+                <td>{{$data->platNomor ?? $data->playNomor ?? ''}}</td>
+                <td>{{$data->name ?? $data->name ?? ''}}</td>
                 <td>{{$data->keterangan}}</td>
                 <td>{{$data->tanggal}}</td>
                 <td>
                     @if($data->status == 0)
-                        <p class="text-sm text-green-700 underline">Done</p>
+                        <p class="text-sm text-green-700 underline">In Process</p>
                     @else if($data->status == 1)
-                        <p class="text-sm text-yeelow-700 underline">Pending</p>
+                        <p class="text-sm text-yeelow-700 underline">Done</p>
                     @endif
                 </td>
                 <td>
