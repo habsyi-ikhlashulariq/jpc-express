@@ -205,7 +205,7 @@ class PenjualanController extends Controller
         // ]);
 
         // dd($request->all());
-        $penjualan = Penjualan::find($id);
+        $penjualan = Penjualan::where('noResi','2421JPC000001')->first();
         $penjualan->tanggal = $request->tanggal;
         $penjualan->hargaKg = $request->hargaKg;
         $penjualan->kuli = $request->kuli;
@@ -216,15 +216,14 @@ class PenjualanController extends Controller
         $penjualan->metodePembayaran_id = $request->metodePembayaran_id;
         $penjualan->customer_id = $request->customer_id;
         $penjualan->destinasi_id = $request->destinasi_id;
-
-        $barang = DB::table('barang')->where('id', $request->barang_id)->first();
+        $penjualan->save();
+        
+        $barang = Barang::where('id', $request->barang_id)->first();
         $barang->berat = $request->berat;
         $barang->panjang = $request->panjang;
         $barang->lebar = $request->lebar;
         $barang->tinggi = $request->tinggi;
-        $barang->beartVol = $request->beartVol;
-
-        $penjualan->save();
+        $barang->beratVol = $request->beratVol;
         $barang->save();
 
         return redirect('admin/order')->with('message', 'Data Berhasil Diupdate');

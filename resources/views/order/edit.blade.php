@@ -200,7 +200,7 @@
                     <a href="{{ url('admin/order') }}" class="btn btn-danger">Kembali</a>
                     </div>
                 </div>
-                        <input class="form-control" type="text" name="barang_id" value="{{$barang->id}}"><br>
+                        <input class="form-control" type="text" name="barang_id" value="{{$order->barang_id}}"><br>
             </form>
         </div>
 @endsection
