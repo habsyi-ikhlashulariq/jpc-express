@@ -1,31 +1,6 @@
 @extends('master.layout')
 @section('content')
 
-<<<<<<< HEAD
-                <div class="profile-right" style="height: 320px;">
-                <!-- AWARDS -->
-                    <div class="profile-detail">
-                        <div class="profile-info">
-                            <h4 class="heading" style="margin-top: -50px;">Update Password</h4>
-                            <ul class="list-unstyled list-justify">
-                                <form action="{{ url('/cek/') }}" method="get">
-                                {{ csrf_field() }}
-                                    <li>Password Lama : <br>
-                                        <input class="form-control" type="text" name="cari">
-                                    </li>
-                                    @if($data == "")
-                                    {{ $data = "Masukan Nomor dengan Benar" }}
-                                        @else
-                                    {{ @$data->tanggal}}
-                                    @endif
-                                <input class="btn btn-primary" type="submit" name="simpan" value="Simpan">
-                            </form>
-                    </ul>
-                        </div>
-                    </div>
-                    <!-- END AWARDS -->
-                    
-=======
         <div class="profile-right" style="height: 320px;">
         <!-- AWARDS -->
             <div class="profile-detail">
@@ -45,7 +20,6 @@
                         <input class="btn btn-primary" type="submit" name="simpan" value="Simpan">
                     </form>
             </ul>
->>>>>>> cd90d0f612efd105660711ebe79ef74cb4ff1673
                 </div>
             </div>
             <!-- END AWARDS -->

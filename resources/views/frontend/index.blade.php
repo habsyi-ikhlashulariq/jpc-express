@@ -179,23 +179,48 @@
                             <form action="{{ url('/jpc-express/cekresi') }}" class="subsriber-form">
                                 <label for="subscriber-mail"><i class="fa fa-envelope"></i></label>
                                 <input type="text" name="cari" id="cari" placeholder="Masukan no Resi anda disini">
-                                <button type="button" data-toggle="modal" data-target="#exampleModal" id="tampilCari">
+                                <button type="button" data-toggle="modal" data-target="#exampleModal" id="tampilResi">
                                     Cek Sekarang
                                 </button>
                             </form>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                             <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            <img src="assets/comming.jpg" alt="">
-                                        </div>
+                            
+                                              <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Hasil Pencarian</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                
+                                <form>
+                                    <div class="mb-3">
+                                        <label>No. resi</label>
+                                        <input type="text" class="form-control text-center" id="noResi" readonly>
                                     </div>
+                                    <div class="mb-3">
+                                        <label>Penerima</label>
+                                        <input type="text" class="form-control text-center" id="penerima" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Alamat Penerima</label>
+                                        <input type="text" class="form-control text-center" id="alamatPenerima" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>No Telp Penerima</label>
+                                        <input type="text" class="form-control text-center" id="noTelpPenerima" readonly>
+                                    </div>
+                                </form>
+
+
+                                <div class="modal-footer">
+                                </div>
                                 </div>
                             </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -263,12 +288,11 @@
                 <div class="col-md-6">
                     <div class="card d-flex justify-content-center">
                         <h2>Cek Estimasi Pengiriman</h2>
-                        <form action="{{ url('/jpc-express/cekestimasi') }}" method="GET">
-                        {{ csrf_field() }}
+                        <form action="" method="GET">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Kota Asal</label>
-                                <select data-placeholder="Kota Asal" data-allow-clear="1" name="kotaAsal">
+                                <select data-placeholder="Kota Asal" data-allow-clear="1" name="kota1" id="kota1">
                                 @foreach($kotaAsal as $data)
                                     <option value="{{$data->kotaAsal}}">{{ $data->kotaAsal }}</option>
                                 @endforeach
@@ -276,17 +300,20 @@
                             </div>
                             <div class="form-group">
                                 <label>Kota Tujuan</label>
-                                <select data-placeholder="Kota Tujuan" data-allow-clear="1" name="kotaTujuan">
+                                <select data-placeholder="Kota Tujuan" data-allow-clear="1" name="kota2" id="kota2">
                                 @foreach($kotaTujuan as $data)
                                     <option value="{{$data->kotaTujuan}}">{{ $data->kotaTujuan }}</option>
                                 @endforeach
                                 </select>
                             </div>
-                            <button class="btn btn-danger btn-xl p-4" type="submit">Cek Sekarang</button>
+                            <button class="btn btn-danger btn-xl p-4" type="button" id="tampilEstimasi" data-toggle="modal" data-target="#exampleModal1">Cek Sekarang</button>
                         </div>
                         </form>
                     </div>
+
+
                 </div>
+                
                 <div class="col-md-6 ">
                     <div class="single-blog wow fadeInUp card-sk px-4 ">
                         <div class="blog-image">
@@ -364,6 +391,46 @@
             </div>
         </div>
     </div>
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Hasil Pencarian</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                
+                                <form>
+                                    <div class="mb-3">
+                                        <label>Kota Asal</label>
+                                        <input type="text" class="form-control text-center" id="kotaAsal" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Kota Tujuan</label>
+                                        <input type="text" class="form-control text-center" id="kotaTujuan" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Tarif</label>
+                                        <input type="text" class="form-control text-center" id="tarif" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Estimasi Waktu</label>
+                                        <input type="text" class="form-control text-center" id="waktu" readonly>
+                                    </div>
+                                </form>
+
+
+                                <div class="modal-footer">
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
+
+
     <footer class="footer">
         <div class="copy-right_text">
             <div class="container">
@@ -419,14 +486,40 @@
                 });
             });
 
-            $('#tampilCari').on('click', function(){
-                var nilai = $('#cari').val();
+            $('#tampilResi').on('click', function(){
+                var cari = $('#cari').val();
 
                 $.ajax({
                     url: 'jpc-express/cekresi',
                     data:{cari: cari},
                     method:'GET',
+                     dataType:'json',
                     success : function(data){
+                        $('#noResi').val(data.noResi);
+                        $('#penerima').val(data.penerima);
+                        $('#alamatPenerima').val(data.alamatPenerima);
+                        $('#noTelpPenerima').val(data.noTelpPenerima);
+                    }
+                });
+            });
+
+            $('#tampilEstimasi').on('click', function(){
+                var kota1 = $('#kota1').val();
+                var kota2 = $('#kota2').val();
+
+                $.ajax({
+                    url: 'jpc-express/cekestimasi',
+                    data:{
+                        kota1: kota1,
+                        kota2: kota2
+                        },
+                    method:'GET',
+                    dataType:'json',
+                    success : function(data){
+                        $('#kotaAsal').val(data.kotaAsal);
+                        $('#kotaTujuan').val(data.kotaTujuan);
+                        $('#tarif').val(data.tarif);
+                        $('#waktu').val(data.waktu);
                         console.log(data);
                     }
                 });
