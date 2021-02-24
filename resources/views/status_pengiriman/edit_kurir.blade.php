@@ -2,7 +2,7 @@
 
 @section('content')   
         <div class="panel-body">
-                <h3>Form Tambah Metode Pembayaran</h3>
+                <h3>Form Edit Status Orderan</h3>
                 <hr>
             <form action="{{ url('kurir/status_pengiriman/update/'.$status_pengiriman->id) }}" method="POST" >
             {{ csrf_field() }}
@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="">Keterangan</label>
-                        <input class="form-control" placeholder="Keterangan" type="text" name="keterangan"><br>
+                        <input class="form-control" placeholder="Keterangan" type="text" name="keterangan" value="{{$status_pengiriman->keterangan}}"><br>
 
                         @error('keterangan')
                             <div class="text-danger">
@@ -30,8 +30,13 @@
                     <div class="col-md-6">
                     <label for="">Status</label>
                     <select name="status" id="status" class="form-control">
-                        <option value="0">Masih Dijalan</option>
-                        <option value="1">Sudah Sampai</option>
+                        @if($status_pengiriman->status == 0)
+                            <option value="0" selected>Masih Dijalan</option>
+                            <option value="1">Sudah Sampai</option>
+                        @else
+                            <option value="1" selected>Sudah Sampai</option>
+                            <option value="0" >Masih Dijalan</option>
+                        @endif
                     </select><br>
 
                         @error('status')
