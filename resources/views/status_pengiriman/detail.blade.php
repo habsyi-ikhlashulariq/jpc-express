@@ -5,10 +5,10 @@
     <table class="table table-bordered table-hover table-striped" id="metode_pembayaran-table">
         <thead>
             <tr>
-                <th>Plat Nomor</th>
-                <th>Nama Supir</th>
-                <th>Keterangan</th>
+                <th>No Resi</th>
+                <th>Nama Kurir</th>
                 <th>Tanggal</th>
+                <th>Keterangan</th>
                 <th>Status</th>
                 <th>OPSI</th>
             </tr>
@@ -16,10 +16,10 @@
         <tbody>
             @foreach($status_pengiriman as $data)
             <tr>
-                <td>{{$data->platNomor ?? $data->playNomor ?? ''}}</td>
-                <td>{{$data->name ?? $data->name ?? ''}}</td>
-                <td>{{$data->keterangan}}</td>
+                <td>{{$data->penjualan_id}}</td>
+                <td>{{$data->name}}</td>
                 <td>{{$data->tanggal}}</td>
+                <td>{{$data->keterangan}}</td>
                 <td>
                     @if($data->status == 0)
                         <p class="text-sm text-green-700 underline">In Process</p>
