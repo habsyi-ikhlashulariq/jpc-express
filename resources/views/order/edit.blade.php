@@ -4,7 +4,8 @@
         <div class="panel-body">
                 <h3>Form Update Order</h3>
                 <hr>
-            <form action="{{ url('admin/order/update/'.$order->noResi) }}" method="POST" >
+                
+            <form action="{{ url('admin/order/update/'.$order->penjualan_id) }}" method="POST" >
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             <div class="row">

@@ -113,12 +113,17 @@ class StatusPengirimanController extends Controller
     public function edit($id)
     {
         //
-        $status_pengiriman =  DB::table('status_pengiriman')
-        ->join('users', 'users.id', '=', 'status_pengiriman.kurir_id')
-        ->select('status_pengiriman.*', 'users.name','users.platNomor')
-        ->where('status_pengiriman.id', $id)
-        ->first();
-        return view('status_pengiriman.edit', ['status_pengiriman'=> $status_pengiriman]);
+        $penjualan = DB::table('penjualan')
+        ->join('customer', 'customer.id', '=', 'penjualan.customer_id')
+        ->select('penjualan.*', 'customer.namaCustomer')
+        ->get();
+        $kurir = DB::table('users')->where('jabatan', 0)->get();
+        $status_pengiriman =  StatusPengiriman::find($id);
+        return view('status_pengiriman.edit', [
+            'status_pengiriman'=> $status_pengiriman,
+            'penjualan'=> $penjualan,
+            'kurir'=> $kurir
+        ]);
     }
 
     /**
@@ -133,23 +138,20 @@ class StatusPengirimanController extends Controller
         //
         
         $this->validate($request, [
-            'platNomor' => 'required',
-            'name' => 'required',
-            'keterangan' => 'required',
+            'noResi' => 'required',
+            'kurir_id' => 'required',
             'tanggal' => 'required',
+            'keterangan' => 'required',
         ]);
 
         $status_pengiriman = StatusPengiriman::where('id', $id)->first();
-        $status_pengiriman->keterangan = $request->keterangan;
+        $status_pengiriman->penjualan_id = $request->noResi;
+        $status_pengiriman->kurir_id = $request->kurir_id;
         $status_pengiriman->tanggal = $request->tanggal;
+        $status_pengiriman->keterangan = $request->keterangan;
         
         $status_pengiriman->save();
         
-        $user = User::where('id', $status_pengiriman->kurir_id)->first();
-        $user->platNomor = $request->platNomor;
-        $user->name = $request->name;
-        $user->save();
-
         return redirect('admin/status_pengiriman')->with('message', 'Data Berhasil Diupdate');
     }
 

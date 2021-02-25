@@ -200,7 +200,11 @@ class PenjualanController extends Controller
      */
     public function edit($id)
     {
-        $order = Penjualan::find($id);
+        $order = Penjualan::select('penjualan.*', 'status_pengiriman.penjualan_id')
+        ->join('status_pengiriman','status_pengiriman.penjualan_id','penjualan.noResi')
+        ->where('penjualan.noResi', $id)
+        ->first();
+
         $vendor = Vendor::get();
         $customer = Customer::get();
         $metodePembayaran = MetodePembayaran::get();
@@ -243,7 +247,7 @@ class PenjualanController extends Controller
         // ]);
 
         // dd($request->all());
-        $penjualan = Penjualan::where('noResi','2421JPC000001')->first();
+        $penjualan = Penjualan::find($id);
         $penjualan->tanggal = $request->tanggal;
         $penjualan->hargaKg = $request->hargaKg;
         $penjualan->kuli = $request->kuli;
@@ -256,7 +260,7 @@ class PenjualanController extends Controller
         $penjualan->destinasi_id = $request->destinasi_id;
         $penjualan->save();
         
-        $barang = Barang::where('id', $request->barang_id)->first();
+        $barang = Barang::where('id', $penjualan->barang_id)->first();
         $barang->berat = $request->berat;
         $barang->panjang = $request->panjang;
         $barang->lebar = $request->lebar;
