@@ -23,7 +23,7 @@
                 <td>
                     @if($data->status == 0)
                         <p class="text-sm text-green-700 underline">In Process</p>
-                    @else if($data->status == 1)
+                    @else
                         <p class="text-sm text-yeelow-700 underline">Done</p>
                     @endif
                 </td>
