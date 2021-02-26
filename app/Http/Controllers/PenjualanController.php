@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\User;
 use App\Mail\SendMail;
 use App\Models\Barang;
 use App\Models\Vendor;
 use App\Models\Customer;
 use App\Models\Penjualan;
 use App\Models\Destination;
+use App\Models\DetailVendor;
 use Illuminate\Http\Request;
+use App\Models\DetailPenjualan;
 use App\Models\MetodePembayaran;
 use App\Models\StatusPengiriman;
-use App\Models\DetailPenjualan;
-use App\Models\DetailVendor;
-use App\Models\User;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -233,20 +234,25 @@ class PenjualanController extends Controller
     public function update(Request $request, $id)
     {
         //
-        // $this->validate($request, [
-        //     'tanggal' => 'required',
-        //     'hargaKg' => 'required',
-        //     'kuli' => 'required',
-        //     'penerima' => 'required',
-        //     'alamatPenerima' => 'required',
-        //     'noTelpPenerima' => 'required',
-        //     'vendor_id' => 'required',
-        //     'metodePembayaran_id' => 'required',
-        //     'customer_id' => 'required',
-        //     'destinasi_id' => 'required',
-        // ]);
+        $this->validate($request, [
+            'tanggal' => 'required',
+            'hargaKg' => 'required',
+            'kuli' => 'required',
+            'penerima' => 'required',
+            'alamatPenerima' => 'required',
+            'noTelpPenerima' => 'required',
+            'vendor_id' => 'required',
+            'metodePembayaran_id' => 'required',
+            'customer_id' => 'required',
+            'destinasi_id' => 'required',
+            'berat' => 'required',
+            'panjang' => 'required',
+            'lebar' => 'required',
+            'tinggi' => 'required',
+            'beratVol' => 'required',
+            
+        ]);
 
-        // dd($request->all());
         $penjualan = Penjualan::find($id);
         $penjualan->tanggal = $request->tanggal;
         $penjualan->hargaKg = $request->hargaKg;
@@ -289,19 +295,31 @@ class PenjualanController extends Controller
     {
         return view('order.cetak_laporan');
     }
-    public function cetak_laporan($tglAwal, $tglAkhir)
+    public function cetak_laporan(Request $request)
     {
-    //    dd(['tanggal awal'. $tglAwal. 'tanggal AKhir'. $tglAkhir]);
-    $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer', 'barang.berat','vendor.vendor', 'metode_pembayaran.jenisPembayaran', 'status_pengiriman.platNomor')
+
+
+ 
+    // $this->validate($request,[
+    //     'tglAwal' => 'required|date',
+    //     'tglAkhir' => 'required|date|before_or_equal:tglAwal',
+    //    ]);
+     
+    $tglAwal = date($request->tglAwal);
+    $tglAkhir = date($request->tglAkhir);
+
+    $data = penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer','vendor.id as resi_vendor', 'vendor.vendor', 'metode_pembayaran.jenisPembayaran', 'status_pengiriman.penjualan_id', 'destinations.kotaAsal', 'destinations.kotaTujuan', 'barang.berat', )
     ->join('customer', 'customer.id', 'penjualan.customer_id')
     ->join('barang', 'barang.id', 'penjualan.barang_id')
     ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
     ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
     ->join('status_pengiriman', 'status_pengiriman.penjualan_id', 'penjualan.noResi')
+    ->join('destinations', 'destinations.id', 'penjualan.destinasi_id')
     ->whereBetween('penjualan.tanggal', [$tglAwal, $tglAkhir])
     ->get();
 
-    return view('order.data_laporan', compact('data'));        
+    return view('order.data_laporan', compact('data'));
+
     }
     public function notif($id)
     {

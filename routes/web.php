@@ -124,7 +124,7 @@ Route::get('/kurir/destroy/{id}', [KurirController::class, 'destroy']);
 
 //Cetak Laporan
 Route::get('/order/cetak_laporan', [PenjualanController::class, 'form_cetak_laporan']);
-Route::get('/order/cetak_laporan/{tglAwal}/{tglAkhir}', [PenjualanController::class, 'cetak_laporan']);
+Route::post('/order/cetak_laporan', [PenjualanController::class, 'cetak_laporan']);
 
 
 });
