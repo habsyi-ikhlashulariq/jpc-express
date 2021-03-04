@@ -34,7 +34,7 @@ class CustomerController extends Controller
         
         ->addColumn('aksi', function($s){
             return '<a href="customer/edit/'.$s->id.'" class="btn btn-warning">Edit</a>
-            <a href="customer/destroy/'.$s->id.'" class="btn btn-danger">Hapus</a>
+            <button type="button" name="delete" id="'.$s->id.'" class="delete btn btn-danger btn-sm">Delete</button>
             ';
         })
         ->rawColumns(['genderCustomer','aksi'])

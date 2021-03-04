@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Mail\SendMail;
 use App\Models\Barang;
 use App\Models\Vendor;
+use App\Mail\JpcExpress;
 use App\Models\Customer;
 use App\Models\Penjualan;
 use App\Models\Destination;
@@ -308,7 +309,29 @@ class PenjualanController extends Controller
     $tglAwal = date($request->tglAwal);
     $tglAkhir = date($request->tglAkhir);
 
-    $data = penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer','vendor.id as resi_vendor', 'vendor.vendor', 'metode_pembayaran.jenisPembayaran', 'status_pengiriman.penjualan_id', 'destinations.kotaAsal', 'destinations.kotaTujuan', 'barang.berat', )
+    $data = penjualan::select(
+     'penjualan.noResi',
+     'penjualan.tanggal', 
+     'penjualan.hargaKg',
+     'penjualan.kuli', 
+     'penjualan.penerima',
+     'penjualan.alamatPenerima',
+     'penjualan.noTelpPenerima',
+     'customer.id as customer_id',
+     'customer.namaCustomer',
+     'customer.alamatCustomer',
+     'vendor.id as resi_vendor', 
+     'vendor.vendor', 
+     'metode_pembayaran.jenisPembayaran', 
+     'status_pengiriman.penjualan_id', 
+     'destinations.kotaAsal', 
+     'destinations.kotaTujuan', 
+     'barang.berat',
+     'barang.panjang', 
+     'barang.tinggi', 
+     'barang.beratVol', 
+     
+     )
     ->join('customer', 'customer.id', 'penjualan.customer_id')
     ->join('barang', 'barang.id', 'penjualan.barang_id')
     ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
@@ -323,20 +346,17 @@ class PenjualanController extends Controller
     }
     public function notif($id)
     {
-        $user = DB::table('penjualan')
-        ->join('customer', 'penjualan.customer_id', '=', 'customer.id')
-        ->join('status_pengiriman', 'status_pengiriman.id', '=', 'penjualan.statusPengiriman_id')
-        ->join('metode_pembayaran', 'metode_pembayaran.id', '=', 'penjualan.metodePembayaran_id')
-        ->select('penjualan.id','penjualan.tanggal', 'penjualan.penerima', 'penjualan.alamatPenerima', 'customer.namaCustomer', 'customer.emailCustomer', 'customer.noTelpCustomer', 'metode_pembayaran.jenisPembayaran')
-        ->where('penjualan.id', $id)
+        $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer','customer.noTelpCustomer','customer.emailCustomer', 'barang.berat','vendor.vendor', 'metode_pembayaran.jenisPembayaran','status_pengiriman.penjualan_id')
+        ->join('customer', 'customer.id', 'penjualan.customer_id')
+        ->join('barang', 'barang.id', 'penjualan.barang_id')
+        ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
+        ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
+        ->join('status_pengiriman','status_pengiriman.penjualan_id','penjualan.noResi')
+        ->where('penjualan_id', $id)
         ->first();
-
-
-        \Mail::raw('Halo '.$user->namaCustomer.' terima kasih telah memepercayakan kami sebagai pengiriman paket anda, paket anda akan diterima oleh '.$user->penerima.', di'.$user->alamatPenerima.'silahkan bisa cek lokasi paket barang anda dengan memasukan nomor pengiriman '. $id, function($message) use($user){
-            $message->to($user->emailCustomer, $user->namaCustomer);
-            $message->subject('Pengiriman diproses');
-            $message->setBody('<h1> Terima kasih,', 'text/html');
-        });
+        $kirim = Mail::to( $data->emailCustomer)->send(new JpcExpress($data->namaCustomer, $data->noTelpCustomer, $data->penjualan_id, $data->penerima, $data->alamatPenerima, $data->noTelpPenerima ));
+    
         return redirect('admin/order')->with('message', 'Berhasil Kirim Notifikasi');
+
     }
 }

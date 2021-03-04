@@ -184,9 +184,9 @@
                                 </button>
                             </form>
                             
-                                              <!-- Modal -->
+                     <!-- Modal  cek resi-->
                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Hasil Pencarian</h5>
@@ -195,22 +195,111 @@
                                 <div class="modal-body">
                                 
                                 <form>
-                                    <div class="mb-3">
-                                        <label>No. resi</label>
-                                        <input type="text" class="form-control text-center" id="noResi" readonly>
+                                <div class="row">
+                                        <div class="col-md-4">
+                                            <label>No. resi</label>
+                                            <input type="text" class="form-control text-center" id="noResi" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Tanggal Order</label>
+                                            <input type="text" class="form-control text-center" id="tanggal" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Harga Perkilo</label>
+                                            <input type="text" class="form-control text-center" id="hargaKg" >
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Penerima</label>
-                                        <input type="text" class="form-control text-center" id="penerima" readonly>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Koli</label>
+                                            <input type="text" class="form-control text-center" id="kuli" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Nama Penerima</label>
+                                            <input type="text" class="form-control text-center" id="penerima" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Alamat Penerima</label>
+                                            <input type="text" class="form-control text-center" id="alamatPenerima" >
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Alamat Penerima</label>
-                                        <input type="text" class="form-control text-center" id="alamatPenerima" readonly>
+
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Nomor Telp Penerima</label>
+                                            <input type="text" class="form-control text-center" id="noTelpPenerima" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Nomor Pelanggan</label>
+                                            <input type="text" class="form-control text-center" id="customer_id" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Nama Pelanggan</label>
+                                            <input type="text" class="form-control text-center" id="namaCustomer" >
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label>No Telp Penerima</label>
-                                        <input type="text" class="form-control text-center" id="noTelpPenerima" readonly>
+
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Alamat Customer</label>
+                                            <input type="text" class="form-control text-center" id="alamatCustomer" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Nomor Vendor</label>
+                                            <input type="text" class="form-control text-center" id="resi_vendor" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Vendor</label>
+                                            <input type="text" class="form-control text-center" id="vendor" >
+                                        </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Jenis Pembayaran</label>
+                                            <input type="text" class="form-control text-center" id="jenisPembayaran" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Kota Asal</label>
+                                            <input type="text" class="form-control text-center" id="kotaAsal" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Kota Tujuan</label>
+                                            <input type="text" class="form-control text-center" id="kotaTujuan" >
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Berat Barang</label>
+                                            <input type="text" class="form-control text-center" id="berat" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Panjang Barang</label>
+                                            <input type="text" class="form-control text-center" id="panjang" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Tinggi Barang</label>
+                                            <input type="text" class="form-control text-center" id="tinggi" >
+                                        </div>
+                                    </div>
+
+                                                         
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Berat Volume Barang</label>
+                                            <input type="text" class="form-control text-center" id="beratVol" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Total Biaya</label>
+                                            <input type="text" class="form-control text-center" id="total_harga" >
+                                        </div>
+                                    </div>
+
                                 </form>
 
 
@@ -406,19 +495,19 @@
                                 <form>
                                     <div class="mb-3">
                                         <label>Kota Asal</label>
-                                        <input type="text" class="form-control text-center" id="kotaAsal" readonly>
+                                        <input type="text" class="form-control text-center" id="kotaAsal" >
                                     </div>
                                     <div class="mb-3">
                                         <label>Kota Tujuan</label>
-                                        <input type="text" class="form-control text-center" id="kotaTujuan" readonly>
+                                        <input type="text" class="form-control text-center" id="kotaTujuan" >
                                     </div>
                                     <div class="mb-3">
                                         <label>Tarif</label>
-                                        <input type="text" class="form-control text-center" id="tarif" readonly>
+                                        <input type="text" class="form-control text-center" id="tarif" >
                                     </div>
                                     <div class="mb-3">
                                         <label>Estimasi Waktu</label>
-                                        <input type="text" class="form-control text-center" id="waktu" readonly>
+                                        <input type="text" class="form-control text-center" id="waktu" >
                                     </div>
                                 </form>
 
@@ -496,9 +585,25 @@
                      dataType:'json',
                     success : function(data){
                         $('#noResi').val(data.noResi);
+                        $('#tanggal').val(data.tanggal);
+                        $('#hargaKg').val(data.hargaKg);
+                        $('#kuli').val(data.kuli);
                         $('#penerima').val(data.penerima);
                         $('#alamatPenerima').val(data.alamatPenerima);
                         $('#noTelpPenerima').val(data.noTelpPenerima);
+                        $('#customer_id').val(data.customer_id);
+                        $('#namaCustomer').val(data.namaCustomer);
+                        $('#alamatCustomer').val(data.alamatCustomer);
+                        $('#resi_vendor').val(data.resi_vendor);
+                        $('#vendor').val(data.vendor);
+                        $('#jenisPembayaran').val(data.jenisPembayaran);
+                        $('#kotaAsal').val(data.kotaAsal);
+                        $('#kotaTujuan').val(data.kotaTujuan);
+                        $('#berat').val(data.berat);
+                        $('#panjang').val(data.panjang);
+                        $('#tinggi').val(data.tinggi);
+                        $('#beratVol').val(data.beratVol);
+                        $('#total_harga').val(data.total_harga);
                     }
                 });
             });
