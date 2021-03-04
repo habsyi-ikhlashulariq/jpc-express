@@ -58,59 +58,30 @@
                 ]
             });
 
-
-            // $(document).on("click", ".delete", function() {
-            //     jQuery.noConflict();
-            //     $('#confirmModal').modal('show');
-
-            // });
-
             var user_id;
 
-$(document).on('click', '.delete', function(){
-    jQuery.noConflict();
- user_id = $(this).attr('id');
- $('#confirmModal').modal('show');
-});
+            $(document).on('click', '.delete', function(){
+                jQuery.noConflict();
+            user_id = $(this).attr('id');
+            $('#confirmModal').modal('show');
+            });
 
-$('#ok_button').click(function(){
- $.ajax({
-  url:"ajax-crud/destroy/"+user_id,
-  beforeSend:function(){
-   $('#ok_button').text('Deleting...');
-  },
-  success:function(data)
-  {
-   setTimeout(function(){
-    $('#confirmModal').modal('hide');
-    $('#user_table').DataTable().ajax.reload();
-   }, 2000);
-  }
- })
-});
-
-            // var user_id;
-
-            // $(document).on('click', '.delete', function(){
-            // // user_id = $(this).attr('id');
-            // $('#confirmModal').modal('show');
-            // });
-
-            // $('#ok_button').click(function(){
-            // $.ajax({
-            // url:"ajax-crud/destroy/"+user_id,
-            // beforeSend:function(){
-            // $('#ok_button').text('Deleting...');
-            // },
-            // success:function(data)
-            // {
-            // setTimeout(function(){
-            //     $('#confirmModal').modal('hide');
-            //     $('#user_table').DataTable().ajax.reload();
-            // }, 2000);
-            // }
-            // })
-            // });
+            $('#ok_button').click(function(){
+            $.ajax({
+            url:"customer/destroy/"+user_id,
+            beforeSend:function(){
+            $('#ok_button').text('Deleting...');
+            },
+            success:function(data)
+            {
+            setTimeout(function(){
+                $('#confirmModal').modal('hide');
+                var table = $('#customer-table').DataTable();
+                table.ajax.reload();
+            });
+            }
+            })
+            });
 
 
         });

@@ -96,7 +96,7 @@ class PenjualanController extends Controller
             'noTelpPenerima' => 'required',
             'vendor_id' => 'required',
             'metodePembayaran_id' => 'required',
-            'customer_id' => 'required',
+            // 'customer_id' => 'required',
             'destinasi_id' => 'required',
             'berat' => 'required',
             'panjang' => 'required',
@@ -106,7 +106,15 @@ class PenjualanController extends Controller
             'pilihan' => 'required',
             'totalBiaya' => 'required',
             'totalBiayaVendor' => 'required',
-            'kurir_id' => 'required'
+            'kurir_id' => 'required',
+
+            'namaCustomer' => 'required',
+            'emailCustomer' => 'required|email',
+            'noTelpCustomer' => 'required',
+            'genderCustomer' => 'required',
+            'alamatCustomer' => 'required'
+
+            
         ]);
 
         $dataBarang = Barang::create([
@@ -115,6 +123,14 @@ class PenjualanController extends Controller
             'lebar' => $request->lebar,
             'tinggi' => $request->tinggi,
             'beratVol' => $request->beratVol,
+        ]);
+
+        $dataCustomer = Customer::create([
+            'namaCustomer' => $request->namaCustomer,
+            'emailCustomer' => $request->emailCustomer,
+            'noTelpCustomer' => $request->noTelpCustomer,
+            'genderCustomer' => $request->genderCustomer,
+            'alamatCustomer' => $request->alamatCustomer,
         ]);
 
 
@@ -146,7 +162,7 @@ class PenjualanController extends Controller
             'vendor_id' => $request->vendor_id,
             'barang_id' => $dataBarang->id,
             'metodePembayaran_id' => $request->metodePembayaran_id,
-            'customer_id' => $request->customer_id,
+            'customer_id' => $dataCustomer->id,
             'destinasi_id' => $request->destinasi_id,
         ]);
 
@@ -208,10 +224,11 @@ class PenjualanController extends Controller
         ->first();
 
         $vendor = Vendor::get();
-        $customer = Customer::get();
+        // $customer = Customer::get();
         $metodePembayaran = MetodePembayaran::get();
         // $barang = Barang::where('id', $order->barang_id)->get();
         $barang = DB::table('barang')->where('id', $order->barang_id)->first();
+        $customer = DB::table('customer')->where('id', $order->customer_id)->first();
         $destinasi = Destination::get();
         
         
@@ -235,6 +252,7 @@ class PenjualanController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // dd($request->all());
         $this->validate($request, [
             'tanggal' => 'required',
             'hargaKg' => 'required',
@@ -244,13 +262,18 @@ class PenjualanController extends Controller
             'noTelpPenerima' => 'required',
             'vendor_id' => 'required',
             'metodePembayaran_id' => 'required',
-            'customer_id' => 'required',
             'destinasi_id' => 'required',
             'berat' => 'required',
             'panjang' => 'required',
             'lebar' => 'required',
             'tinggi' => 'required',
             'beratVol' => 'required',
+
+            'namaCustomer' => 'required',
+            'emailCustomer' => 'required|email',
+            'noTelpCustomer' => 'required',
+            'genderCustomer' => 'required',
+            'alamatCustomer' => 'required'
             
         ]);
 
@@ -263,7 +286,6 @@ class PenjualanController extends Controller
         $penjualan->noTelpPenerima = $request->noTelpPenerima;
         $penjualan->vendor_id = $request->vendor_id;
         $penjualan->metodePembayaran_id = $request->metodePembayaran_id;
-        $penjualan->customer_id = $request->customer_id;
         $penjualan->destinasi_id = $request->destinasi_id;
         $penjualan->save();
         
@@ -274,6 +296,14 @@ class PenjualanController extends Controller
         $barang->tinggi = $request->tinggi;
         $barang->beratVol = $request->beratVol;
         $barang->save();
+
+        $customer = Customer::where('id', $penjualan->customer_id)->first();
+        $customer->namaCustomer = $request->namaCustomer;
+        $customer->emailCustomer = $request->emailCustomer;
+        $customer->noTelpCustomer = $request->noTelpCustomer;
+        $customer->genderCustomer = $request->genderCustomer;
+        $customer->alamatCustomer = $request->alamatCustomer;
+        $customer->save();
 
         return redirect('admin/order')->with('message', 'Data Berhasil Diupdate');
     }
