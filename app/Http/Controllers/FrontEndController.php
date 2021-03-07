@@ -86,4 +86,46 @@ class FrontEndController extends Controller
          return response()->json($destinasi);
 
     }
+    public function cetak_order(Request $request)
+    {
+        // $cetak_order = Penjualan::where('noResi', $request->input('penjualan_id'))->first();
+
+        $data = penjualan::select(
+            'penjualan.noResi',
+            'penjualan.tanggal', 
+            'penjualan.hargaKg',
+            'penjualan.kuli', 
+            'penjualan.penerima',
+            'penjualan.alamatPenerima',
+            'penjualan.noTelpPenerima',
+            'customer.id as customer_id',
+            'customer.namaCustomer',
+            'customer.alamatCustomer',
+            'vendor.id as resi_vendor', 
+            'vendor.vendor', 
+            'metode_pembayaran.jenisPembayaran', 
+            'status_pengiriman.penjualan_id', 
+            'destinations.kotaAsal', 
+            'destinations.kotaTujuan', 
+            'barang.berat',
+            'barang.panjang', 
+            'barang.tinggi', 
+            'barang.beratVol', 
+            DB::raw('barang.beratVol * penjualan.hargaKg as total_harga')
+            
+            )
+        ->join('customer', 'customer.id', 'penjualan.customer_id')
+        ->join('barang', 'barang.id', 'penjualan.barang_id')
+        ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
+        ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
+        ->join('status_pengiriman', 'status_pengiriman.penjualan_id', 'penjualan.noResi')
+        ->join('destinations', 'destinations.id', 'penjualan.destinasi_id')
+        ->where('penjualan.noResi', $request->input('penjualan_id'))
+        ->first();
+
+        echo $data;
+
+        // $html = view('frontend.cetak_order', compact('data'))->render();
+        // return $html;
+    }
 }

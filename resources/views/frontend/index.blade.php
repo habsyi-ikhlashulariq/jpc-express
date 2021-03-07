@@ -198,7 +198,7 @@
                                 <div class="row">
                                         <div class="col-md-4">
                                             <label>No. resi</label>
-                                            <input type="text" class="form-control text-center" id="noResi" >
+                                            <input type="text" class="form-control text-center" id="penjualan_id" >
                                         </div>
                                         <div class="col-md-4">
                                             <label>Tanggal Order</label>
@@ -297,6 +297,10 @@
                                         <div class="col-md-4">
                                             <label>Total Biaya</label>
                                             <input type="text" class="form-control text-center" id="total_harga" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label></label><br>
+                                            <button type="button" class="btn btn-info" id="cetak_order">Cetak Resi</button>
                                         </div>
                                     </div>
 
@@ -584,7 +588,7 @@
                     method:'GET',
                      dataType:'json',
                     success : function(data){
-                        $('#noResi').val(data.noResi);
+                        $('#penjualan_id').val(data.penjualan_id);
                         $('#tanggal').val(data.tanggal);
                         $('#hargaKg').val(data.hargaKg);
                         $('#kuli').val(data.kuli);
@@ -614,18 +618,32 @@
 
                 $.ajax({
                     url: 'jpc-express/cekestimasi',
+                    method:'GET',
                     data:{
                         kota1: kota1,
                         kota2: kota2
                         },
-                    method:'GET',
                     dataType:'json',
                     success : function(data){
                         $('#kotaAsal').val(data.kotaAsal);
                         $('#kotaTujuan').val(data.kotaTujuan);
                         $('#tarif').val(data.tarif);
                         $('#waktu').val(data.waktu);
-                        console.log(data);
+                    }
+                });
+            });
+
+            $('#cetak_order').on('click', function() {
+                var penjualan_id = $('#penjualan_id').val();
+
+                $.ajax({
+                    url : "{{url('/jpc-express/cetak_order')}}",
+                    method : 'GET',
+                    data : {
+                        penjualan_id : penjualan_id
+                    },
+                    success : function(data) {
+                        alert(data);
                     }
                 });
             });

@@ -30,6 +30,7 @@ use App\Http\Controllers\StatusPengirimanController;
 Route::get('/', [FrontEndController::class, 'index']);
 Route::get('/jpc-express/cekresi', [FrontEndController::class, 'cekresi']);
 Route::get('/jpc-express/cekestimasi', [FrontEndController::class, 'cekestimasi']);
+Route::get('/jpc-express/cetak_order', [FrontEndController::class, 'cetak_order']);
 
 Route::get('/admin', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/admin', [LoginController::class, 'login'])->name('login');
