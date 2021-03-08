@@ -12,12 +12,12 @@
     <table class="table table-bordered table-hover table-striped" id="customer-table">
         <thead>
             <tr>
-                <th>Nama Customer</th>
-                <th>Email Customer</th>
-                <th>No Telp Customer</th>
-                <th>Jenis Kelamin Customer</th>
-                <th>Alamat Customer</th>
-                <th>OPSI</th>
+                <th width="15%">Nama Customer</th>
+                <th width="10%">Email Customer</th>
+                <th width="15%">No Telp Customer</th>
+                <th width="10%">Jenis Kelamin Customer</th>
+                <th width="25%">Alamat Customer</th>
+                <th width="20%">OPSI</th>
             </tr>
         </thead>
         </table>

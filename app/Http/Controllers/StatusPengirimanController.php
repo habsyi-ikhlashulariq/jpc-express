@@ -31,7 +31,7 @@ class StatusPengirimanController extends Controller
         return DataTables::of($data)
         //button aksi
         ->addColumn('aksi', function($s){
-            return '<a href="status_pengiriman/detail/'.$s->penjualan_id.'" class="btn btn-success">Detail</a>
+            return '<a href="status_pengiriman/detail/'.$s->penjualan_id.'" class="btn btn-success"><i class="fa fa-info-circle"></i>Detail</a>
             ';
         })
         ->rawColumns(['aksi'])

@@ -30,8 +30,8 @@ class MetodePembayaranController extends Controller
         return DataTables::of($data)
         //button aksi
         ->addColumn('aksi', function($s){
-            return '<a href="metode_pembayaran/edit/'.$s->id.'" class="btn btn-warning">Edit</a>
-            <a href="metode_pembayaran/destroy/'.$s->id.'" class="btn btn-danger">Hapus</a>
+            return '<a href="metode_pembayaran/edit/'.$s->id.'" class="btn btn-warning"><i class="fa fa-pencil"></i>Edit</a>
+            <a href="metode_pembayaran/destroy/'.$s->id.'" class="btn btn-danger"> <i class="fa fa-close"></i>Hapus</a>
             ';
         })
         ->rawColumns(['aksi'])

@@ -12,13 +12,13 @@
     <table class="table table-bordered table-hover table-striped" id="kurir-table">
         <thead>
             <tr>
-                <th>Nama Kurir</th>
-                <th>Email Kurir</th>
-                <th>Jenis Kelamin</th>
-                <th>Alamat Kurir</th>
-                <th>No Telp Kurir</th>
-                <th>Plat Nomor</th>
-                <th>OPSI</th>
+                <th width="15%">Nama Kurir</th>
+                <th width="10%">Email Kurir</th>
+                <th width="10%">Jenis Kelamin</th>
+                <th width="20%">Alamat Kurir</th>
+                <th width="10%">No Telp Kurir</th>
+                <th width="10%">Plat Nomor</th>
+                <th width="25%">OPSI</th>
             </tr>
         </thead>
         </table>

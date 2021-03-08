@@ -46,9 +46,9 @@ class PenjualanController extends Controller
         return DataTables::of($data)
         //button aksi
         ->addColumn('aksi', function($s){
-            return '<a href="order/edit/'.$s->penjualan_id.'" class="btn btn-warning">Edit</a>
-            <a href="order/destroy/'.$s->penjualan_id.'" class="btn btn-danger">Hapus</a>
-            <a href="order/notif/'.$s->penjualan_id.'" class="btn btn-success">Kirim Notif</a>
+            return '<a href="order/edit/'.$s->penjualan_id.'" class="btn btn-warning"><i class="fa fa-pencil"></i>Edit</a>
+            <a href="order/destroy/'.$s->penjualan_id.'" class="btn btn-danger"><i class="fa fa-close"></i>Hapus</a>
+            <a href="order/notif/'.$s->penjualan_id.'" class="btn btn-success"><i class="fa fa-paper-plane"></i> Kirim Notif</a>
             ';
         })
         ->rawColumns(['aksi'])

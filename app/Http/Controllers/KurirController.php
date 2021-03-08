@@ -35,8 +35,8 @@ class KurirController extends Controller
             return $c;
         })
         ->addColumn('aksi', function($s){
-            return '<a href="kurir/edit/'.$s->id.'" class="btn btn-warning">Edit</a>
-            <a href="kurir/destroy/'.$s->id.'" class="btn btn-danger">Hapus</a>
+            return '<a href="kurir/edit/'.$s->id.'" class="btn btn-warning"><i class="fa fa-pencil"></i>Edit</a>
+            <a href="kurir/destroy/'.$s->id.'" class="btn btn-danger"> <i class="fa fa-close"></i>Hapus</a>
             ';
         })
         ->rawColumns(['gender','aksi'])
