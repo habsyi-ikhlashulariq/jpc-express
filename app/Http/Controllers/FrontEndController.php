@@ -12,11 +12,19 @@ class FrontEndController extends Controller
     //
     public function index()
     {
+        $darat = DB::table('destinations')->where('statusTransport',0)->get();
+        $udara = DB::table('destinations')->where('statusTransport',1)->get();
+        $riauDaratan = DB::table('destinations')->where('statusTransport',2)->get();
+        $motor= DB::table('destinations')->where('statusTransport',3)->get();
         $kotaAsal = DB::table('destinations')->select('id','kotaAsal')->get();
         $kotaTujuan = DB::table('destinations')->select('id','kotaTujuan')->get();
         return view('frontend.index',[
             'kotaAsal' => $kotaAsal,
             'kotaTujuan' => $kotaTujuan,
+            'darat' => $darat,
+            'udara' => $udara,
+            'riauDaratan' => $riauDaratan,
+            'motor' => $motor
         ]);
     }
 

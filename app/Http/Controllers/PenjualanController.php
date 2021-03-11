@@ -42,13 +42,14 @@ class PenjualanController extends Controller
         ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
         ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
         ->join('status_pengiriman','status_pengiriman.penjualan_id','penjualan.noResi')
+        ->groupBy('penjualan.noResi')
         ->get();
         return DataTables::of($data)
         //button aksi
         ->addColumn('aksi', function($s){
-            return '<a href="order/edit/'.$s->penjualan_id.'" class="btn btn-warning"><i class="fa fa-pencil"></i>Edit</a>
-            <a href="order/destroy/'.$s->penjualan_id.'" class="btn btn-danger"><i class="fa fa-close"></i>Hapus</a>
-            <a href="order/notif/'.$s->penjualan_id.'" class="btn btn-success"><i class="fa fa-paper-plane"></i> Kirim Notif</a>
+            return '<a href="order/edit/'.$s->penjualan_id.'" class="btn btn-warning">Edit</a>
+            <a href="order/destroy/'.$s->penjualan_id.'" class="btn btn-danger">Hapus</a>
+            <a href="order/notif/'.$s->penjualan_id.'" class="btn btn-success">Kirim Notif</a>
             ';
         })
         ->rawColumns(['aksi'])
@@ -376,16 +377,15 @@ class PenjualanController extends Controller
     }
     public function notif($id)
     {
-        $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer','customer.noTelpCustomer','customer.emailCustomer', 'barang.berat','barang.panjang','vendor.vendor', 'metode_pembayaran.jenisPembayaran','status_pengiriman.penjualan_id', 'status_pengiriman.keterangan', 'destinations.kotaAsal', 'destinations.kotaTujuan')
+        $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer','customer.noTelpCustomer','customer.emailCustomer', 'barang.berat','vendor.vendor', 'metode_pembayaran.jenisPembayaran','status_pengiriman.penjualan_id')
         ->join('customer', 'customer.id', 'penjualan.customer_id')
         ->join('barang', 'barang.id', 'penjualan.barang_id')
         ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
         ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
         ->join('status_pengiriman','status_pengiriman.penjualan_id','penjualan.noResi')
-        ->join('destinations','destinations.id','penjualan.destinasi_id')
         ->where('penjualan_id', $id)
         ->first();
-        $kirim = Mail::to('habsyi.ikhlashulariq@gmail.com')->send(new JpcExpress($data->namaCustomer, $data->noTelpCustomer, $data->penjualan_id, $data->penerima, $data->alamatPenerima, $data->noTelpPenerima, $data->berat, $data->panjang, $data->keterangan, $data->tanggal, $data->kotaAsal, $data->kotaTujuan ));
+        $kirim = Mail::to( $data->emailCustomer)->send(new JpcExpress($data->namaCustomer, $data->noTelpCustomer, $data->penjualan_id, $data->penerima, $data->alamatPenerima, $data->noTelpPenerima ));
     
         return redirect('admin/order')->with('message', 'Berhasil Kirim Notifikasi');
 
