@@ -14,9 +14,9 @@
     <p>Paket dikirim dari kota {{ $kotaAsal }} dengan tujuan akhir {{ $kotaTujuan }} <br> penerima paket atas nama saudara/i,<b> {{ $penerima}} </b>, dengan alamat lengkap yaitu <br> {{ $alamatPenerima }} berikut detail barang yang dikirimkan :<p>
     <table>
         <tr>
-            <th>Berat Barang</th>
-            <th>Panjang Barang</th>
-            <th>Status Pengiriman</th>
+            <td>Berat Barang</td>
+            <td>Panjang Barang</td>
+            <td>Status Pengiriman</td>
         </tr>
         <tr>
             <td>{{ $berat}}</td>

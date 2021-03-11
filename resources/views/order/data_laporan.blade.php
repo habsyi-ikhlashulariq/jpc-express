@@ -4,8 +4,14 @@
 <title>Laporan Penjualan</title>
 </head>
 <body>
+<?php
+    header("Content-type: application/vnd.ms-word");
+    header("Content-Disposition: attachment;Filename=Cetak_Resi.xls");
+    
+?>
+
     <h1 style="text-align:center;">Report Penjualan</h1>
-<table border="1" style="text-align: center;">
+    <table border="1" style="text-align: center;">
     <thead>
         <tr>
             <th rowspan="2">No</th>

@@ -643,7 +643,9 @@
                         penjualan_id : penjualan_id
                     },
                     success : function(data) {
-                        alert(data);
+                        // alert(data);
+                        
+                        
                     }
                 });
             });

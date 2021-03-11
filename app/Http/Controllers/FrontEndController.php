@@ -123,9 +123,9 @@ class FrontEndController extends Controller
         ->where('penjualan.noResi', $request->input('penjualan_id'))
         ->first();
 
-        echo $data;
+        // echo $data;
 
-        // $html = view('frontend.cetak_order', compact('data'))->render();
-        // return $html;
+        $html = view('frontend.cetak_order', compact('data'))->render();
+        return $html;
     }
 }
