@@ -58,6 +58,7 @@ class DestinationController extends Controller
             'kotaTujuan' => 'required',
             'tarif' => 'required',
             'waktu' => 'required',
+            'statusTransport' => 'required',
         ]);
 
         Destination::create([
@@ -65,6 +66,7 @@ class DestinationController extends Controller
             'kotaTujuan' => $request->kotaTujuan,
             'tarif' => $request->tarif,
             'waktu' => $request->waktu,
+            'statusTransport' => $request->statusTransport
         ]);
         return redirect('admin/destinasi')->with('message','Data Berhasil Disimpan');
     }
@@ -108,6 +110,7 @@ class DestinationController extends Controller
             'kotaTujuan' => 'required',
             'tarif' => 'required',
             'waktu' => 'required',
+            'statusTransport' => 'required',
         ]);
 
         $destinasi = Destination::find($id);
@@ -115,6 +118,7 @@ class DestinationController extends Controller
         $destinasi->kotaTujuan = $request->kotaTujuan;
         $destinasi->tarif = $request->tarif;
         $destinasi->waktu = $request->waktu;
+        $destinasi->statusTransport = $request->statusTransport;
 
         $destinasi->save();
         return redirect('admin/destinasi')->with('message', 'Data Berhasil Diupdate');

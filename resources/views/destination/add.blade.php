@@ -47,11 +47,26 @@
                                 </div>
                            @enderror
                     </div>
+                    <div class="col-md-12">
+                    <label for="">Transportasi</label>
+                        <select name="statusTransport" id="statusTransport" class="form-control">
+                            <option value="0">Tarif Darat</option>
+                            <option value="1">Tarif Udara</option>
+                            <option value="2">Tarif Riau Daratan</option>
+                            <option value="3">Tarif Motor</option>
+                        </select><br>
+
+                            @error('statusTransport')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                           @enderror
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                     <input type="submit" name="submit" value="Simpan" class="btn btn-primary">
-                    <a href="{{ url('admin/destination') }}" class="btn btn-danger">Kembali</a>
+                    <a href="{{ url('admin/destinasi') }}" class="btn btn-danger">Kembali</a>
                     </div>
                 </div>
             </form>

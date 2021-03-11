@@ -19,6 +19,7 @@ class CreateDestinationsTable extends Migration
             $table->string('kotaTujuan', 45);
             $table->string('tarif', 45);
             $table->string('waktu', 45);
+            $table->integer('statusTransport');
             $table->timestamps();
         });
     }
