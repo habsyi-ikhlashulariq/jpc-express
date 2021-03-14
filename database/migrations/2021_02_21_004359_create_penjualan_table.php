@@ -21,7 +21,7 @@ class CreatePenjualanTable extends Migration
             $table->string('penerima', 45);
             $table->string('alamatPenerima', 45);
             $table->string('noTelpPenerima', 45);
-            $table->foreignId('vendor_id');
+            $table->foreignId('vendor_id')->nullable();
             $table->foreignId('barang_id');
             $table->foreignId('metodePembayaran_id');
             $table->foreignId('customer_id');
