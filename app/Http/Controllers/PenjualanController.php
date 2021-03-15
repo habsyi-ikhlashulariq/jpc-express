@@ -36,20 +36,20 @@ class PenjualanController extends Controller
 
     public function dt()
     {
-        $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer', 'barang.berat','vendor.vendor', 'metode_pembayaran.jenisPembayaran','status_pengiriman.penjualan_id')
+        $data = Penjualan::select('penjualan.*', 'customer.namaCustomer', 'barang.berat','metode_pembayaran.jenisPembayaran')
         ->join('customer', 'customer.id', 'penjualan.customer_id')
         ->join('barang', 'barang.id', 'penjualan.barang_id')
-        ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
+        // ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
         ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
-        ->join('status_pengiriman','status_pengiriman.penjualan_id','penjualan.noResi')
+        // ->join('status_pengiriman','status_pengiriman.penjualan_id','penjualan.noResi')
         ->groupBy('penjualan.noResi')
         ->get();
         return DataTables::of($data)
         //button aksi
         ->addColumn('aksi', function($s){
-            return '<a href="order/edit/'.$s->penjualan_id.'" class="btn btn-warning">Edit</a>
-            <a href="order/destroy/'.$s->penjualan_id.'" class="btn btn-danger">Hapus</a>
-            <a href="order/notif/'.$s->penjualan_id.'" class="btn btn-success">Kirim Notif</a>
+            return '<a href="order/edit/'.$s->noResi.'" class="btn btn-warning">Edit</a>
+            <a href="order/destroy/'.$s->noResi.'" class="btn btn-danger">Hapus</a>
+            <a href="order/notif/'.$s->noResi.'" class="btn btn-success">Kirim Notif</a>
             ';
         })
         ->rawColumns(['aksi'])
