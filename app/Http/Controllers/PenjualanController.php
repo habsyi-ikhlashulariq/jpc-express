@@ -47,9 +47,9 @@ class PenjualanController extends Controller
         return DataTables::of($data)
         //button aksi
         ->addColumn('aksi', function($s){
-            return '<a href="order/edit/'.$s->penjualan_id.'" class="btn btn-warning">Edit</a>
-            <a href="order/destroy/'.$s->penjualan_id.'" class="btn btn-danger">Hapus</a>
-            <a href="order/notif/'.$s->penjualan_id.'" class="btn btn-success">Kirim Notif</a>
+            return '<a href="order/edit/'.$s->penjualan_id.'" class="btn btn-warning"><i class="fa fa-pencil"></i>Edit</a>
+            <button type="button" name="delete" id="'.$s->penjualan_id.'" class="delete btn btn-danger btn-sm"><i class="fa fa-close"></i>Delete</button>
+            <a href="order/notif/'.$s->penjualan_id.'" class="btn btn-success"><i class="fa fa-send"></i>Kirim Notif</a>
             ';
         })
         ->rawColumns(['aksi'])
@@ -321,7 +321,7 @@ class PenjualanController extends Controller
         $order = Penjualan::find($id);
 
         $order->delete();
-        return redirect('admin/order')->with('message', 'Data Berhasil DiHapus');
+        // return redirect('admin/order')->with('message', 'Data Berhasil DiHapus');
     }
     public function form_cetak_laporan()
     {

@@ -44,7 +44,7 @@
 
 <script>
         $(function() {
-            $('#customer-table').DataTable({
+            var table = $('#customer-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '{!! url("admin/customer/dt") !!}',
@@ -69,16 +69,10 @@
             $('#ok_button').click(function(){
             $.ajax({
             url:"customer/destroy/"+user_id,
-            beforeSend:function(){
-            $('#ok_button').text('Deleting...');
-            },
-            success:function(data)
+            success:function()
             {
-            setTimeout(function(){
                 $('#confirmModal').modal('hide');
-                var table = $('#customer-table').DataTable();
                 table.ajax.reload();
-            });
             }
             })
             });

@@ -25,7 +25,7 @@ class BarangController extends Controller
         //button aksi
         ->addColumn('aksi', function($s){
             return '<a href="barang/edit/'.$s->id.'" class="btn btn-warning">Edit</a>
-            <a href="barang/destroy/'.$s->id.'" class="btn btn-danger">Hapus</a>
+            <a href="barang/destroy/'.$s->id.'" class="delete btn btn-danger">Hapus</a>
             ';
         })
         ->rawColumns(['aksi'])

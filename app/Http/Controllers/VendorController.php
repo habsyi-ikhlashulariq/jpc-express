@@ -26,7 +26,7 @@ class VendorController extends Controller
         //button aksi
         ->addColumn('aksi', function($s){
             return '<a href="vendor/edit/'.$s->id.'" class="btn btn-warning"> <i class="fa fa-pencil"></i>Edit</a>
-            <a href="vendor/destroy/'.$s->id.'" class="btn btn-danger"><i class="fa fa-close"></i>Hapus</a>
+            <button type="button" name="delete" id="'.$s->id.'" class="delete btn btn-danger btn-sm"><i class="fa fa-close"></i>Delete</button>
             ';
         })
         ->rawColumns(['aksi'])
@@ -119,6 +119,6 @@ class VendorController extends Controller
         $vendor = Vendor::find($id);
 
         $vendor->delete();
-        return redirect('admin/vendor')->with('message', 'Data Berhasil DiHapus');
+        // return redirect('admin/vendor')->with('message', 'Data Berhasil DiHapus');
     }
 }

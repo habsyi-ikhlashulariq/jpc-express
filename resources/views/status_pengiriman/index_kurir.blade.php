@@ -22,7 +22,7 @@
 
 <script>
         $(function() {
-            $('#status_pembayaran-table').DataTable({
+            var table = $('#status_pembayaran-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '{!! url("kurir/status_pengiriman/dt") !!}',
@@ -33,6 +33,27 @@
                     { data: 'aksi', name: 'aksi'},
                 ]
             });
+
+            $('#status_pembayaran-table').on('click', 'tr td .delete', function () {
+            var row = $(this).parents('tr')[0];
+            var mydata = (table.row(row).data());
+            var con=confirm("Apakah Ingin Menghapus Data "+ mydata["status"])
+                if(con == true){
+                    var id = mydata["id"];
+
+                    $.ajax({
+                        url:"{{url('/status_pengiriman/destroy/')}}",
+                        mehtod:"get",
+                        data:{id:id},
+                        success:function(data)
+                        {
+                            $('#status_pembayaran-table').DataTable().ajax.reload();
+                            // alert(data);
+                        }
+                    })
+
+                }
+                });
         });
 
 </script>

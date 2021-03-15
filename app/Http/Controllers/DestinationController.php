@@ -26,7 +26,7 @@ class DestinationController extends Controller
         //button aksi
         ->addColumn('aksi', function($s){
             return '<a href="destinasi/edit/'.$s->id.'" class="btn btn-warning"><i class="fa fa-pencil"></i>Edit</a>
-            <a href="destinasi/destroy/'.$s->id.'" class="btn btn-danger"><i class="fa fa-close"></i>Hapus</a>
+            <button type="button" name="delete" id="'.$s->id.'" class="delete btn btn-danger btn-sm"><i class="fa fa-close"></i>Delete</button>
             ';
         })
         ->rawColumns(['aksi'])
@@ -136,6 +136,6 @@ class DestinationController extends Controller
         $destinasi = Destination::find($id);
 
         $destinasi->delete();
-        return redirect('admin/destinasi')->with('message', 'Data Berhasil DiHapus');
+        // return redirect('admin/destinasi')->with('message', 'Data Berhasil DiHapus');
     }
 }

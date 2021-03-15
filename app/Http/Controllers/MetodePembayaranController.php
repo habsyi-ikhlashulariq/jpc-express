@@ -31,7 +31,7 @@ class MetodePembayaranController extends Controller
         //button aksi
         ->addColumn('aksi', function($s){
             return '<a href="metode_pembayaran/edit/'.$s->id.'" class="btn btn-warning"><i class="fa fa-pencil"></i>Edit</a>
-            <a href="metode_pembayaran/destroy/'.$s->id.'" class="btn btn-danger"> <i class="fa fa-close"></i>Hapus</a>
+            <button type="button" name="delete" id="'.$s->id.'" class="delete btn btn-danger btn-sm"><i class="fa fa-close"></i>Delete</button>
             ';
         })
         ->rawColumns(['aksi'])
@@ -118,6 +118,6 @@ class MetodePembayaranController extends Controller
         $metode_pembayaran = MetodePembayaran::find($id);
 
         $metode_pembayaran->delete();
-        return redirect('admin/metode_pembayaran')->with('message', 'Data Berhasil DiHapus');
+        // return redirect('admin/metode_pembayaran')->with('message', 'Data Berhasil DiHapus');
     }
 }

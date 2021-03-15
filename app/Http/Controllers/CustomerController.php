@@ -143,6 +143,6 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
 
         $customer->delete();
-        return redirect('admin/customer')->with('message', 'Data Berhasil DiHapus');
+        // return redirect('admin/customer')->with('message', 'Data Berhasil DiHapus');
     }
 }

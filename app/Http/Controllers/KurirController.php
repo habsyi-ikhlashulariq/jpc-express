@@ -36,7 +36,7 @@ class KurirController extends Controller
         })
         ->addColumn('aksi', function($s){
             return '<a href="kurir/edit/'.$s->id.'" class="btn btn-warning"><i class="fa fa-pencil"></i>Edit</a>
-            <a href="kurir/destroy/'.$s->id.'" class="btn btn-danger"> <i class="fa fa-close"></i>Hapus</a>
+            <button type="button" name="delete" id="'.$s->id.'" class="delete btn btn-danger btn-sm"><i class="fa fa-close"></i>Delete</button>
             ';
         })
         ->rawColumns(['gender','aksi'])
@@ -107,7 +107,9 @@ class KurirController extends Controller
         //
         $kurir = User::find($id);
 
+        // $kurir->delete();
+        // return redirect('admin/kurir')->with('message', 'Data Berhasil DiHapus');
         $kurir->delete();
-        return redirect('admin/kurir')->with('message', 'Data Berhasil DiHapus');
+               
     }
 }
