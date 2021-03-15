@@ -53,9 +53,9 @@
                                 </div>
                            @enderror
 
-                        <label for="">Total Biaya Vendor</label>
-                        <input class="form-control" placeholder="Total Biaya Vendor" type="text" name="totalBiayaVendor" >
-                        <br>
+                        <label id="totalBiayaVendorLabel" for="">Total Biaya Vendor</label>
+                        <input class="form-control" placeholder="Total Biaya Vendor" id="totalBiayaVendor" type="text" name="totalBiayaVendor" >
+                        <br id="biayaVendorBr">
                             @error('totalBiayaVendor')
                             <div class="text-danger">
                                 {{ $message }}
@@ -135,8 +135,8 @@
                                 </div>
                            @enderror
 
-                           <label for="">Pilih Kurir</label>
-                            <select name="kurir_id" class="form-control">
+                           <label id="kurirLabel" for="">Pilih Kurir</label>
+                            <select name="kurir_id"  id="kurirId" class="form-control">
                             <option value="">Pilih Kurir</option>
                                 @foreach($user as $data)
                                 <option value="{{ $data->id }}">{{$data->name }}|| {{$data->platNomor }}</option>
@@ -271,4 +271,28 @@
                 </div>
             </form>
         </div>
+        <script>
+            $(document).ready(function(){
+                $("#totalBiayaVendor").hide();
+                $("#totalBiayaVendorLabel").hide();
+                $('#biayaVendorBr').hide();
+                $('#vendor_id').change(function(){
+                    let vendorVal = $('#vendor_id').val();
+                    console.log(vendorVal)
+                    if(vendorVal){
+                        $("#totalBiayaVendor").show();
+                        $("#totalBiayaVendorLabel").show();
+                        $('#biayaVendorBr').show();
+                        $('#kurirId').hide();
+                        $('#kurirLabel').hide();
+                    } else {
+                        $("#totalBiayaVendor").hide();
+                        $("#totalBiayaVendorLabel").hide();
+                        $('#biayaVendorBr').hide();
+                        $('#kurirId').show();
+                        $('#kurirLabel').show();
+                    }
+                });
+            });
+        </script>
 @endsection

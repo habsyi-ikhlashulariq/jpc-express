@@ -18,7 +18,7 @@
                 <th>Penerima</th>
                 <th>Alamat Penerima</th>
                 <th>No Telp Penerima</th>
-                <th>Vendor</th>
+                <!-- <th>Vendor</th> -->
                 <th>Metode Pembayaran</th>
                 <th>Customer</th>
                 <th>OPSI</th>
@@ -52,14 +52,14 @@
                 serverSide: true,
                 ajax: '{!! url("admin/order/dt") !!}',
                 columns: [
-                    { data: 'penjualan_id', name: 'penjualan_id' },
+                    { data: 'noResi', name: 'noResi' },
                     { data: 'tanggal', name: 'tanggal' },
                     { data: 'hargaKg', name: 'hargaKg' },
                     { data: 'penerima', name: 'penerima'},
                     { data: 'alamatPenerima', name: 'alamatPenerima'},
                     { data: 'noTelpPenerima', name: 'noTelpPenerima'},
                     // { data: 'berat', name: 'berat'},
-                    { data: 'vendor', name: 'vendor'},
+                    // { data: 'vendor', name: 'vendor'},
                     { data: 'jenisPembayaran', name: 'jenisPembayaran'},
                     { data: 'namaCustomer', name: 'namaCustomer'},
                     { data: 'aksi', name: 'aksi'},

@@ -36,12 +36,12 @@ class PenjualanController extends Controller
 
     public function dt()
     {
-        $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer', 'barang.berat','vendor.vendor', 'metode_pembayaran.jenisPembayaran','status_pengiriman.penjualan_id')
+        $data = Penjualan::select('penjualan.*', 'customer.namaCustomer', 'barang.berat','metode_pembayaran.jenisPembayaran')
         ->join('customer', 'customer.id', 'penjualan.customer_id')
         ->join('barang', 'barang.id', 'penjualan.barang_id')
-        ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
+        // ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
         ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
-        ->join('status_pengiriman','status_pengiriman.penjualan_id','penjualan.noResi')
+        // ->join('status_pengiriman','status_pengiriman.penjualan_id','penjualan.noResi')
         ->groupBy('penjualan.noResi')
         ->get();
         return DataTables::of($data)
@@ -95,7 +95,6 @@ class PenjualanController extends Controller
             'penerima' => 'required',
             'alamatPenerima' => 'required',
             'noTelpPenerima' => 'required',
-            'vendor_id' => 'required',
             'metodePembayaran_id' => 'required',
             // 'customer_id' => 'required',
             'destinasi_id' => 'required',
@@ -105,9 +104,7 @@ class PenjualanController extends Controller
             'tinggi' => 'required',
             'beratVol' => 'required',
             'pilihan' => 'required',
-            'totalBiaya' => 'required',
-            'totalBiayaVendor' => 'required',
-            'kurir_id' => 'required',
+            'totalBiaya' => 'required',  
 
             'namaCustomer' => 'required',
             'emailCustomer' => 'required|email',
@@ -160,29 +157,30 @@ class PenjualanController extends Controller
             'penerima' => $request->penerima,
             'alamatPenerima' => $request->alamatPenerima,
             'noTelpPenerima' => $request->noTelpPenerima,
-            'vendor_id' => $request->vendor_id,
+            'vendor_id' => $request->vendor_id ? $request->vendor_id : null,
             'barang_id' => $dataBarang->id,
             'metodePembayaran_id' => $request->metodePembayaran_id,
             'customer_id' => $dataCustomer->id,
             'destinasi_id' => $request->destinasi_id,
         ]);
-
-        if($request->pilihan == 0){
-            StatusPengiriman::create([
-                'penjualan_id' => $newID,
-                'kurir_id' => $request->kurir_id,
-                'keterangan' => "Barang Sedang Dijemput",
-                'tanggal' => date('Y-m-d'),
-                'status' => 0
-            ]);
-        }else if($request->pilihan == 1){
-            StatusPengiriman::create([
-                'penjualan_id' => $newID,
-                'kurir_id' => $request->kurir_id,
-                'keterangan' => "Sedang Menunggu Barang Di Antar",
-                'tanggal' => date('Y-m-d'),
-                'status' => 0
-            ]);
+        if($request->vendor_id != null){
+            if($request->pilihan == 0){
+                StatusPengiriman::create([
+                    'penjualan_id' => $newID,
+                    'kurir_id' => $request->kurir_id,
+                    'keterangan' => "Barang Sedang Dijemput",
+                    'tanggal' => date('Y-m-d'),
+                    'status' => 0
+                ]);
+            }else if($request->pilihan == 1){
+                StatusPengiriman::create([
+                    'penjualan_id' => $newID,
+                    'kurir_id' => $request->kurir_id,
+                    'keterangan' => "Sedang Menunggu Barang Di Antar",
+                    'tanggal' => date('Y-m-d'),
+                    'status' => 0
+                ]);
+            }
         }
 
         DetailPenjualan::create([
@@ -191,12 +189,14 @@ class PenjualanController extends Controller
             'komisi' => 3000,
             'statusFinish' => 0
         ]);
-
-        DetailVendor::Create([
-            'vendor_id' => $request->vendor_id,
-            'penjualan_id' => $newID,
-            'totalBiaya' => $request->totalBiayaVendor,
-        ]);
+        
+        if($request->vendor_id != null){
+            DetailVendor::Create([
+                'vendor_id' => $request->vendor_id,
+                'penjualan_id' => $newID,
+                'totalBiaya' => $request->totalBiayaVendor,
+            ]);
+        }
         return redirect('admin/order')->with('message','Data Berhasil Disimpan');
     }
 
