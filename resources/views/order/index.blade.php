@@ -14,13 +14,7 @@
             <tr>
                 <th>Nomor Resi</th>
                 <th>Tanggal Order</th>
-                <th>Harga Per Kg</th>
-                <th>Penerima</th>
-                <th>Alamat Penerima</th>
-                <th>No Telp Penerima</th>
-                <!-- <th>Vendor</th> -->
-                <th>Metode Pembayaran</th>
-                <th>Customer</th>
+                <th>Harga /Kg</th>
                 <th>OPSI</th>
             </tr>
         </thead>
@@ -55,13 +49,6 @@
                     { data: 'noResi', name: 'noResi' },
                     { data: 'tanggal', name: 'tanggal' },
                     { data: 'hargaKg', name: 'hargaKg' },
-                    { data: 'penerima', name: 'penerima'},
-                    { data: 'alamatPenerima', name: 'alamatPenerima'},
-                    { data: 'noTelpPenerima', name: 'noTelpPenerima'},
-                    // { data: 'berat', name: 'berat'},
-                    // { data: 'vendor', name: 'vendor'},
-                    { data: 'jenisPembayaran', name: 'jenisPembayaran'},
-                    { data: 'namaCustomer', name: 'namaCustomer'},
                     { data: 'aksi', name: 'aksi'},
                 ]
             });

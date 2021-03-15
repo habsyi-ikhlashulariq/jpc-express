@@ -47,9 +47,11 @@ class PenjualanController extends Controller
         return DataTables::of($data)
         //button aksi
         ->addColumn('aksi', function($s){
-            return '<a href="order/edit/'.$s->penjualan_id.'" class="btn btn-warning"><i class="fa fa-pencil"></i>Edit</a>
-            <button type="button" name="delete" id="'.$s->penjualan_id.'" class="delete btn btn-danger btn-sm"><i class="fa fa-close"></i>Delete</button>
-            <a href="order/notif/'.$s->penjualan_id.'" class="btn btn-success"><i class="fa fa-send"></i>Kirim Notif</a>
+            return '
+            <a href="order/detail/'.$s->noResi.'" class="btn btn-success"><i class="fa fa-info"></i>Detail</a>
+
+            <a href="order/notif/'.$s->noResi.'" class="btn btn-warning"><i class="fa fa-send"></i>Kirim Notif</a>
+
             ';
         })
         ->rawColumns(['aksi'])
@@ -389,5 +391,16 @@ class PenjualanController extends Controller
     
         return redirect('admin/order')->with('message', 'Berhasil Kirim Notifikasi');
 
+    }
+    public function detail($penjualan_id){
+        $penjualan = Penjualan::select('penjualan.*', 'customer.namaCustomer', 'barang.berat','metode_pembayaran.jenisPembayaran')
+        ->join('customer', 'customer.id', 'penjualan.customer_id')
+        ->join('barang', 'barang.id', 'penjualan.barang_id')
+        // ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
+        ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
+        // ->join('status_pengiriman','status_pengiriman.penjualan_id','penjualan.noResi')
+        ->groupBy('penjualan.noResi')
+        ->get();
+        return view('order.detail', ['penjualan'=> $penjualan, 'penjualan_id' => $penjualan_id]);
     }
 }

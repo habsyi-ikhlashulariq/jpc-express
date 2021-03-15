@@ -197,106 +197,106 @@
                                 <form>
                                 <div class="row">
                                         <div class="col-md-4">
-                                            <label>No. resi</label>
-                                            <input type="text" class="form-control text-center" id="penjualan_id" >
+                                            <label>No. resi</label><br>
+                                            <label for="" class="text-center"  id="penjualan_id" >Kosong</label>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>Tanggal Order</label>
-                                            <input type="text" class="form-control text-center" id="tanggal" >
+                                            <label>Tanggal Order</label><br>
+                                            <label for="" class="text-center"  id="tanggal">Kosong</label>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>Harga Perkilo</label>
-                                            <input type="text" class="form-control text-center" id="hargaKg" >
+                                            <label>Harga Perkilo</label><br>
+                                            <label for="" class="text-center" id="hargaKg">Kosong</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Koli</label>
-                                            <input type="text" class="form-control text-center" id="kuli" >
+                                            <label>Koli</label><br>
+                                            <label for="" class="text-center"  id="kuli">Kosong</label>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>Nama Penerima</label>
-                                            <input type="text" class="form-control text-center" id="penerima" >
+                                            <label>Nama Penerima</label><br>
+                                            <label for="" class="text-center"  id="penerima">Kosong</label>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>Alamat Penerima</label>
-                                            <input type="text" class="form-control text-center" id="alamatPenerima" >
-                                        </div>
-                                    </div>
-
-                                    
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Nomor Telp Penerima</label>
-                                            <input type="text" class="form-control text-center" id="noTelpPenerima" >
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Nomor Pelanggan</label>
-                                            <input type="text" class="form-control text-center" id="customer_id" >
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Nama Pelanggan</label>
-                                            <input type="text" class="form-control text-center" id="namaCustomer" >
+                                            <label>Alamat Penerima</label><br>
+                                            <label for="" class="text-center"  id="alamatPenerima">Kosong</label>
                                         </div>
                                     </div>
 
                                     
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Alamat Customer</label>
-                                            <input type="text" class="form-control text-center" id="alamatCustomer" >
+                                            <label>Nomor Telp Penerima</label><br>
+                                            <label for="" class="text-center"  id="noTelpPenerima">Kosong</label>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>Nomor Vendor</label>
-                                            <input type="text" class="form-control text-center" id="resi_vendor" >
+                                            <label>Nomor Pelanggan</label><br>
+                                            <label for="" class="text-center"  id="customer_id">Kosong</label>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>Vendor</label>
-                                            <input type="text" class="form-control text-center" id="vendor" >
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Jenis Pembayaran</label>
-                                            <input type="text" class="form-control text-center" id="jenisPembayaran" >
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Kota Asal</label>
-                                            <input type="text" class="form-control text-center" id="kotaAsal" >
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Kota Tujuan</label>
-                                            <input type="text" class="form-control text-center" id="kotaTujuan" >
+                                            <label>Nama Pelanggan</label><br>
+                                            <label for="" class="text-center"  id="namaCustomer">Kosong</label>
                                         </div>
                                     </div>
 
                                     
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Berat Barang</label>
-                                            <input type="text" class="form-control text-center" id="berat" >
+                                            <label>Alamat Customer</label><br>
+                                            <label for="" class="text-center"  id="alamatCustomer">Kosong</label>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>Panjang Barang</label>
-                                            <input type="text" class="form-control text-center" id="panjang" >
+                                            <label>Nomor Vendor</label><br>
+                                            <label for="" class="text-center"  id="resi_vendor">Kosong</label>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>Tinggi Barang</label>
-                                            <input type="text" class="form-control text-center" id="tinggi" >
+                                            <label>Vendor</label><br>
+                                            <label for="" class="text-center"  id="vendor">Kosong</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Jenis Pembayaran</label><br>
+                                            <label for="" class="text-center"  id="jenisPembayaran">Kosong</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Kota Asal</label><br>
+                                            <label for="" class="text-center"  id="kotaAsal">Kosong</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Kota Tujuan</label><br>
+                                            <label for="" class="text-center"  id="kotaTujuan">Kosong</label>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Berat Barang</label><br>
+                                            <label for="" class="text-center"  id="berat">Kosong</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Panjang Barang</label><br>
+                                            <label for="" class="text-center"  id="panjang">Kosong</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Tinggi Barang</label><br>
+                                            <label for="" class="text-center"  id="tinggi">Kosong</label>
                                         </div>
                                     </div>
 
                                                          
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label>Berat Volume Barang</label>
-                                            <input type="text" class="form-control text-center" id="beratVol" >
+                                            <label>Berat Volume Barang</label><br>
+                                            <label for="" class="text-center"  id="beratVol">Kosong</label>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>Total Biaya</label>
-                                            <input type="text" class="form-control text-center" id="total_harga" >
+                                            <label>Total Biaya</label><br>
+                                            <label for="" class="text-center"  id="total_harga">Kosong</label>
                                         </div>
                                         <div class="col-md-4">
                                             <label></label><br>

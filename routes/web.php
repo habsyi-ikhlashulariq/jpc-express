@@ -100,6 +100,7 @@ Route::get('/order', [PenjualanController::class, 'index']);
 Route::get('/order/dt', [PenjualanController::class, 'dt']);
 Route::get('/order/create', [PenjualanController::class, 'create']);
 Route::post('/order/store', [PenjualanController::class, 'store']);
+Route::get('order/detail/{penjualan_id}', [PenjualanController::class, 'detail']);
 Route::get('order/edit/{id}', [PenjualanController::class, 'edit']);
 Route::put('/order/update/{id}', [PenjualanController::class, 'update']);
 Route::get('/order/destroy/{id}', [PenjualanController::class, 'destroy']);
