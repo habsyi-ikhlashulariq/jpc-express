@@ -378,36 +378,105 @@
     <section class="testmonial-area gray-bg section-padding" id="estimasi">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="card d-flex justify-content-center">
-                        <h2>Cek Estimasi Pengiriman</h2>
-                        <form action="" method="GET">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Kota Asal</label>
-                                <select data-placeholder="Kota Asal" data-allow-clear="1" name="kota1" id="kota1">
-                                @foreach($kotaAsal as $data)
-                                    <option value="{{$data->kotaAsal}}">{{ $data->kotaAsal }}</option>
-                                @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Kota Tujuan</label>
-                                <select data-placeholder="Kota Tujuan" data-allow-clear="1" name="kota2" id="kota2">
-                                @foreach($kotaTujuan as $data)
-                                    <option value="{{$data->kotaTujuan}}">{{ $data->kotaTujuan }}</option>
-                                @endforeach
-                                </select>
-                            </div>
-                            <button class="btn btn-danger btn-xl p-4" type="button" id="tampilEstimasi" data-toggle="modal" data-target="#exampleModal1">Cek Sekarang</button>
+            <div class="col-md-10">
+                    <div id="accordion">
+                        <h3 style="background-color: red; color:white;text-align:center">Darat</h3>
+                        <div id="darat">
+                            <table class="table table-bordered table-hover table-striped" id="customer-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kota Asal</th>
+                                        <th>Kota Tujuan</th>
+                                        <th>Harga</th>
+                                        <th>Waktu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($darat as $data)
+                                        <tr>
+                                            <td>{{$data->kotaAsal}}</td>
+                                            <td>{{$data->kotaTujuan}}</td>
+                                            <td>{{$data->tarif}}</td>
+                                            <td>{{$data->waktu}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        </form>
+                        <h3 style="background-color: red;color:white;text-align:center">Udara</h3>
+                        <div id="udara">
+                            <table class="table table-bordered table-hover table-striped" id="customer-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kota Asal</th>
+                                        <th>Kota Tujuan</th>
+                                        <th>Harga</th>
+                                        <th>Waktu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($udara as $data)
+                                        <tr>
+                                            <td>{{$data->kotaAsal}}</td>
+                                            <td>{{$data->kotaTujuan}}</td>
+                                            <td>{{$data->tarif}}</td>
+                                            <td>{{$data->waktu}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <h3 style="background-color: red;color:white;text-align:center">Daratan Riau</h3>
+                        <div id="riauDaratan">
+                            <table class="table table-bordered table-hover table-striped" id="customer-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kota Asal</th>
+                                        <th>Kota Tujuan</th>
+                                        <th>Harga</th>
+                                        <th>Waktu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($riauDaratan as $data)
+                                        <tr>
+                                            <td>{{$data->kotaAsal}}</td>
+                                            <td>{{$data->kotaTujuan}}</td>
+                                            <td>{{$data->tarif}}</td>
+                                            <td>{{$data->waktu}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <h3 style="background-color: red;color:white;text-align:center">Tarif Motor</h3>
+                        <div id="motor">
+                            <table class="table table-bordered table-hover table-striped" id="customer-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kota Asal</th>
+                                        <th>Kota Tujuan</th>
+                                        <th>Harga</th>
+                                        <th>Waktu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($motor as $data)
+                                        <tr>
+                                            <td>{{$data->kotaAsal}}</td>
+                                            <td>{{$data->kotaTujuan}}</td>
+                                            <td>{{$data->tarif}}</td>
+                                            <td>{{$data->waktu}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-
 
                 </div>
                 
-                <div class="col-md-6 ">
+                <div class="col-md-10 ">
                     <div class="single-blog wow fadeInUp card-sk px-4 ">
                         <div class="blog-image">
                             <img src="{{ asset('temp_assets/assets/term.jpg') }}" alt="">
@@ -556,11 +625,14 @@
     <script src="{{ asset('temp_assets/js/contact-form.js') }}"></script>
     <script src="{{ asset('temp_assets/js/jquery.sticky.js') }}"></script>
     <script src="{{ asset('temp_assets/js/select2.min.js') }}"></script>
-
+    <script src="{{ asset('temp_assets/js/jquery-ui.js') }}"></script>
     <script src="{{ asset('temp_assets/js/main.js') }}"></script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
     <script>
+        $( function() {
+            $( "#accordion" ).accordion();
+        } );
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
