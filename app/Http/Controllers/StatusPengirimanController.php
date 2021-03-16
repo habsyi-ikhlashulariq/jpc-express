@@ -142,6 +142,7 @@ class StatusPengirimanController extends Controller
             'kurir_id' => 'required',
             'tanggal' => 'required',
             'keterangan' => 'required',
+            'status' => 'required',
         ]);
 
         $status_pengiriman = StatusPengiriman::where('id', $id)->first();
@@ -149,7 +150,7 @@ class StatusPengirimanController extends Controller
         $status_pengiriman->kurir_id = $request->kurir_id;
         $status_pengiriman->tanggal = $request->tanggal;
         $status_pengiriman->keterangan = $request->keterangan;
-        
+        $status_pengiriman->status = $request->status;
         $status_pengiriman->save();
         
         return redirect('admin/status_pengiriman')->with('message', 'Data Berhasil Diupdate');

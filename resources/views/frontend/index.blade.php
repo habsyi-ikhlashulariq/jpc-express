@@ -189,125 +189,155 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Hasil Pencarian</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">JPC EXPRESS Check Resi</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                 
-                                <form>
                                 <div class="row">
-                                        <div class="col-md-4">
-                                            <label>No. resi</label><br>
-                                            <label for="" class="text-center"  id="penjualan_id" >Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Tanggal Order</label><br>
-                                            <label for="" class="text-center"  id="tanggal">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Harga Perkilo</label><br>
-                                            <label for="" class="text-center" id="hargaKg">Kosong</label>
+                                    <div class="col-md-12">
+                                        <h4>No Resi</h4>
+                                        <h3 class="text-center" id="penjualan_id"></h3>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th>Tanggal Order</th>
+                                                    <td id="tanggal"></td>
+                                                </tr>        
+                                                <tr>
+                                                    <th>Harga Per KG</th>
+                                                    <td id="hargaKg"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Nama Customer</th>
+                                                    <td id="namaCustomer"></td>
+                                                </tr>     
+                                                <tr>
+                                                    <th>Alamat Customer</th>
+                                                    <td id="alamatCustomer"></td>
+                                                </tr>   
+                                                <tr>
+                                                    <th>No Telp Customer</th>
+                                                    <td id="noTelpCustomer"></td>
+                                                </tr>   
+                                                <tr>
+                                                    <th>Kota Asal</th>
+                                                    <td id="kotaAsal"></td>
+                                                </tr>  
+                                            </table>
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Koli</label><br>
-                                            <label for="" class="text-center"  id="kuli">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Nama Penerima</label><br>
-                                            <label for="" class="text-center"  id="penerima">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Alamat Penerima</label><br>
-                                            <label for="" class="text-center"  id="alamatPenerima">Kosong</label>
-                                        </div>
-                                    </div>
-
-                                    
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Nomor Telp Penerima</label><br>
-                                            <label for="" class="text-center"  id="noTelpPenerima">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Nomor Pelanggan</label><br>
-                                            <label for="" class="text-center"  id="customer_id">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Nama Pelanggan</label><br>
-                                            <label for="" class="text-center"  id="namaCustomer">Kosong</label>
-                                        </div>
-                                    </div>
-
-                                    
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Alamat Customer</label><br>
-                                            <label for="" class="text-center"  id="alamatCustomer">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Nomor Vendor</label><br>
-                                            <label for="" class="text-center"  id="resi_vendor">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Vendor</label><br>
-                                            <label for="" class="text-center"  id="vendor">Kosong</label>
+                                    <div class="col-md-6">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th>Penerima</th>
+                                                    <td id="penerima"></td>
+                                                </tr>        
+                                                <tr>
+                                                    <th>Alamat Penerima</th>
+                                                    <td id="alamatPenerima"></td>
+                                                </tr>        
+                                                <tr>
+                                                    <th>No Telp Penerima</th>
+                                                    <td id="noTelpPenerima"></td>
+                                                </tr>     
+                                                <tr>
+                                                    <th>Jenis Pembayaran</th>
+                                                    <td id="jenisPembayaran"></td>
+                                                </tr>     
+                                                <tr>
+                                                    <th>Koli</th>
+                                                    <td id="kuli"></td>
+                                                </tr>    
+                                                <tr>
+                                                    <th>Kota Tujuan</th>
+                                                    <td id="kotaTujuan"></td>
+                                                </tr>   
+                                            </table>
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Jenis Pembayaran</label><br>
-                                            <label for="" class="text-center"  id="jenisPembayaran">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Kota Asal</label><br>
-                                            <label for="" class="text-center"  id="kotaAsal">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Kota Tujuan</label><br>
-                                            <label for="" class="text-center"  id="kotaTujuan">Kosong</label>
-                                        </div>
+                                    <div class="col-md-12">
+                                        <h4>Detail Barang</h4>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th>Berat Barang</th>
+                                                <td id="berat"></td>
+                                            </tr>   
+                                            <tr>
+                                                <th>Berat Volume Barang</th>
+                                                <td id="beratVol"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th>Panjang Barang</th>
+                                                <td id="panjang"></td>
+                                            </tr>   
+                                            <tr>
+                                                <th>Tinggi Barang</th>
+                                                <td id="tinggi"></td>
+                                            </tr>   
+                                        </table>  
                                     </div>
 
-                                    
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Berat Barang</label><br>
-                                            <label for="" class="text-center"  id="berat">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Panjang Barang</label><br>
-                                            <label for="" class="text-center"  id="panjang">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Tinggi Barang</label><br>
-                                            <label for="" class="text-center"  id="tinggi">Kosong</label>
-                                        </div>
+                                    <div class="col-md-12">
+                                        <h4>Status Pengiriman</h4>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th>Keterangan</th>
+                                                <td id="keterangan"></td>
+                                            </tr>   
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th>Status</th>
+                                                <td id="statusPengiriman"></td>
+                                            </tr>   
+                                        </table>  
                                     </div>
 
-                                                         
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Berat Volume Barang</label><br>
-                                            <label for="" class="text-center"  id="beratVol">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Total Biaya</label><br>
-                                            <label for="" class="text-center"  id="total_harga">Kosong</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label></label><br>
-                                            <button type="button" class="btn btn-info" id="cetak_order">Cetak Resi</button>
-                                        </div>
+                                    <div class="col-md-12">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th class="text-center">Vendor</th>
+                                            </tr>   
+                                            <tr>
+                                                <td id="vendor"></td>
+                                            </tr>   
+                                        </table>  
                                     </div>
 
-                                </form>
+                                    <div class="col-md-12">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th class="text-center">Total Biaya</th>
+                                            </tr>   
+                                            <tr>
+                                                <td id="totalBiaya"></td>
+                                            </tr>   
+                                        </table>  
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <th><button type="button" class="btn btn-info" id="cetak_order">Cetak Resi</button></th>
+                                    </div>
+                                </div>
 
 
                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
                                 </div>
                                 </div>
                             </div>
@@ -554,45 +584,6 @@
         </div>
     </div>
 
-
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Hasil Pencarian</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                
-                                <form>
-                                    <div class="mb-3">
-                                        <label>Kota Asal</label>
-                                        <input type="text" class="form-control text-center" id="kotaAsal" >
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Kota Tujuan</label>
-                                        <input type="text" class="form-control text-center" id="kotaTujuan" >
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Tarif</label>
-                                        <input type="text" class="form-control text-center" id="tarif" >
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Estimasi Waktu</label>
-                                        <input type="text" class="form-control text-center" id="waktu" >
-                                    </div>
-                                </form>
-
-
-                                <div class="modal-footer">
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-
-
-
     <footer class="footer">
         <div class="copy-right_text">
             <div class="container">
@@ -660,26 +651,40 @@
                     method:'GET',
                      dataType:'json',
                     success : function(data){
-                        $('#penjualan_id').val(data.penjualan_id);
-                        $('#tanggal').val(data.tanggal);
-                        $('#hargaKg').val(data.hargaKg);
-                        $('#kuli').val(data.kuli);
-                        $('#penerima').val(data.penerima);
-                        $('#alamatPenerima').val(data.alamatPenerima);
-                        $('#noTelpPenerima').val(data.noTelpPenerima);
-                        $('#customer_id').val(data.customer_id);
-                        $('#namaCustomer').val(data.namaCustomer);
-                        $('#alamatCustomer').val(data.alamatCustomer);
-                        $('#resi_vendor').val(data.resi_vendor);
-                        $('#vendor').val(data.vendor);
-                        $('#jenisPembayaran').val(data.jenisPembayaran);
-                        $('#kotaAsal').val(data.kotaAsal);
-                        $('#kotaTujuan').val(data.kotaTujuan);
-                        $('#berat').val(data.berat);
-                        $('#panjang').val(data.panjang);
-                        $('#tinggi').val(data.tinggi);
-                        $('#beratVol').val(data.beratVol);
-                        $('#total_harga').val(data.total_harga);
+                        console.log(data)
+                        $('#penjualan_id').html(data.noResi);
+                        $('#tanggal').html(data.tanggal);
+                        $('#hargaKg').html(data.hargaKg);
+                        $('#kuli').html(data.kuli);
+                        $('#penerima').html(data.penerima);
+                        $('#alamatPenerima').html(data.alamatPenerima);
+                        $('#noTelpPenerima').html(data.noTelpPenerima);
+                        $('#namaCustomer').html(data.namaCustomer);
+                        $('#alamatCustomer').html(data.alamatCustomer);
+                        $('#noTelpCustomer').html(data.noTelpCustomer);
+                        $('#resi_vendor').html(data.resi_vendor);
+                        if(data.vendor){
+                            $('#vendor').html(data.vendor);
+                        }else{
+                            $('#vendor').html("Tidak Menggunakan Vendor");
+                        }
+                        $('#keterangan').html(data.keterangan);
+                        if(data.statusPengiriman == 0){
+                            $('#statusPengiriman').html("In Proccess");
+                        }else if(data.statusPengiriman == 1){
+                            $('#statusPengiriman').html("Done");
+                        }else{
+                            $('#statusPengiriman').html("Sedang Mencari Kurir");
+                        }
+                        $('#jenisPembayaran').html(data.jenisPembayaran);
+                        $('#kotaAsal').html(data.kotaAsal);
+                        $('#kotaTujuan').html(data.kotaTujuan);
+                        $('#berat').html(data.berat);
+                        $('#panjang').html(data.panjang);
+                        $('#tinggi').html(data.tinggi);
+                        $('#beratVol').html(data.beratVol);
+                        $('#total_harga').html(data.total_harga);
+                        $('#totalBiaya').html(data.totalBiaya);
                     }
                 });
             });
@@ -706,27 +711,16 @@
             });
 
             $('#cetak_order').on('click', function() {
-                var penjualan_id = $('#penjualan_id').val();
-
+                var noResi = $("#penjualan_id").text();
                 $.ajax({
                     url : "{{url('/jpc-express/cetak_order')}}",
                     method : 'GET',
                     data : {
-                        penjualan_id : penjualan_id
+                        noResi : noResi
                     },
                     success : function(data) {
-                      
-                      
-                        var blob = new Blob([data]);
-
-                        var link = document.createElement('a');
-
-                        link.href = window.URL.createObjectURL(blob);
-
-                        link.download = "Sample.pdf";
-
-                        link.click();
-
+                        alert(data);
+                        // window.open();
                         
                     }
                 });
@@ -736,7 +730,5 @@
 
     </script>
 </body>
-
-<!-- Mirrored from preview.colorlib.com/theme/carries/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Jan 2021 14:57:13 GMT -->
 
 </html>

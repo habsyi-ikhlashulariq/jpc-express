@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Penjualan;
 use App\Models\Destination;
+use App\Models\StatusPengiriman;
+use App\Models\DetailVendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,45 +33,28 @@ class FrontEndController extends Controller
     public function cekresi(Request $request)
     {
         $cari = $request->cari;
-        $kotaAsal = DB::table('destinations')->select('id','kotaAsal')->get();
-        $kotaTujuan = DB::table('destinations')->select('id','kotaTujuan')->get();
         $data = penjualan::select(
-            'penjualan.noResi',
-            'penjualan.tanggal', 
-            'penjualan.hargaKg',
-            'penjualan.kuli', 
-            'penjualan.penerima',
-            'penjualan.alamatPenerima',
-            'penjualan.noTelpPenerima',
-            'customer.id as customer_id',
-            'customer.namaCustomer',
-            'customer.alamatCustomer',
-            'vendor.id as resi_vendor', 
-            'vendor.vendor', 
-            'metode_pembayaran.jenisPembayaran', 
-            'status_pengiriman.penjualan_id', 
-            'destinations.kotaAsal', 
-            'destinations.kotaTujuan', 
-            'barang.berat',
-            'barang.panjang', 
-            'barang.tinggi', 
-            'barang.beratVol', 
-            DB::raw('barang.beratVol * penjualan.hargaKg as total_harga')
-            
+            'penjualan.*',
+            'customer.*',
+            'metode_pembayaran.*',
+            'destinations.*',
+            'barang.*',
+            'status_pengiriman.*',
+            'status_pengiriman.status as statusPengiriman',
+            'vendor.*',
+            'detail_penjualan.*',
+                DB::raw('barang.beratVol * penjualan.hargaKg as total_harga')
             )
         ->join('customer', 'customer.id', 'penjualan.customer_id')
         ->join('barang', 'barang.id', 'penjualan.barang_id')
-        ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
         ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
-        ->join('status_pengiriman', 'status_pengiriman.penjualan_id', 'penjualan.noResi')
         ->join('destinations', 'destinations.id', 'penjualan.destinasi_id')
+        ->join('detail_penjualan','detail_penjualan.penjualan_id','penjualan.noResi')
+        ->leftJoin('status_pengiriman', 'status_pengiriman.penjualan_id', 'penjualan.noResi')
+        ->leftJoin('vendor', 'vendor.id', 'penjualan.vendor_id')
+        ->orderBy('status_pengiriman.id','DESC')
         ->where('penjualan.noResi', $cari)
         ->first();
-        
-
-        if (!$cari) {
-            $data  = "Masukan Nomor Resi Dengan Benar";
-        }
 
         return $data;
         return response()->json($data);
@@ -123,11 +108,11 @@ class FrontEndController extends Controller
             )
         ->join('customer', 'customer.id', 'penjualan.customer_id')
         ->join('barang', 'barang.id', 'penjualan.barang_id')
-        ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
+        ->leftjoin('vendor', 'vendor.id', 'penjualan.vendor_id')
         ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
-        ->join('status_pengiriman', 'status_pengiriman.penjualan_id', 'penjualan.noResi')
+        ->leftjoin('status_pengiriman', 'status_pengiriman.penjualan_id', 'penjualan.noResi')
         ->join('destinations', 'destinations.id', 'penjualan.destinasi_id')
-        ->where('penjualan.noResi', $request->input('penjualan_id'))
+        ->where('penjualan.noResi', $request->input('noResi'))
         ->first();
 
         // echo $data;

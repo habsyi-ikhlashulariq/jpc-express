@@ -187,8 +187,7 @@ class PenjualanController extends Controller
 
         DetailPenjualan::create([
             'penjualan_id' => $newID,
-            'totalBiaya' => $request->totalBiaya - 3000,
-            'komisi' => 3000,
+            'totalBiaya' => $request->totalBiaya,            
             'statusFinish' => 0
         ]);
         

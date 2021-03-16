@@ -56,11 +56,30 @@
                         </div>
                         @enderror
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                     <label for="">Keterangan</label>
                     <input class="form-control" placeholder="Keterangan" type="text" name="keterangan" value="{{ $status_pengiriman->keterangan}}" ><br>
 
                         @error('keterangan')
+                        <div class="text-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                    <label for="">Status</label>
+                    <select name="status" id="status" class="form-control">
+                        @if($status_pengiriman->status == 0)
+                            <option value="0" selected>Masih Dijalan</option>
+                            <option value="1">Sudah Sampai</option>
+                        @else
+                            <option value="1" selected>Sudah Sampai</option>
+                            <option value="0" >Masih Dijalan</option>
+                        @endif
+                    </select><br>
+
+                        @error('status')
                         <div class="text-danger">
                             {{ $message }}
                         </div>
