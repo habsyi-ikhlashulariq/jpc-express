@@ -97,7 +97,6 @@ class FrontEndController extends Controller
     public function cetak_order(Request $request)
     {
         // $cetak_order = Penjualan::where('noResi', $request->input('penjualan_id'))->first();
-
         $data = penjualan::select(
             'penjualan.noResi',
             'penjualan.tanggal', 
@@ -133,7 +132,7 @@ class FrontEndController extends Controller
 
         // echo $data;
 
-        $html = view('frontend.cetak_order', compact('data'))->render();
+        $html = view('frontend.cetak_order',['data' => $data]);
         return $html;
     }
 }

@@ -130,6 +130,7 @@ Route::get('/order/cetak_laporan', [PenjualanController::class, 'form_cetak_lapo
 Route::post('/order/cetak_laporan', [PenjualanController::class, 'cetak_laporan']);
 
 
+
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'kurir'], function(){
@@ -155,7 +156,7 @@ Route::get('/test', function()
 	});
 
 });
-
+Route::get('/order/resi', [FrontEndController::class, 'cetak_order']);
 //Login
 // Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 // Auth::routes();

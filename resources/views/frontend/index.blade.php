@@ -715,8 +715,18 @@
                         penjualan_id : penjualan_id
                     },
                     success : function(data) {
-                        // alert(data);
-                        window.open();
+                      
+                      
+                        var blob = new Blob([data]);
+
+                        var link = document.createElement('a');
+
+                        link.href = window.URL.createObjectURL(blob);
+
+                        link.download = "Sample.pdf";
+
+                        link.click();
+
                         
                     }
                 });
