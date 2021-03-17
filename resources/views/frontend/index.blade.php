@@ -408,7 +408,7 @@
     <section class="testmonial-area gray-bg section-padding" id="estimasi">
         <div class="container">
             <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
                     <div id="accordion">
                         <h3 style="background-color: red; color:white;text-align:center">Darat</h3>
                         <div id="darat">
@@ -506,7 +506,7 @@
 
                 </div>
                 
-                <div class="col-md-10 ">
+                <div class="col-md-12">
                     <div class="single-blog wow fadeInUp card-sk px-4 ">
                         <div class="blog-image">
                             <img src="{{ asset('temp_assets/assets/term.jpg') }}" alt="">
@@ -717,14 +717,19 @@
                     location.assign(url);
                     } 
                 var noResi = $("#penjualan_id").text();
-                $.ajax({
-                    url : "{{url('/jpc-express/cetak_order')}}",
-                    method : 'GET',
-                    data : {
-                        noResi : noResi
-                    }
-                })
-                .done(downloadFile);
+                // window.location.href = "{{url('/jpc-express/cetak_order/noResi')}}"
+                window.location = "{{ url('/jpc-express/cetak_order/') }}?noResi="+noResi;
+                // $.ajax({
+                //     url : "{{url('/jpc-express/cetak_order')}}",
+                //     method : 'POST',
+                //     data : {
+                //         noResi : noResi
+                //     },
+                //     success : function(data) {
+                //         // alert(data);
+                //         window.open();
+                //     }
+                // });
             });
         });
 

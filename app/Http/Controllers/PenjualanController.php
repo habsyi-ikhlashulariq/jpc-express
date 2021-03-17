@@ -400,30 +400,36 @@ class PenjualanController extends Controller
             'penjualan.penerima',
             'penjualan.alamatPenerima',
             'penjualan.noTelpPenerima',
-            'customer.id as customer_id',
             'customer.namaCustomer',
             'customer.alamatCustomer',
             'vendor.id as resi_vendor', 
             'vendor.vendor', 
             'metode_pembayaran.jenisPembayaran', 
-            'status_pengiriman.penjualan_id', 
+            'status_pengiriman.status as statusPengiriman', 
+            'status_pengiriman.keterangan', 
+            'status_pengiriman.id as statusPengirimanID',
             'destinations.kotaAsal', 
             'destinations.kotaTujuan', 
             'barang.berat',
             'barang.panjang', 
             'barang.tinggi', 
             'barang.beratVol', 
+            'detail_penjualan.totalBiaya',
+            'detail_vendor.totalBiaya as totalBiayaVendor',
             DB::raw('barang.beratVol * penjualan.hargaKg as total_harga')
             
             )
         ->join('customer', 'customer.id', 'penjualan.customer_id')
         ->join('barang', 'barang.id', 'penjualan.barang_id')
-        ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
+        ->leftjoin('vendor', 'vendor.id', 'penjualan.vendor_id')
+        ->join('detail_penjualan','detail_penjualan.penjualan_id','penjualan.noResi')
+        ->leftjoin('detail_vendor','detail_vendor.penjualan_id','penjualan.noResi')
         ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
-        ->join('status_pengiriman', 'status_pengiriman.penjualan_id', 'penjualan.noResi')
-        ->join('destinations', 'destinations.id', 'penjualan.destinasi_id')
-        ->groupBy('penjualan.noResi')
-        ->get();
+        ->leftjoin('status_pengiriman', 'status_pengiriman.penjualan_id', 'penjualan.noResi')
+        ->join('destinations', 'destinations.id', 'penjualan.destinasi_id')        
+        ->orderBy('statusPengirimanID','DESC')
+        ->first();
+
         
         return view('order.detail', ['penjualan'=> $penjualan, 'penjualan_id' => $penjualan_id]);
     }
