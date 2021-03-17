@@ -712,18 +712,19 @@
 
             $('#cetak_order').on('click', function() {
                 var noResi = $("#penjualan_id").text();
-                $.ajax({
-                    url : "{{url('/jpc-express/cetak_order')}}",
-                    method : 'GET',
-                    data : {
-                        noResi : noResi
-                    },
-                    success : function(data) {
-                        alert(data);
-                        // window.open();
-                        
-                    }
-                });
+                // window.location.href = "{{url('/jpc-express/cetak_order/noResi')}}"
+                window.location = "{{ url('/jpc-express/cetak_order/') }}?noResi="+noResi;
+                // $.ajax({
+                //     url : "{{url('/jpc-express/cetak_order')}}",
+                //     method : 'POST',
+                //     data : {
+                //         noResi : noResi
+                //     },
+                //     success : function(data) {
+                //         // alert(data);
+                //         window.open();
+                //     }
+                // });
             });
         });
 
