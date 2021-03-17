@@ -711,19 +711,20 @@
             });
 
             $('#cetak_order').on('click', function() {
+                function downloadFile(response) {
+                    var blob = new Blob([response], {type: 'application/pdf'})
+                    var url = URL.createObjectURL(blob);
+                    location.assign(url);
+                    } 
                 var noResi = $("#penjualan_id").text();
                 $.ajax({
                     url : "{{url('/jpc-express/cetak_order')}}",
                     method : 'GET',
                     data : {
                         noResi : noResi
-                    },
-                    success : function(data) {
-                        alert(data);
-                        // window.open();
-                        
                     }
-                });
+                })
+                .done(downloadFile);
             });
         });
 

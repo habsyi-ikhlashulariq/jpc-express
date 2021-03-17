@@ -8,6 +8,7 @@ use App\Models\StatusPengiriman;
 use App\Models\DetailVendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class FrontEndController extends Controller
 {
@@ -117,7 +118,11 @@ class FrontEndController extends Controller
 
         // echo $data;
 
-        $html = view('frontend.cetak_order',['data' => $data]);
-        return $html;
+        $pdf = PDF::loadview('frontend.cetak_order', [
+            'title' => "Data",
+            'data' => $data
+            ]);
+        // return $pdf->stream('Cetak Resi.pdf');
+        return $pdf->download('Cetak Resi.pdf');
     }
 }
