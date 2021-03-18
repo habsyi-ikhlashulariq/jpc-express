@@ -16,12 +16,12 @@ class JpcExpress extends Mailable
      *
      * @return void
      */
-    public function __construct($namaCustomer, $noTelpCustomer, $penjualan_id, $penerima, $alamatPenerima, $noTelpPenerima, $berat, $panjang, $keterangan,  $tanggal, $kotaAsal, $kotaTujuan)
+    public function __construct($namaCustomer, $noTelpCustomer, $noResi, $penerima, $alamatPenerima, $noTelpPenerima, $berat, $panjang, $keterangan,  $tanggal, $kotaAsal, $kotaTujuan)
     {
         //
         $this->namaCustomer = $namaCustomer;
         $this->noTelpCustomer = $noTelpCustomer;
-        $this->penjualan_id = $penjualan_id;
+        $this->noResi = $noResi;
         $this->penerima = $penerima;
         $this->alamatPenerima = $alamatPenerima;
         $this->berat = $berat;
@@ -46,7 +46,7 @@ class JpcExpress extends Mailable
             [
                 'namaCustomer' => $this->namaCustomer,
                 'noTelpCustomer' => $this->noTelpCustomer,
-                'penjualan_id' => $this->penjualan_id,
+                'noResi' => $this->noResi,
                 'penerima' => $this->penerima,
                 'alamatPenerima' => $this->alamatPenerima,
                 'berat' => $this->berat,

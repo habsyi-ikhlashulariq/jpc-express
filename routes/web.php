@@ -104,6 +104,8 @@ Route::get('order/detail/{penjualan_id}', [PenjualanController::class, 'detail']
 Route::get('order/edit/{id}', [PenjualanController::class, 'edit']);
 Route::put('/order/update/{id}', [PenjualanController::class, 'update']);
 Route::get('/order/destroy/{id}', [PenjualanController::class, 'destroy']);
+
+//SendEmail
 Route::get('/order/notif/{id}', [PenjualanController::class, 'notif']);
 
 //Data Destinasi

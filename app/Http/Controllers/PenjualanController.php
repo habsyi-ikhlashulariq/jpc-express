@@ -431,15 +431,30 @@ class PenjualanController extends Controller
     }
     public function notif($id)
     {
-        $data = Penjualan::select('penjualan.noResi', 'penjualan.tanggal', 'penjualan.hargaKg', 'penjualan.kuli', 'penjualan.penerima','penjualan.alamatPenerima','penjualan.noTelpPenerima', 'customer.namaCustomer','customer.noTelpCustomer','customer.emailCustomer', 'barang.berat','vendor.vendor', 'metode_pembayaran.jenisPembayaran','status_pengiriman.penjualan_id')
+        $data = Penjualan::select('penjualan.noResi', 
+        'penjualan.tanggal', 
+        'penjualan.hargaKg', 
+        'penjualan.kuli', 
+        'penjualan.penerima',
+        'penjualan.alamatPenerima',
+        'penjualan.noTelpPenerima',
+        'customer.namaCustomer',
+        'customer.noTelpCustomer',
+        'customer.emailCustomer', 
+        'barang.berat',
+        'barang.panjang',
+        'vendor.vendor', 
+        'status_pengiriman.keterangan',
+        'metode_pembayaran.jenisPembayaran')
         ->join('customer', 'customer.id', 'penjualan.customer_id')
         ->join('barang', 'barang.id', 'penjualan.barang_id')
         ->join('vendor', 'vendor.id', 'penjualan.vendor_id')
         ->join('metode_pembayaran', 'metode_pembayaran.id', 'penjualan.metodePembayaran_id')
         ->join('status_pengiriman','status_pengiriman.penjualan_id','penjualan.noResi')
-        ->where('penjualan_id', $id)
+        ->join('destinations','destinations.id','penjualan.destinasi_id')
+        ->where('penjualan.noResi', $id)
         ->first();
-        $kirim = Mail::to( $data->emailCustomer)->send(new JpcExpress($data->namaCustomer, $data->noTelpCustomer, $data->penjualan_id, $data->penerima, $data->alamatPenerima, $data->noTelpPenerima ));
+        $kirim = Mail::to( $data->emailCustomer)->send(new JpcExpress($data->namaCustomer, $data->noTelpCustomer, $data->noResi, $data->penerima, $data->alamatPenerima, $data->noTelpPenerima, $data->berat, $data->panjang, $data->keterangan,  $data->tanggal,  $data->kotaAsal,  $data->kotaTujuan ));
     
         return redirect('admin/order')->with('message', 'Berhasil Kirim Notifikasi');
 

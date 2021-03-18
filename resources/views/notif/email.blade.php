@@ -9,16 +9,16 @@
 <body>
     <h4>Pelanggan YTH, {{ $namaCustomer }}</h4>
     <p>Selamat, Paket anda sedang kami proses untuk pengiriman ,<br> 
-    paket diproses pada tanggal {{ $tanggal }}paket dengan nomor <br> resi <b>{{$penjualan_id}}</b>, bisa ditrace dalam website kita yaitu <a href="">JPC EXpress</a></p>
+    paket diproses pada tanggal {{ $tanggal }}paket dengan nomor <br> resi <b>{{$noResi}}</b>, bisa ditrace dalam website kita yaitu <a href="">JPC EXpress</a></p>
 
     <p>Paket dikirim dari kota {{ $kotaAsal }} dengan tujuan akhir {{ $kotaTujuan }} <br> penerima paket atas nama saudara/i,<b> {{ $penerima}} </b>, dengan alamat lengkap yaitu <br> {{ $alamatPenerima }} berikut detail barang yang dikirimkan :<p>
-    <table>
-        <tr>
+    <table border=1 width="400px">
+        <tr style="font-weight : bold;" >
             <td>Berat Barang</td>
             <td>Panjang Barang</td>
             <td>Status Pengiriman</td>
         </tr>
-        <tr>
+        <tr style="text-align : center;">
             <td>{{ $berat}}</td>
             <td>{{ $panjang}}</td>
             <td>{{ $keterangan}}</td>
