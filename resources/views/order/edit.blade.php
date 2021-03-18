@@ -2,13 +2,12 @@
 
 @section('content')   
         <div class="panel-body">
-                <h3>Form Update Order</h3>
+                <h3>Form Tambah Order</h3>
                 <hr>
-                
-            <form action="{{ url('admin/order/update/'.$order->penjualan_id) }}" method="POST" >
+            <form action="{{ url('admin/order/update/'.$order->noResi) }}" method="POST" >
             {{ csrf_field() }}
             {{ method_field('PUT') }}
-            <div class="row">
+                <div class="row">
                     <div class="col-md-6">
                         <label for="">Tanggal Order</label>
                         <input class="form-control" placeholder="Tanggal Order" type="date" name="tanggal" value="{{$order->tanggal}}"><br>
@@ -20,7 +19,7 @@
                            @enderror
 
                         <label for="">Harga Per Kg</label>
-                        <input class="form-control" placeholder="Harga Per Kg" type="text" name="hargaKg" value="{{$order->hargaKg}}"><br>
+                        <input class="form-control" placeholder="Harga Per Kg" type="text" name="hargaKg" value="{{$order->hargaKg}}" ><br>
 
                             @error('hargaKg')
                                 <div class="text-danger">
@@ -29,7 +28,7 @@
                            @enderror
 
                         <label for="">Kuli</label>
-                        <input class="form-control" placeholder="Kuli" type="text" name="kuli" value="{{$order->kuli}}">
+                        <input class="form-control" placeholder="Kuli" type="text" name="kuli" value="{{$order->kuli}}" >
                         <br>
                              @error('kuli')
                                 <div class="text-danger">
@@ -38,7 +37,7 @@
                            @enderror
                            
                         <label for="">Penerima</label>
-                        <input class="form-control" placeholder="Penerima" type="text" name="penerima" value="{{$order->penerima}}">
+                        <input class="form-control" placeholder="Penerima" type="text" name="penerima" value="{{$order->penerima}}" >
                         <br>
                              @error('penerima')
                                 <div class="text-danger">
@@ -47,9 +46,31 @@
                            @enderror
 
                         <label for="">Alamat Penerima</label>
-                        <input class="form-control" placeholder="Alamat Penerima" type="text" name="alamatPenerima" value="{{$order->alamatPenerima}}" >
+                        <input class="form-control" placeholder="Alamat Penerima" type="text" name="alamatPenerima" value="{{$order->alamatPenerima}}">
                         <br>
                              @error('alamatPenerima')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                           @enderror
+
+                        <label id="totalBiayaVendorLabel" for="">Total Biaya Vendor</label>
+                        <input class="form-control" placeholder="Total Biaya Vendor" id="totalBiayaVendor" type="text" name="totalBiayaVendor" value="{{$detail_vendor->totalBiaya}}">
+                        <br id="biayaVendorBr">
+                            @error('totalBiayaVendor')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+                        <label for="">Pilihan</label>
+                        <select name="pilihan" class="form-control">
+                           
+                                <option value="0">Barang Di Jemput</option>
+                                <option value="1">Barang Di Antar</option>
+                        </select>
+
+                            @error('pilihan')
                                 <div class="text-danger">
                                     {{ $message }}
                                 </div>
@@ -76,7 +97,7 @@
 
                            <label for="">Metode Pembayaran</label>
                             <select name="metodePembayaran_id" id="metodePembayaran_id" class="form-control">
-                                <option value="">Pilih Metode Pembayaran</option>
+                            <option value="">Pilih Metode Pembayaran</option>
                                 @foreach($metodePembayaran as $data)
                                 @if($data->id == $order->metodePembayaran_id)
                                 <option value="{{ $data->id }}" selected>{{$data->jenisPembayaran }}</option>
@@ -93,7 +114,7 @@
                            @enderror
 
                            <label for="">Destinasi</label>
-                            <select name="destinasi_id" id="destinasi_id" class="form-control">
+                           <select name="destinasi_id" id="destinasi_id" class="form-control">
                                 <option value="">Pilih Destinasi</option>
                                 @foreach($destinasi as $data)
                                  @if($data->id == $order->destinasi_id)
@@ -119,13 +140,39 @@
                                 </div>
                            @enderror
 
+                           <label for="">Total Biaya</label>
+                            <input class="form-control" placeholder="Total Biaya" type="text" name="totalBiaya" value="{{$detail_penjualan->totalBiaya}}">
+                            <br>
+                             @error('totalBiaya')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                           @enderror
+
+                           <label id="kurirLabel" for="">Pilih Kurir</label>
+                            <select name="kurir_id"  id="kurirId" class="form-control">
+                            <option value="">Pilih Kurir</option>
+                                @foreach($user as $data)
+                                    @if($status_pengiriman->kurir_id == $data->id)
+                                        <option value="{{ $data->id }}" selected>{{$data->name }}|| {{$data->platNomor }}</option>
+                                    @else
+                                        <option value="{{ $data->id }}">{{$data->name }}|| {{$data->platNomor }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+
+                            @error('kurir_id')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                           @enderror
                     </div>
                 </div>
                 <h3>Data Barang</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="">Berat Barang</label>
-                        <input class="form-control" placeholder="Berat Barang" type="text" name="berat" value="{{$barang->berat}}"><br>
+                        <input class="form-control" placeholder="Berat Barang" type="text" name="berat" value="{{$order->berat}}"><br>
 
                             @error('berat')
                             <div class="text-danger">
@@ -135,7 +182,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="">Tinggi Barang</label>
-                        <input class="form-control" placeholder="Tinggi Barang" type="text" name="tinggi" value="{{$barang->tinggi}}"><br>
+                        <input class="form-control" placeholder="Tinggi Barang" type="text" name="tinggi" value="{{$order->tinggi}}"><br>
 
                             @error('tinggi')
                             <div class="text-danger">
@@ -146,7 +193,7 @@
 
                     <div class="col-md-6">
                         <label for="">Panjang Barang</label>
-                        <input class="form-control" placeholder="Panjang Barang" type="text" name="panjang" value="{{$barang->panjang}}"><br>
+                        <input class="form-control" placeholder="Panjang Barang" type="text" name="panjang" value="{{$order->panjang}}"><br>
 
                             @error('panjang')
                             <div class="text-danger">
@@ -157,7 +204,7 @@
 
                     <div class="col-md-6">
                         <label for="">Lebar Barang</label>
-                        <input class="form-control" placeholder="Lebar Barang" type="text" name="lebar" value="{{$barang->lebar}}"><br>
+                        <input class="form-control" placeholder="Lebar Barang" type="text" name="lebar" value="{{$order->lebar}}"><br>
 
                             @error('lebar')
                             <div class="text-danger">
@@ -168,7 +215,7 @@
 
                     <div class="col-md-6">
                         <label for="">Berat Volume Barang</label>
-                        <input class="form-control" placeholder="Berat Volume Barang" type="text" name="beratVol" value="{{$barang->beratVol}}"><br>
+                        <input class="form-control" placeholder="Berat Volume Barang" type="text" name="beratVol" value="{{$order->beratVol}}"><br>
 
                             @error('beratVol')
                             <div class="text-danger">
@@ -177,13 +224,13 @@
                            @enderror
                     </div>
                 </div>
-
+                
                 <h3>Data Customer</h3>
 
                 <div class="row">
                     <div class="col-md-6">
                         <label for="">Nama Customer</label>
-                        <input class="form-control" placeholder="Nama Customer" type="text" name="namaCustomer" value="{{ $customer->namaCustomer }}"><br>
+                        <input class="form-control" placeholder="Nama Customer" type="text" name="namaCustomer" value="{{ $order->namaCustomer }}"><br>
 
                             @error('namaCustomer')
                             <div class="text-danger">
@@ -192,7 +239,7 @@
                            @enderror
 
                         <label for="">Email Customer</label>
-                        <input class="form-control" placeholder="Email Customer" type="email" name="emailCustomer"  value="{{ $customer->emailCustomer }}"><br>
+                        <input class="form-control" placeholder="Email Customer" type="text" name="emailCustomer" value="{{ $order->emailCustomer }}"><br>
 
                             @error('emailCustomer')
                                 <div class="text-danger">
@@ -201,7 +248,7 @@
                            @enderror
 
                         <label for="">No Telp Customer</label>
-                        <input class="form-control" placeholder="No Telp. Customer" type="text" name="noTelpCustomer" value="{{ $customer->noTelpCustomer }}">
+                        <input class="form-control" placeholder="No Telp. Customer" type="text" name="noTelpCustomer" value="{{ $order->noTelpCustomer }}">
                         <br>
                              @error('noTelpCustomer')
                                 <div class="text-danger">
@@ -211,9 +258,9 @@
                     </div>
                     <div class="col-md-6">
                         <label for="">Jenis Kelamin Customer</label>
-                        <select name="genderCustomer" id="genderCustomer" class="form-control" value="{{ $customer->genderCustomer }}">
+                        <select name="genderCustomer" id="genderCustomer" class="form-control" value="{{ $order->genderCustomer }}">
                             <option value="">Pilih Jenis Kelamin</option>
-                            @if($customer->genderCustomer == 'L')
+                            @if($order->genderCustomer == 'L')
                             <option value="L" selected>Laki-Laki</option>
                             <option value="P">Perempuan</option>
                             @else
@@ -229,7 +276,7 @@
                            @enderror
 
                         <label for="">Alamat Customer</label>
-                        <input class="form-control" placeholder="Alamat Customer" type="text" name="alamatCustomer" value="{{ $customer->alamatCustomer }}">
+                        <input class="form-control" placeholder="Alamat Customer" type="text" name="alamatCustomer" value="{{ $order->alamatCustomer }}" >
                         <br>
                         @error('alamatCustomer')
                                 <div class="text-danger">
@@ -247,4 +294,28 @@
                 </div>
             </form>
         </div>
+        <script>
+            $(document).ready(function(){
+                $("#totalBiayaVendor").hide();
+                $("#totalBiayaVendorLabel").hide();
+                $('#biayaVendorBr').hide();
+                $('#vendor_id').change(function(){
+                    let vendorVal = $('#vendor_id').val();
+                    console.log(vendorVal)
+                    if(vendorVal){
+                        $("#totalBiayaVendor").show();
+                        $("#totalBiayaVendorLabel").show();
+                        $('#biayaVendorBr').show();
+                        $('#kurirId').hide();
+                        $('#kurirLabel').hide();
+                    } else {
+                        $("#totalBiayaVendor").hide();
+                        $("#totalBiayaVendorLabel").hide();
+                        $('#biayaVendorBr').hide();
+                        $('#kurirId').show();
+                        $('#kurirLabel').show();
+                    }
+                });
+            });
+        </script>
 @endsection

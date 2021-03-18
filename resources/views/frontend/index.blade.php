@@ -711,11 +711,6 @@
             });
 
             $('#cetak_order').on('click', function() {
-                function downloadFile(response) {
-                    var blob = new Blob([response], {type: 'application/pdf'})
-                    var url = URL.createObjectURL(blob);
-                    location.assign(url);
-                    } 
                 var noResi = $("#penjualan_id").text();
                 // window.location.href = "{{url('/jpc-express/cetak_order/noResi')}}"
                 window.location = "{{ url('/jpc-express/cetak_order/') }}?noResi="+noResi;

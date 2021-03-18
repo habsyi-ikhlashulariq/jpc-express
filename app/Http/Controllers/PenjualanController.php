@@ -220,27 +220,49 @@ class PenjualanController extends Controller
      */
     public function edit($id)
     {
-        $order = Penjualan::select('penjualan.*', 'status_pengiriman.penjualan_id')
-        ->join('status_pengiriman','status_pengiriman.penjualan_id','penjualan.noResi')
-        ->where('penjualan.noResi', $id)
+        $order = Penjualan::select('penjualan.*',
+        'barang.berat',
+        'barang.tinggi',
+        'barang.panjang',
+        'barang.lebar',
+        'barang.beratVol',
+        'customer.namaCustomer',
+        'customer.emailCustomer',
+        'customer.noTelpCustomer',
+        'customer.genderCustomer',
+        'customer.alamatCustomer',
+        )
+        ->join('barang','barang.id','penjualan.barang_id')
+        ->join('customer','customer.id','penjualan.customer_id')
+        ->where('penjualan.noResi',$id)
         ->first();
 
+
+        $detail_vendor = DetailVendor::select('detail_vendor.*')
+        ->where('detail_vendor.penjualan_id', $id)
+        ->first();
+
+        $detail_penjualan = DetailPenjualan::where('penjualan_id', $id)->first();
+
+        $status_pengiriman = StatusPengiriman::where('penjualan_id', $id)
+        ->first();
+        // dd($status_pengiriman);
+
+
         $vendor = Vendor::get();
-        // $customer = Customer::get();
         $metodePembayaran = MetodePembayaran::get();
-        // $barang = Barang::where('id', $order->barang_id)->get();
-        $barang = DB::table('barang')->where('id', $order->barang_id)->first();
-        $customer = DB::table('customer')->where('id', $order->customer_id)->first();
         $destinasi = Destination::get();
-        
+        $user = User::where('jabatan',0)->get();
         
         return view('order.edit', [
             'order' => $order,
             'vendor' => $vendor,
-            'customer' => $customer,
             'metodePembayaran' => $metodePembayaran,
             'destinasi' => $destinasi,
-            'barang' => $barang
+            'user' => $user,
+            'detail_vendor' => $detail_vendor,
+            'detail_penjualan' => $detail_penjualan,
+            'status_pengiriman' => $status_pengiriman,
         ]);
     }
 
@@ -306,6 +328,37 @@ class PenjualanController extends Controller
         $customer->genderCustomer = $request->genderCustomer;
         $customer->alamatCustomer = $request->alamatCustomer;
         $customer->save();
+
+        if ($request->vendor_id != null) {
+            if($request->pilihan == 0){
+                $status_pengiriman = StatusPengiriman::where('penjualan_id', $id)->first();
+                $status_pengiriman->kurir_id = $request->kurir_id;
+                $status_pengiriman->keterangan = "Barang Sedang Dijemput";
+                $status_pengiriman->tanggal = date('Y-m-d');
+                $status_pengiriman->status = 0;
+                $status_pengiriman->save();
+                
+            }elseif ($request->pilihan == 1) {
+                $status_pengiriman = StatusPengiriman::where('penjualan_id', $id)->first();
+                $status_pengiriman->kurir_id = $request->kurir_id;
+                $status_pengiriman->keterangan = "Sedang Menunggu Barang Di Antar";
+                $status_pengiriman->tanggal = date('Y-m-d');
+                $status_pengiriman->status = 0;
+                $status_pengiriman->save();
+            }
+            
+        }
+        
+        if($request->vendor_id != null){
+            $detail_vendor = DetailVendor::where('penjualan_id', $id)->first();
+            $detail_vendor->vendor_id = $request->vendor_id;
+            $detail_vendor->totalBiaya = $request->totalBiayaVendor;
+            $detail_vendor->save();
+        }
+        
+        $detail_penjualan = DetailPenjualan::where('penjualan_id', $id)->first();
+        $detail_vendor->totalBiaya = $request->totalBiaya;
+        $detail_vendor->save();
 
         return redirect('admin/order')->with('message', 'Data Berhasil Diupdate');
     }
