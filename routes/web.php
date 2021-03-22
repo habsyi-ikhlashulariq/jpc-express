@@ -12,7 +12,6 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\StatusPengirimanController;
@@ -144,20 +143,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'kurir'], function(){
 
 });
 
-Route::get('/kirim-email', [NotifikasiController::class, 'email']);
-
-Route::get('/test', function()
-{
-	$beautymail = app()->make(Snowfire\Beautymail\Beautymail::class);
-	$beautymail->send('emails.welcome', [], function($message)
-	{
-		$message
-			->from('seputarit01@gmail.com')
-			->to('habsyi.ikhlashulariq@gmail.com', 'Habsyi Ikhlashul Ariq')
-			->subject('Selamat!');
-	});
-
-});
 Route::get('/order/resi', [FrontEndController::class, 'cetak_order']);
 //Login
 // Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
