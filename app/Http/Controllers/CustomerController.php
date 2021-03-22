@@ -76,7 +76,8 @@ class CustomerController extends Controller
             'genderCustomer' => $request->genderCustomer,
             'alamatCustomer' => $request->alamatCustomer,
         ]);
-        return redirect('admin/customer')->with('message','Data Berhasil Disimpan');
+        // return redirect()->back()->with('message', 'Berhasil Tambah Customer');
+        return redirect('admin/order/create')->with('message','Berhasil Tambah Customer');
     }
 
     /**
@@ -129,6 +130,7 @@ class CustomerController extends Controller
 
         $customer->save();
         return redirect('admin/customer')->with('message', 'Data Berhasil Diupdate');
+        // return redirect('admin/order/create')->with('message','Berhasil Tambah Customer');
     }
 
     /**

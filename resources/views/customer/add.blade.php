@@ -50,8 +50,7 @@
                            @enderror
 
                         <label for="">Alamat Customer</label>
-                        <textarea name="alamatCustomer" id="" cols="67" rows="5">
-                        </textarea>
+                        <input class="form-control" placeholder="Alamat Customer" type="text" name="alamatCustomer" >
                         <br>
                         @error('alamatCustomer')
                                 <div class="text-danger">

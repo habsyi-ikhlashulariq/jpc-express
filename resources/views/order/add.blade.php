@@ -4,6 +4,13 @@
         <div class="panel-body">
                 <h3>Form Tambah Order</h3>
                 <hr>
+
+                @if (session('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('message') }}                        
+                    </div>
+                @endif
+
             <form action="{{ url('admin/order/store') }}" method="POST" >
             {{ csrf_field() }}
                 <div class="row">
@@ -155,7 +162,7 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <a href="{{ url('admin/barang/create') }}" class="btn btn-warning col-md-3">Tambah Customer</a><br><br>
+                        <a href="{{ url('admin/customer/create') }}" class="btn btn-warning col-md-3">Tambah Customer</a><br><br>
                         <label for="">Customer</label>
                         <select name="customer_id" id="customer_id" class="form-control">
                             <option value="">Pilih Customer</option>
