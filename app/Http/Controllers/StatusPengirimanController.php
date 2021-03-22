@@ -77,7 +77,6 @@ class StatusPengirimanController extends Controller
         //
 
         $this->validate($request, [
-            'kurir_id' => 'required',
             'tanggal' => 'required',
             'noResi' => 'required',
             'keterangan' => 'required',
@@ -85,7 +84,6 @@ class StatusPengirimanController extends Controller
 
         StatusPengiriman::create([
             'penjualan_id' => $request->noResi,
-            'kurir_id' => $request->kurir_id,
             'tanggal' => $request->tanggal,
             'keterangan' => $request->keterangan,
             'status' => false
@@ -139,7 +137,6 @@ class StatusPengirimanController extends Controller
         
         $this->validate($request, [
             'noResi' => 'required',
-            'kurir_id' => 'required',
             'tanggal' => 'required',
             'keterangan' => 'required',
             'status' => 'required',
@@ -147,7 +144,6 @@ class StatusPengirimanController extends Controller
 
         $status_pengiriman = StatusPengiriman::where('id', $id)->first();
         $status_pengiriman->penjualan_id = $request->noResi;
-        $status_pengiriman->kurir_id = $request->kurir_id;
         $status_pengiriman->tanggal = $request->tanggal;
         $status_pengiriman->keterangan = $request->keterangan;
         $status_pengiriman->status = $request->status;
