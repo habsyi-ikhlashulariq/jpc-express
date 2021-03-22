@@ -168,6 +168,33 @@
                            @enderror
                     </div>
                 </div>
+
+                <h3>Data Customer</h3>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{{ url('admin/barang/create') }}" class="btn btn-warning col-md-3">Tambah Customer</a><br><br>
+                        <label for="">Customer</label>
+                        <select name="customer_id" id="customer_id" class="form-control">
+                            <option value="">Pilih Customer</option>
+                            @foreach($customer as $data)
+                                @if($data->id == $order->customer_id)
+                                    <option value="{{ $data->id }}" selected>{{$data->namaCustomer }}</option>
+                                @else
+                                    <option value="{{ $data->id }}">{{$data->namaCustomer }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        <br>
+                        @error('customer_id')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div>
+
+
                 <h3>Data Barang</h3>
                 <div class="row">
                     <div class="col-md-6">
@@ -225,66 +252,6 @@
                     </div>
                 </div>
                 
-                <h3>Data Customer</h3>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="">Nama Customer</label>
-                        <input class="form-control" placeholder="Nama Customer" type="text" name="namaCustomer" value="{{ $order->namaCustomer }}"><br>
-
-                            @error('namaCustomer')
-                            <div class="text-danger">
-                                {{ $message }}
-                            </div>
-                           @enderror
-
-                        <label for="">Email Customer</label>
-                        <input class="form-control" placeholder="Email Customer" type="text" name="emailCustomer" value="{{ $order->emailCustomer }}"><br>
-
-                            @error('emailCustomer')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                           @enderror
-
-                        <label for="">No Telp Customer</label>
-                        <input class="form-control" placeholder="No Telp. Customer" type="text" name="noTelpCustomer" value="{{ $order->noTelpCustomer }}">
-                        <br>
-                             @error('noTelpCustomer')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                           @enderror
-                    </div>
-                    <div class="col-md-6">
-                        <label for="">Jenis Kelamin Customer</label>
-                        <select name="genderCustomer" id="genderCustomer" class="form-control" value="{{ $order->genderCustomer }}">
-                            <option value="">Pilih Jenis Kelamin</option>
-                            @if($order->genderCustomer == 'L')
-                            <option value="L" selected>Laki-Laki</option>
-                            <option value="P">Perempuan</option>
-                            @else
-                            <option value="L">Laki-Laki</option>
-                            <option value="P" selected>Perempuan</option>
-                            @endif
-                        </select><br>
-
-                            @error('genderCustomer')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                           @enderror
-
-                        <label for="">Alamat Customer</label>
-                        <input class="form-control" placeholder="Alamat Customer" type="text" name="alamatCustomer" value="{{ $order->alamatCustomer }}" >
-                        <br>
-                        @error('alamatCustomer')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
-                           @enderror
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="col-md-6">

@@ -159,7 +159,7 @@
     <div class="col-md-12 text-center">
         <a href="{{url('admin/order/edit/'.$penjualan->noResi)}}" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
         <a href="{{url('admin/order/destroy/'.$penjualan->noResi)}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-close"></i>&nbsp;Delete</a>
-        <a href="{{ url('admin/order') }}" class="btn btn-danger"><i class="fa fa-undo"></i>&nbsp;Kembali</a>
+        <a href="{{ url('admin/order') }}" class="btn btn-primary"><i class="fa fa-undo"></i>&nbsp;Kembali</a>
     </div>
     
 </div>

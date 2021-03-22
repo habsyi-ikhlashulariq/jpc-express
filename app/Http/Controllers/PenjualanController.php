@@ -48,7 +48,9 @@ class PenjualanController extends Controller
         //button aksi
         ->addColumn('aksi', function($s){
             return '
-            <a href="order/detail/'.$s->noResi.'" class="btn btn-success"><i class="fa fa-info"></i>Detail</a>
+            <a href="order/detail/'.$s->noResi.'" class="btn btn-primary"><i class="fa fa-info"></i>Detail</a>
+
+            <a href="order/resi/'.$s->noResi.'"  target="_blank" class="btn btn-success"><i class="fa fa-print"></i>Cetak Resi</a>
 
             <a href="order/notif/'.$s->noResi.'" class="btn btn-warning"><i class="fa fa-send"></i>Kirim Notif</a>
 
@@ -250,6 +252,7 @@ class PenjualanController extends Controller
 
 
         $vendor = Vendor::get();
+        $customer = Customer::get();
         $metodePembayaran = MetodePembayaran::get();
         $destinasi = Destination::get();
         $user = User::where('jabatan',0)->get();
@@ -260,6 +263,7 @@ class PenjualanController extends Controller
             'metodePembayaran' => $metodePembayaran,
             'destinasi' => $destinasi,
             'user' => $user,
+            'customer' => $customer,
             'detail_vendor' => $detail_vendor,
             'detail_penjualan' => $detail_penjualan,
             'status_pengiriman' => $status_pengiriman,

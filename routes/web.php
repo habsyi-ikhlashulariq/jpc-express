@@ -130,7 +130,8 @@ Route::get('/kurir/destroy/{id}', [KurirController::class, 'destroy']);
 Route::get('/order/cetak_laporan', [PenjualanController::class, 'form_cetak_laporan']);
 Route::post('/order/cetak_laporan', [PenjualanController::class, 'cetak_laporan']);
 
-
+//Cetak Resi
+Route::get('/order/resi/{id}', [FrontEndController::class, 'cetak_order']);
 
 });
 
@@ -143,7 +144,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'kurir'], function(){
 
 });
 
-Route::get('/order/resi', [FrontEndController::class, 'cetak_order']);
 //Login
 // Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 // Auth::routes();
