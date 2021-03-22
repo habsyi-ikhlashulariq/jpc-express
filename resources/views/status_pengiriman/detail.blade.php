@@ -6,7 +6,6 @@
         <thead>
             <tr>
                 <th>No Resi</th>
-                <th>Nama Kurir</th>
                 <th>Tanggal</th>
                 <th>Keterangan</th>
                 <th>Status</th>
@@ -17,7 +16,6 @@
             @foreach($status_pengiriman as $data)
             <tr>
                 <td>{{$data->penjualan_id}}</td>
-                <td>{{$data->name}}</td>
                 <td>{{$data->tanggal}}</td>
                 <td>{{$data->keterangan}}</td>
                 <td>

@@ -23,21 +23,6 @@
                         @enderror
                     </div>
                     <div class="col-md-6">
-                        <label for="">Kurir</label>
-                        <select name="kurir_id" id="kurir_id" class="form-control">
-                            <option value="">Kurir</option>
-                            @foreach($kurir as $data)
-                            <option value="{{ $data->id }}">{{$data->platNomor }} || {{$data->name }}</option>
-                            @endforeach
-                        </select><br>
-
-                        @error('kurir_id')
-                            <div class="text-danger">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="col-md-6">
                     <label for="">Tanggal</label>
                     <input class="form-control" placeholder="Tanggal" type="date" name="tanggal"><br>
 
@@ -47,7 +32,7 @@
                         </div>
                         @enderror
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                     <label for="">Keterangan</label>
                     <input class="form-control" placeholder="Keterangan" type="text" name="keterangan"><br>
 

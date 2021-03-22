@@ -330,9 +330,6 @@
                                         </table>  
                                     </div>
 
-                                    <div class="col-md-12">
-                                        <th><button type="button" class="btn btn-info" id="cetak_order">Cetak Resi</button></th>
-                                    </div>
                                 </div>
 
 
@@ -710,22 +707,10 @@
                 });
             });
 
-            $('#cetak_order').on('click', function() {
-                var noResi = $("#penjualan_id").text();
-                // window.location.href = "{{url('/jpc-express/cetak_order/noResi')}}"
-                window.location = "{{ url('/jpc-express/cetak_order/') }}?noResi="+noResi;
-                // $.ajax({
-                //     url : "{{url('/jpc-express/cetak_order')}}",
-                //     method : 'POST',
-                //     data : {
-                //         noResi : noResi
-                //     },
-                //     success : function(data) {
-                //         // alert(data);
-                //         window.open();
-                //     }
-                // });
-            });
+            // $('#cetak_order').on('click', function() {
+            //     var noResi = $("#penjualan_id").text();
+            //     window.location = "{{ url('/jpc-express/cetak_order/') }}?noResi="+noResi;
+            // });
         });
 
 
